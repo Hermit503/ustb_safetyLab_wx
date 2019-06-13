@@ -21,7 +21,6 @@ Page({
     })
   },
   onLoad: function (options) {
-
   },
   login: function (e) {
     let that = this
@@ -49,25 +48,37 @@ Page({
                 'content-type': 'application/x-www-form-urlencoded'
               },
               success: function (res) {
-                console.log(res.data)
-                if (res.statusCode != '200') {
+                console.log(res)
+                if (res.data.status == '401') {
+                  wx.showToast({
+                    title: '工号或密码错误',
+                    duration: 2000,
+                  });
+                  that.setData({
+                    isClick: false
+                  })
                   return false;
+                } else if (res.data.status=="400"){
+                  wx.showToast({
+                    title: '工号不存在！',
+                    duration: 2000,
+                  });
+                  that.setData({
+                    isClick: false
+                  })
+                  return false;
+                }else if (res.statusCode=="200"){
+                  wx.showToast({
+                    title: '登陆成功！',
+                    duration: 2000,
+                  });
+                  wx.setStorageSync('access_token', res.data.access_token)
+                  wx.setStorageSync('UserData', res.data.data ? res.data.data : '')
+                  wx.redirectTo({
+                    url: '/pages/index/index',
+                  })
                 }
-                wx.setStorageSync('access_token', res.data.access_token)
-                wx.setStorageSync('UserData', res.data.data ? res.data.data : '')
-                wx.redirectTo({
-                  url: '/pages/index/index',
-                })
-              },
-              fail: function (e) {
-                wx.showToast({
-                  title: '服务器错误',
-                  duration: 2000
-                });
-                that.setData({
-                  isClick: false
-                })
-              },
+              }
             });
           }
         })

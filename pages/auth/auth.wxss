@@ -1,1 +1,11 @@
 /* pages/auth/auth.wxss */
+
+Page{
+  height: auto;
+  width: 100%;
+  background-image: var(--gradualBlue);
+  z-index: -1;
+}
+.login{
+  margin-top: 70%;
+}
