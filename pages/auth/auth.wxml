@@ -1,0 +1,8 @@
+<view class='padding-xl'>
+<input class="input" name="userId" placeholder="请输入工号"
+    bindinput ="userIdInput"/>
+<input class="input" name="userPwd" placeholder="请输入密码"
+     bindinput="userPwdInput" />
+  <button class='cu-btn margin-top bg-green shadow lg block' open-type="getUserInfo" bindgetuserinfo="login" disabled="{{isClick}}" type='success'>
+    <text wx:if="{{isClick}}" class='cuIcon-loading2 iconfont-spin'></text> 登录</button>
+</view>
