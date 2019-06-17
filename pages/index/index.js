@@ -5,13 +5,14 @@ Page({
    * 页面的初始数据
    */
   data: {
-    PageCur: 'basics',
-    UserData:wx.getStorageSync('UserData')
+    PageCur: 'function',
+    UserData:wx.getStorageSync('UserData'),
   },
   NavChange(e) {
     this.setData({
       PageCur: e.currentTarget.dataset.cur
     })
+    console.log(e.currentTarget.dataset)
   },
 
   /**

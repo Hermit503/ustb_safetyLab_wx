@@ -2,7 +2,7 @@
   "pages": [
     "pages/auth/auth",
     "pages/index/index",
-    "pages/personal/personal"
+    "pages/function/home/home"
   ],
   "window": {
     "backgroundTextStyle": "light",
