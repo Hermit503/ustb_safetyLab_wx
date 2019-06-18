@@ -5,12 +5,10 @@
   </swiper-item>
 </swiper>
 
-
-
-<view wx:if="{{UserData.roles=='校级管理员'}}">
+<view wx:if="{{UserData.role_id==1}}">
   <view class='functions margin-top-xl'>
     <view class='grid col-3 margin-bottom text-center justify-around'>
-      <button class="cu-btn bg-blue round lg shadow">隐患记录查询</button>
+      <button class="cu-btn bg-blue round lg shadow" bindtap='hiddenRecord'>隐患记录查询</button>
       <button class="cu-btn bg-blue round lg shadow">危化品药品查询</button>
     </view>
     <view class='grid col-3 margin-bottom text-center justify-around'>
@@ -18,7 +16,7 @@
       <button class="cu-btn bg-blue round lg shadow">视察报告上传</button>
     </view>
     <view class='grid col-3 margin-bottom text-center justify-around'>
-      <button class="cu-btn bg-blue round lg shadow">人员查询</button>
+      <button class="cu-btn bg-blue round lg shadow" bindtap='getAllUser'>人员查询</button>
       <button class="cu-btn bg-blue round lg shadow">设备查询</button>
       <button class="cu-btn bg-blue round lg shadow">下发通知</button>
     </view>

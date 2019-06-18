@@ -72,8 +72,15 @@ Page({
                     title: '登陆成功！',
                     duration: 2000,
                   });
+                  var userPermissions = new Array()
+                  let permissionLength = (res.data.permission).length
+                  for (let i = 0; i < permissionLength; i++) {
+                    userPermissions.push(res.data.permission[i].permission)
+                  }
                   wx.setStorageSync('access_token', res.data.access_token)
                   wx.setStorageSync('UserData', res.data.data ? res.data.data : '')
+                  wx.setStorageSync('Roles',res.data.roles)
+                  wx.setStorageSync('Permission', userPermissions)
                   wx.redirectTo({
                     url: '/pages/index/index',
                   })

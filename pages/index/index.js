@@ -12,7 +12,6 @@ Page({
     this.setData({
       PageCur: e.currentTarget.dataset.cur
     })
-    console.log(e.currentTarget.dataset)
   },
 
   /**
