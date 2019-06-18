@@ -34,7 +34,7 @@ App({
     })
   },
   globalData: {
-    userInfo: null
+    userInfo: null,
   },
   onLaunch: function () {
     wx.getSystemInfo({
@@ -43,6 +43,7 @@ App({
         let custom = wx.getMenuButtonBoundingClientRect();
         this.globalData.Custom = custom;
         this.globalData.CustomBar = custom.bottom + custom.top - e.statusBarHeight;
+        this.globalData.Url = 'http://saftylab.test/api/v1';
       }
     })
   },

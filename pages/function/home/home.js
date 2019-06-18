@@ -1,9 +1,10 @@
+const app = new getApp();
 Component({
   options: {
-    addGlobalClass: true,
+    addGlobalClass: true
   },
   data: {
-    UserData: wx.getStorageSync('UserData'),
+    role: wx.getStorageSync('Roles'),
     swiperList: [{
       id: 0,
       type: 'image',
@@ -23,27 +24,30 @@ Component({
     }],
   },
   methods: {
-    hiddenRecord: function(e) {
-      let roles = wx.getStorageSync('UserData')
-      if(roles.role_id==1){
-        let allRoles = wx.getStorageSync('Roles');
-        let rolesLength = allRoles.length;
-        for (let i = 0; i < rolesLength;i++){
-          console.log("你的身份为："+allRoles[i].role);
-        }
-      }else{
-      }
-    },
-    getAllUser: function (e) {
-      console.log(e);
-      wx.request({
-        url: 'http://saftylab.test/api/v1/user',
-        success(res){
-          console.log(res.data.data)
-        }
-      })
-    }
-    
+    getAllUser: function(e) {
+      let userPermission = wx.getStorageSync('Permission');
+      //判断是否有查勘人员的权限
+      var permission = userPermission.find(function(value) {
+        if (value == '/user'||value=='/all') {
+          //console.log(value);
+          wx.navigateTo({
+            url: '../function/user/user',
+            success: function(res) {},
+            fail: function(res) {
 
+            },
+            complete: function(res) {
+
+            },
+          })
+          return 1;
+        } else {
+          wx.showToast({
+            title: '你没有权限哦',
+            icon: 'none'
+          })
+        }
+      });
+    }
   }
 })

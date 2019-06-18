@@ -5,7 +5,7 @@
   </swiper-item>
 </swiper>
 
-<view wx:if="{{UserData.role_id==1}}">
+<view wx:if="{{role}}">
   <view class='functions margin-top-xl'>
     <view class='grid col-3 margin-bottom text-center justify-around'>
       <button class="cu-btn bg-blue round lg shadow" bindtap='hiddenRecord'>隐患记录查询</button>

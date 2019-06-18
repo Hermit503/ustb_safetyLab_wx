@@ -73,13 +73,18 @@ Page({
                     duration: 2000,
                   });
                   var userPermissions = new Array()
-                  let permissionLength = (res.data.permission).length
+                  let permissionLength = (res.data.permissions).length
                   for (let i = 0; i < permissionLength; i++) {
-                    userPermissions.push(res.data.permission[i].permission)
+                    userPermissions.push(res.data.permissions[i].permission)
+                  }
+                  var userRoles = new Array();
+                  let roleLength = (res.data.roles).length;
+                  for (let i = 0; i < roleLength;i++){
+                    userRoles.push(res.data.roles[i].role);
                   }
                   wx.setStorageSync('access_token', res.data.access_token)
                   wx.setStorageSync('UserData', res.data.data ? res.data.data : '')
-                  wx.setStorageSync('Roles',res.data.roles)
+                  wx.setStorageSync('Roles', userRoles)
                   wx.setStorageSync('Permission', userPermissions)
                   wx.redirectTo({
                     url: '/pages/index/index',
