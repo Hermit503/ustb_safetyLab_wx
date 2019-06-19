@@ -75,5 +75,29 @@ Component({
         current: 'https://image.weilanwl.com/color2.0/zanCode.jpg' // 当前显示图片的http链接      
       })
     },
+    logout(){
+      wx.removeStorage({
+        key: 'access_token',
+        success: function (res) {
+          console.log('成功')
+        },
+      });
+      wx.removeStorage({
+        key: 'UserData',
+        success: function (res) {
+          wx.redirectTo({
+            url: '/pages/auth/auth',
+          })
+        },
+      })
+    },
+    onPullDownRefresh: function () {
+      wx.showNavigationBarLoading()
+      this.onLoad()
+      setTimeout(() => {
+        wx.hideNavigationBarLoading()
+        wx.stopPullDownRefresh()
+      }, 2000);
+    },
   }
 })
