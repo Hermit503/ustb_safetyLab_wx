@@ -80,11 +80,21 @@ Component({
       })
     },
     logout(){
+      var id = this.data.userdata.id;
+      wx.request({
+        url: getApp().globalData.Url+'/user/logout',
+        data: {
+          "id" : id
+        },
+      });
       wx.removeStorage({
         key: 'access_token',
-        success: function (res) {
-          console.log('成功')
-        },
+      });
+      wx.removeStorage({
+        key: 'Roles',
+      });
+      wx.removeStorage({
+        key: 'Permission',
       });
       wx.removeStorage({
         key: 'UserData',
@@ -93,7 +103,8 @@ Component({
             url: '/pages/auth/auth',
           })
         },
-      })
+      });
+      
     },
     onPullDownRefresh: function () {
       wx.showNavigationBarLoading()
