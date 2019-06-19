@@ -2,3 +2,17 @@
   <view slot="backText">返回</view>
   <view slot="content">人员管理</view>
 </cu-custom>
+
+
+<view wx:for="{{permissionList}}" wx:key="index" >
+<view class='grid col-3 text-center'>
+<view></view>
+<view></view>
+<view wx:if="{{item=='/adduser'}}" class='cu-btn bg-blue round shadow margin-top ' >增加用户</view>
+</view>
+</view>
+<view class='userList'>
+<view wx:for="{{userList}}" wx:key="index">
+<view>{{item.name}}</view>
+</view>
+</view>

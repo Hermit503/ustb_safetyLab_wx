@@ -6,13 +6,14 @@ Page({
    * 页面的初始数据
    */
   data: {
-
+    userList:{},
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    let that = this;
     wx.request({
       url: app.globalData.Url + "/users",
       data: {
@@ -24,15 +25,19 @@ Page({
       header: { 'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8'},
       success(res){
         console.log(res.data.data);
+        that.setData({
+          userList: res.data.data,
+          permissionList: wx.getStorageSync('Permission')
+        })
       }
-    })
+    });
+    
   },
 
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
-
   },
 
   /**
