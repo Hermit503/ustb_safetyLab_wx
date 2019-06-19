@@ -1,4 +1,4 @@
-const app = getApp();
+const app =new getApp();
 Page({
   /**
    * 页面的初始数据
@@ -41,7 +41,7 @@ Page({
             console.log(data)
             app.globalData.userInfo = data;
             wx.request({
-              url: 'http://saftylab.test/api/v1/user/login',
+              url: app.globalData.Url+'/user/login',
               method: 'POST',
               data: data,
               header: {
