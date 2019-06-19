@@ -17,7 +17,11 @@ Page({
       url: app.globalData.Url + "/users",
       data: {
         unit_id: wx.getStorageSync('UserData').unit_id,
+        role:wx.getStorageSync('Roles'),
+        id: wx.getStorageSync('UserData').id,
       },
+      method: 'POST',
+      header: { 'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8'},
       success(res){
         console.log(res.data.data);
       }

@@ -7,6 +7,7 @@ Page({
   data: {
     PageCur: 'function',
     UserData:wx.getStorageSync('UserData'),
+    role:'',
   },
   NavChange(e) {
     this.setData({
@@ -18,8 +19,6 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    let user_id = wx.getStorageSync('UserData')
-    console.log(user_id)
   },
 
   /**

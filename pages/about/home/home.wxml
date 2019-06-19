@@ -1,10 +1,10 @@
 <scroll-view scroll-y class="scrollPage">
   <view class="UCenter-bg">
     <!-- <image src="/images/logo.png" class="png" mode="widthFix"></image> -->
-    <view class="text-xl">{{nickname.name}}，你好
+    <view class="text-xl">{{userdata.name}}，你好
     </view>
     <view class="margin-top-sm">
-      <text>工号：{{nickname.user_id}}</text>
+      <text>工号：{{userdata.user_id}}</text>
     </view>
     <image src="https://image.weilanwl.com/gif/wave.gif" mode="scaleToFill" class="gif-wave"></image>
   </view>

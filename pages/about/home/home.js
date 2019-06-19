@@ -6,11 +6,15 @@ Component({
     starCount: 0,
     forksCount: 0,
     visitTotal: 0,
-    nickname: wx.getStorageSync('UserData'),
+    userdata:'',
+
   },
   attached() {
     console.log("success")
     let that = this;
+    that.setData({
+      userdata: wx.getStorageSync('UserData')
+    })
     wx.showLoading({
       title: '数据加载中',
       mask: true,

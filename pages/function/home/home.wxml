@@ -5,7 +5,7 @@
   </swiper-item>
 </swiper>
 
-<view wx:if="{{role}}">
+<view wx:if="{{role=='校级管理员'}}">
   <view class='functions margin-top-xl'>
     <view class='grid col-3 margin-bottom text-center justify-around'>
       <button class="cu-btn bg-blue round lg shadow" bindtap='hiddenRecord'>隐患记录查询</button>
@@ -16,7 +16,7 @@
       <button class="cu-btn bg-blue round lg shadow">视察报告上传</button>
     </view>
     <view class='grid col-3 margin-bottom text-center justify-around'>
-      <button class="cu-btn bg-blue round lg shadow" bindtap='getAllUser'>人员查询</button>
+      <button class="cu-btn bg-blue round lg shadow"  bindtap='getAllUser'>人员查询</button>
       <button class="cu-btn bg-blue round lg shadow">设备查询</button>
       <button class="cu-btn bg-blue round lg shadow">下发通知</button>
     </view>
@@ -25,6 +25,6 @@
 
 
 
-<view wx:elif="{{UserData.roles=='院级管理员'}}">
-  院级管理员
+<view wx:elif="{{role=='院级管理员'}}">
+      <button class="cu-btn bg-blue round lg shadow"  bindtap='getAllUser'>人员查询</button>
 </view>
