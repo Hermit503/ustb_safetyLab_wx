@@ -29,11 +29,12 @@ Component({
     let that = this
     let roles = wx.getStorageSync('Roles');
     var role = roles.find(function (value) {
-      if (value == '校级管理员' || value == '院级管理员') {
+      if (value) {
         that.setData({
           role: value
         })
-        console.log(value)
+      
+      console.log(value)
       }
     })
     }

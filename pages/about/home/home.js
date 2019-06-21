@@ -86,6 +86,7 @@ Component({
         data: {
           "id" : id
         },
+        method: 'POST',
       });
       wx.removeStorage({
         key: 'access_token',

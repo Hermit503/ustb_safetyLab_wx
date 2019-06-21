@@ -9,7 +9,7 @@
   <view class='functions margin-top-xl'>
     <view class='grid col-3 margin-bottom text-center justify-around'>
       <button class="cu-btn bg-blue round lg shadow" bindtap='hiddenRecord'>隐患记录查询</button>
-      <button class="cu-btn bg-blue round lg shadow">危化品药品查询</button>
+      <button class="cu-btn bg-blue round lg shadow">药品危化品查询</button>
     </view>
     <view class='grid col-3 margin-bottom text-center justify-around'>
       <button class="cu-btn bg-blue round lg shadow">检修记录查询</button>
@@ -27,4 +27,32 @@
 
 <view wx:elif="{{role=='院级管理员'}}">
       <button class="cu-btn bg-blue round lg shadow"  bindtap='getAllUser'>人员查询</button>
+      <button class="cu-btn bg-blue round lg shadow"  bindtap=''>查看检修记录</button>
+      <button class="cu-btn bg-blue round lg shadow"  bindtap=''>药品危化品查询</button>
+      <button class="cu-btn bg-blue round lg shadow"  bindtap=''>检修记录查询</button>
+      <button class="cu-btn bg-blue round lg shadow"  bindtap=''>上传问题报告</button>
+      <button class="cu-btn bg-blue round lg shadow"  bindtap=''>上传隐患报告</button>
+      <button class="cu-btn bg-blue round lg shadow"  bindtap=''>上传视察报告</button>
+      <button class="cu-btn bg-blue round lg shadow"  bindtap=''>学习</button>
+      <button class="cu-btn bg-blue round lg shadow"  bindtap=''>考试</button>
+      <button class="cu-btn bg-blue round lg shadow"  bindtap=''>下发通知</button>
+</view>
+<view wx:elif="{{role=='实验室管理员'}}">
+      <button class="cu-btn bg-blue round lg shadow"  bindtap='getAllUser'>人员管理</button>
+      <button class="cu-btn bg-blue round lg shadow"  bindtap=''>设备管理</button>
+      <button class="cu-btn bg-blue round lg shadow"  bindtap=''>药品危化品管理</button>
+      <button class="cu-btn bg-blue round lg shadow"  bindtap=''>检修记录查询</button>
+      <button class="cu-btn bg-blue round lg shadow"  bindtap=''>上传问题报告</button>
+      <button class="cu-btn bg-blue round lg shadow"  bindtap=''>上传隐患报告</button>
+      <button class="cu-btn bg-blue round lg shadow"  bindtap=''>实验室上课日志</button>
+      <button class="cu-btn bg-blue round lg shadow"  bindtap=''>学习</button>
+      <button class="cu-btn bg-blue round lg shadow"  bindtap=''>考试</button>
+      <button class="cu-btn bg-blue round lg shadow"  bindtap=''>下发通知</button>
+</view>
+<view wx:elif="{{role=='老师'}}">
+      <button class="cu-btn bg-blue round lg shadow"  bindtap=''>上传隐患报告</button>
+      <button class="cu-btn bg-blue round lg shadow"  bindtap=''>上传视察报告</button>
+      <button class="cu-btn bg-blue round lg shadow"  bindtap=''>学习</button>
+      <button class="cu-btn bg-blue round lg shadow"  bindtap=''>考试</button>
+      <button class="cu-btn bg-blue round lg shadow"  bindtap=''>通知</button>
 </view>
