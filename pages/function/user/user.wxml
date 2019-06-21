@@ -1,18 +1,46 @@
-<cu-custom bgImage="https://image.weilanwl.com/color2.0/plugin/sylb2244.jpg" isBack="{{true}}">
-  <view slot="backText">返回</view>
-  <view slot="content">人员管理</view>
-</cu-custom>
 
+<cu-custom bgColor="bg-gradual-blue" isBack="{{true}}"><view slot="backText">返回</view><view slot="content">人员管理</view></cu-custom>
 
-<view wx:for="{{permissionList}}" wx:key="index" >
-<view class='grid col-3 text-center'>
-<view></view>
-<view></view>
-<view wx:if="{{item=='/adduser'}}" class='cu-btn bg-blue round shadow margin-top ' >增加用户</view>
+<view wx:for="{{permissionList}}" wx:key="index">
+  <view class='flex p-xs search cu-bar align-center bg-white'>
+    <view class="search-form round flex-six  margin-top-sm">
+      <text class="cuIcon-search "></text>
+      <input type="text" placeholder="输入搜索的关键词" confirm-type="search"></input>
+    </view>
+    <view class="action">
+      <button class="cu-btn bg-gradual-blue shadow-blur round  flex-twice">搜索</button>
+    </view>
+    <view wx:if="{{item=='/alluser'||item=='/createuser'}}" class='cu-btn bg-gradual-blue round shadow  flex-half'>增加用户</view>
+  </view>
 </view>
+
+<view class="cu-bar solid-blue bg-white solid-bottom">
+  <view class="action">
+    <text class="cuIcon-title text-blue "></text > <text decode="{{true}}">姓名&ensp;&ensp;&ensp;&ensp;&ensp;工号&ensp;&ensp;&ensp;&ensp;所属单位</text>
+  </view>
 </view>
-<view class='userList'>
-<view wx:for="{{userList}}" wx:key="index">
-<view>{{item.name}}</view>
+<view class="cu-list menu-avatar">
+  <view class="cu-item {{modalName=='move-box-'+ index?'move-cur':''}}" wx:for="{{userList}}" wx:key bindtouchstart="ListTouchStart" bindtouchmove="ListTouchMove" bindtouchend="ListTouchEnd" data-target="move-box-{{index}}">
+    <view class="name-list flex text-center">
+      <view class='name-width'>
+        <text>{{item.name}}</text>
+      </view>
+      <view class="userid-width">
+        <text>{{item.user_id}}</text>
+      </view>
+      <!-- <view class="userid-width">
+        <text>{{item.roles[0].role}}</text>
+      </view> -->
+    </view>
+    <view class="move">
+      <view class="bg-grey">编辑</view>
+      <view class="bg-red">删除</view>
+    </view>
+  </view>
 </view>
-</view>
+
+<!-- <view class='userList'>
+  <view wx:for="{{userList}}" wx:key="index">
+    <view>{{item.name}}</view>
+  </view>
+</view> -->

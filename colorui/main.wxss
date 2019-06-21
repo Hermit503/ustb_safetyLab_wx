@@ -1273,9 +1273,9 @@ button.icon.lg {
 	position: relative;
 	display: flex;
 	padding-right: 10rpx;
-	height: 140rpx;
+	height: 110rpx;
 	background-color: var(--white);
-	justify-content: flex-end;
+	justify-content: flex-start;/* 修改对齐方式*/
 	align-items: center
 }
 
@@ -2842,7 +2842,9 @@ scroll-view.cu-steps .cu-item {
 .basis-xl {
 	flex-basis: 80%;
 }
-
+.flex-half {
+	flex: 0.5;
+}
 .flex-sub {
 	flex: 1;
 }
@@ -2853,6 +2855,12 @@ scroll-view.cu-steps .cu-item {
 
 .flex-treble {
 	flex: 3;
+}
+.flex-four {
+	flex: 4;
+}
+.flex-six {
+  flex: 6;
 }
 
 .flex-direction {
@@ -3128,10 +3136,13 @@ scroll-view.cu-steps .cu-item {
 	margin-left: 40rpx;
 }
 
+
 .margin-left-xl {
 	margin-left: 50rpx;
 }
-
+.margin-left-nm {
+	margin-left: 70rpx;
+}
 .margin-lr-xs {
 	margin-left: 10rpx;
 	margin-right: 10rpx;
@@ -3941,4 +3952,18 @@ scroll-view.cu-steps .cu-item {
 .line-white,
 .lines-white {
 	color: var(--white);
+}
+
+
+
+
+/*
+自定义
+*/
+
+.name-width{
+  width: 160rpx;
+}
+.userid-width{
+  width: 150rpx;
 }
