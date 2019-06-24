@@ -3,7 +3,8 @@
     "pages/auth/auth",
     "pages/index/index",
     "pages/function/home/home",
-    "pages/function/user/user"
+    "pages/function/user/user",
+    "pages/function/user/adduser"
   ],
   "window": {
     "backgroundTextStyle": "light",

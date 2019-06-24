@@ -3962,8 +3962,11 @@ scroll-view.cu-steps .cu-item {
 */
 
 .name-width{
-  width: 160rpx;
+  width: 215rpx;
 }
 .userid-width{
-  width: 150rpx;
+  width: 65rpx;
+}
+.unit-width{
+  width: 260rpx;
 }

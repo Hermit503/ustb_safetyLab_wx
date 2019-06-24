@@ -1,0 +1,1 @@
+<cu-custom bgColor="bg-gradual-blue" isBack="{{true}}"><view slot="backText">返回</view><view slot="content">添加人员</view></cu-custom>
