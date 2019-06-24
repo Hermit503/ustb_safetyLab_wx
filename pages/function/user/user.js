@@ -28,9 +28,9 @@ Page({
         'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8'
       },
       success(res) {
-        console.log(res.data.data);
+        console.log(res.data);
         that.setData({
-          userList: res.data.data,
+          userList: res.data,
           permissionList: wx.getStorageSync('Permission')
         })
       }
@@ -66,9 +66,28 @@ Page({
       ListTouchDirection: null
     })
   },
-  exit:function(){
+  /**
+   * 模态框
+   */
+  showModal(e) {
+    this.setData({
+      modalName: e.currentTarget.dataset.target
+    })
+    console.log(e.currentTarget.dataset.target)
+  },
+  hideModal(e) {
+    this.setData({
+      modalName: null
+    })
+  },
+  addUser: function(e) {
     wx.navigateTo({
-      url: './pages/index/index',
+      url: './adduser',
+      success: function(res) {
+        console.log('this is adduser page');
+      },
+      fail: function(res) {},
+      complete: function(res) {},
     })
   },
 

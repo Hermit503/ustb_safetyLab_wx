@@ -4,7 +4,7 @@ Component({
     addGlobalClass: true
   },
   data: {
-    role:null,
+    role: null,
     swiperList: [{
       id: 0,
       type: 'image',
@@ -24,19 +24,19 @@ Component({
     }],
   },
 
-  lifetimes:{
-    attached:function(){
-    let that = this
-    let roles = wx.getStorageSync('Roles');
-    var role = roles.find(function (value) {
-      if (value) {
-        that.setData({
-          role: value
-        })
-      
-      console.log(value)
-      }
-    })
+  lifetimes: {
+    attached: function() {
+      let that = this
+      let roles = wx.getStorageSync('Roles');
+      var role = roles.find(function(value) {
+        if (value) {
+          that.setData({
+            role: value
+          })
+
+          console.log(value)
+        }
+      })
     }
   },
   methods: {
@@ -50,10 +50,10 @@ Component({
           })
           return 1;
         } else {
-          wx.showToast({
-            title: '你没有权限哦',
-            icon: 'none'
-          })
+            wx.showToast({
+              title: '你没有权限哦',
+              icon: 'none'
+            })
         }
       });
     },
