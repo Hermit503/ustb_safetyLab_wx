@@ -3,7 +3,9 @@
     "pages/auth/auth",
     "pages/index/index",
     "pages/function/home/home",
-    "pages/function/user/user"
+    "pages/function/user/user",
+    "pages/function/equipmentList/equipmentList",
+    "pages/function/equipmentDetails/equipmentDetails"
   ],
   "window": {
     "backgroundTextStyle": "light",
@@ -18,7 +20,7 @@
       "desc": "你的位置信息将用于小程序位置接口的效果展示"
     }
   },
-    "usingComponents": {
-      "cu-custom": "/colorui/components/cu-custom"
-    }
+  "usingComponents": {
+    "cu-custom": "/colorui/components/cu-custom"
+  }
 }

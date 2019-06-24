@@ -17,7 +17,7 @@
     </view>
     <view class='grid col-3 margin-bottom text-center justify-around'>
       <button class="cu-btn bg-gradual-blue round lg shadow" bindtap='getAllUser'>人员查询</button>
-      <button class="cu-btn bg-gradual-blue round lg shadow">设备查询</button>
+      <button class="cu-btn bg-gradual-blue round lg shadow" bindtap='inquireEquipment'>设备查询</button>
       <button class="cu-btn bg-gradual-blue round lg shadow">下发通知</button>
     </view>
   </view>

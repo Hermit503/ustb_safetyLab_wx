@@ -57,6 +57,26 @@ Component({
         }
       });
     },
+    inquireEquipment: function (e) {
+      let userPermission = wx.getStorageSync('Permission');
+      //判断是否有设备管理的权限
+      var permission = userPermission.find(function (value) {
+        if (value == '/allequipment' || value == '/readequipment') {
+          wx.navigateTo({
+            url: '../function/equipmentList/equipmentList',
+            success: function (res) { },
+            fail: function (res) { },
+            complete: function (res) { },
+          })
+          return 1;
+        } else {
+          wx.showToast({
+            title: '你没有权限哦',
+            icon: 'none'
+          })
+        }
+      });
+    },
   },
 
 })
