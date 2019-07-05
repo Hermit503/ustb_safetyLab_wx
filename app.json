@@ -4,8 +4,8 @@
     "pages/index/index",
     "pages/function/home/home",
     "pages/function/user/user",
-    "pages/function/equipmentList/equipmentList",
-    "pages/function/equipmentDetails/equipmentDetails",
+    "pages/function/equipment/equipmentList",
+    "pages/function/equipment/equipmentDetails",
     "pages/function/user/adduser"
   ],
   "window": {
