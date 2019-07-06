@@ -1,0 +1,48 @@
+<cu-custom bgColor="bg-gradual-blue" isBack="{{true}}">
+  <view slot="backText">返回</view>
+  <view slot="content">信息修改</view>
+</cu-custom>
+<form bindsubmit="formSubmit">
+  <view class="cu-form-group ">
+    <text class='text-red text-xxl'>*</text>
+    <view class="title"> 工号</view>
+    <input placeholder="请输入工号" value='{{userInfo.user_id}}' disabled="true" type='text' name="userId"></input>
+  </view>
+  <view class="cu-form-group ">
+    <text class='text-red text-xxl'>*</text>
+    <view class="title">姓名</view>
+    <input placeholder="请输入姓名" value='{{userInfo.name}}' name="userName" type='text'></input>
+  </view>
+  <view class="cu-form-group ">
+    <text class='text-red text-xxl'>*</text>
+    <view class="title">职称</view>
+    <input placeholder="请输入职称" value='{{userInfo.title}}' name="userTitle" type='text'></input>
+  </view>
+
+  <!-- 单位 -->
+  <view class="cu-form-group">
+    <text class='text-red text-xxl'>*</text>
+    <view class="title">单位</view>
+    <picker bindchange="PickerChange" value="{{unit_id}}" name="userUnit" range="{{picker}}">
+      <view class="picker">
+        {{picker[unit_id]}}
+      </view>
+    </picker>
+  </view>
+  <view class="cu-form-group ">
+    <text class='text-red text-xxl'>*</text>
+    <view class="title">邮箱</view>
+    <input placeholder="请输入邮箱" value='{{userInfo.email}}' name="userEmail"></input>
+  </view>
+  <view class="cu-form-group ">
+    <text class='text-red text-xxls'>*</text>
+    <view class="title">电话</view>
+    <input placeholder="请输入电话号码" value='{{userInfo.phone_number}}' name="userPhone"></input>
+  </view>
+  <button class='cu-btn  margin-top  margin-left margin-right bg-blue shadow lg block' form-type="submit">提交</button>
+</form>
+<!-- <view class="cu-form-group ">
+  <text class='text-red text-xxl'>*</text>
+  <view class="title">权限</view>
+  <input placeholder="统一标题的宽度" value='{{userInfo.permission}}'></input>
+</view> -->

@@ -9,6 +9,7 @@ Page({
     userList: {},
     StatusBar: app.globalData.StatusBar,
     CustomBar: app.globalData.CustomBar,
+    userSortId:null
   },
 
   /**
@@ -35,7 +36,6 @@ Page({
         })
       }
     });
-
   },
   // ListTouch触摸开始
   ListTouchStart(e) {
@@ -71,9 +71,10 @@ Page({
    */
   showModal(e) {
     this.setData({
-      modalName: e.currentTarget.dataset.target
+      modalName: e.currentTarget.dataset.target,
+      userSortId:e.currentTarget.dataset.id
     })
-    console.log(e.currentTarget.dataset.target)
+    console.log(e.currentTarget.dataset.id)
   },
   hideModal(e) {
     this.setData({
@@ -82,13 +83,25 @@ Page({
   },
   addUser: function(e) {
     wx.navigateTo({
-      url: './adduser',
+      url: './addUser',
       success: function(res) {
         console.log('this is adduser page');
       },
       fail: function(res) {},
       complete: function(res) {},
     })
+  },
+  updateUser:function(e){
+    wx.navigateTo({
+      url: './updateUser?id=' + e.currentTarget.dataset.id+'&unit_id='+e.currentTarget.dataset.unit,
+      success:function(res){
+        // console.log(res)
+      }
+    })
+    wx.showLoading({
+      title: '正在加载',
+    })
+    // console.log(e.currentTarget)
   },
 
   /**

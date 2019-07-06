@@ -49,7 +49,7 @@ Page({
               },
               success: function (res) {
                 console.log(res)
-                if (res.data.status == '401') {
+                if (res.statusCode == '401') {
                   wx.showToast({
                     title: '工号或密码错误',
                     duration: 2000,
@@ -58,7 +58,7 @@ Page({
                     isClick: false
                   })
                   return false;
-                } else if (res.data.status=="400"){
+                } else if (res.statusCode=="400"){
                   wx.showToast({
                     title: '工号不存在！',
                     duration: 2000,

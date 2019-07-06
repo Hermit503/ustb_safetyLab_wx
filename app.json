@@ -6,7 +6,8 @@
     "pages/function/user/user",
     "pages/function/equipmentList/equipmentList",
     "pages/function/equipmentDetails/equipmentDetails",
-    "pages/function/user/adduser"
+    "pages/function/user/addUser",
+    "pages/function/user/updateUser"
   ],
   "window": {
     "backgroundTextStyle": "light",

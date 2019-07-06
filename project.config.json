@@ -40,7 +40,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 1,
+			"current": 2,
 			"list": [
 				{
 					"id": -1,
@@ -53,6 +53,14 @@
 					"id": -1,
 					"name": "人员管理",
 					"pathName": "pages/function/user/user",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": 2,
+					"name": "添加人员",
+					"pathName": "pages/function/user/adduser",
+					"query": "",
 					"scene": null
 				}
 			]
