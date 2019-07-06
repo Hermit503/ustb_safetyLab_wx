@@ -1,0 +1,66 @@
+<cu-custom bgColor="bg-gradual-blue" isBack="{{true}}"><view slot="backText">返回</view><view slot="content">编辑信息</view></cu-custom>
+<form>
+  <!--资产编号-->
+	<view class="cu-form-group">
+		<view class="title">资产编号</view>
+		<input placeholder="请输入资产编号" value="{{assetnumber}}" bindinput="setassetnumber"></input>
+    <text class="cuIcon-camerafill text-orange" bindtap="getAsset"></text>
+	</view>
+	<!--设备名称-->
+	<view class="cu-form-group margin-top">
+		<view class="title">设备名称</view>
+		<input placeholder="如烧杯" value="{{equipmentname}}" bindinput="setequipmentname"></input>
+	</view>
+  <!--设备类型，特种设备、普通设备-->
+	<view class="cu-form-group">
+		<view class="title">设备类型</view>
+		<picker bindchange="PickerChange" value="{{tindex}}" range="{{tpicker}}" name="equipment_type">
+			<view class="picker">
+				{{tindex?tpicker[tindex]:typetext}}
+			</view>
+		</picker>
+	</view>
+  <!--实验室位置-->
+	<view class="cu-form-group">
+		<view class="title">实验室位置</view>
+		<picker mode="multiSelector" bindchange="MultiChange" bindcolumnchange="MultiColumnChange" value="{{multiIndex}}"
+		 range="{{multiArray}}" name="laboratory_id">
+			<view class="picker">
+				{{multiArray[0][multiIndex[0]]}}{{multiArray[1][multiIndex[1]]}}{{placetext}}
+			</view>
+		</picker>
+	</view>
+  <!--目前状态-->
+  <view class="cu-form-group">
+		<view class="title">目前状态</view>
+		<picker bindchange="SPickerChange" value="{{sindex}}" range="{{spicker}}" name="status">
+			<view class="picker">
+				{{sindex?spicker[sindex]:statustext}}
+			</view>
+		</picker>
+	</view>
+  <!--入库时间-->
+	<view class="cu-form-group">
+		<view class="title">入库时间</view>
+		<picker mode="date" value="{{storagedate}}" start="2015-09-01" end="2020-09-01" bindchange="StorageDateChange" name="storage_time">
+			<view class="picker">
+				{{storagedate}}
+			</view>
+		</picker>
+	</view>
+  <!--预计报废时间-->
+	<view class="cu-form-group">
+		<view class="title">预计报废时间</view>
+		<picker mode="date" value="{{scrapdate}}" start="2015-09-01" end="2020-09-01" bindchange="ScrapDateChange" name="scrap_time">
+			<view class="picker">
+				{{scrapdate}}
+			</view>
+		</picker>
+	</view>
+  <view class="padding flex flex-direction">
+    <button class="cu-btn bg-green margin-tb-sm lg" bindtap='submit'>保存修改</button>
+  </view>
+</form>
+
+
+

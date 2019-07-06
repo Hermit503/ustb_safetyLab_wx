@@ -9,6 +9,7 @@ Page({
     equipmentList: {},
     StatusBar: app.globalData.StatusBar,
     CustomBar: app.globalData.CustomBar,
+    id: null,
   },
 
   /**
@@ -55,6 +56,35 @@ Page({
         })
       }
     });
+  },
+  //删除设备显示模态框
+  showModal(e) {
+    this.setData({
+      modalName: e.currentTarget.dataset.target,
+      id: e.target.dataset.id
+    });
+  },
+  hideModal(e) {
+    this. setData({
+      modalName: null
+    })
+  },
+  deleteEquipment:function(e){
+    var that = this;
+    wx.request({
+      url: app.globalData.Url + '/equipment/delete',
+      data: {
+        id: this.data.id
+      },
+      method: 'GET',
+      success(res) {
+        that.hideModal();
+        wx.showToast({
+          title: res.data,
+          duration: 2000,
+        });
+      }
+    })
   },
   // ListTouch触摸开始
   ListTouchStart(e) {

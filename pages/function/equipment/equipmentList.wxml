@@ -41,8 +41,28 @@
       </view>
     </view>
     <view class="move">
-      <view class="bg-grey">编辑</view>
-      <view class="bg-red">删除</view>
+      <view class="bg-grey"><navigator url="/pages/function/equipment/equipmentModify?id={{item.id}}" hover-class="none">编辑</navigator></view>
+      <view class="bg-red" bindtap="showModal" data-target="DialogModal1" data-id="{{item.id}}">删除</view>
+    </view>
+  </view>
+</view>
+<!--删除的模态框-->
+<view class="cu-modal {{modalName=='DialogModal1'?'show':''}}">
+  <view class="cu-dialog">
+    <view class="cu-bar bg-white justify-end">
+      <view class="content">删除</view>
+      <view class="action" bindtap="hideModal">
+        <text class="cuIcon-close text-red"></text>
+      </view>
+    </view>
+    <view class="padding-xl">
+      确认删除？
+    </view>
+    <view class="cu-bar bg-white justify-end">
+      <view class="action">
+        <button class="cu-btn line-green text-green" bindtap="hideModal">取消</button>
+        <button class="cu-btn bg-green margin-left" bindtap="deleteEquipment">确定</button>
+      </view>
     </view>
   </view>
 </view>
