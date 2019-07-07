@@ -39,7 +39,7 @@
     </view>
     <view class="move">
       <view class="bg-grey" bindtap='updateUser' data-unit="{{item.unit.id}}" data-id="{{item.user_id}}">编辑</view>
-      <view class="bg-red">删除</view>
+      <view class="bg-red" bindtap="showModal" data-id="{{item.user_id}}" data-name="{{item.name}}" data-target="DialogModal1">删除</view>
     </view>
   </view>
 </view>
@@ -93,7 +93,28 @@
     </view>
     <view class="padding-sm cu-bar bg-white justify-end">
       <view class="action">
-        <button class="cu-btn bg-gradual-blue margin-left" bindtap="hideModal">确认</button>
+        <button class="cu-btn bg-gradual-blue margin-left "  bindtap="hideModal">确认</button>
+      </view>
+    </view>
+  </view>
+</view>
+
+
+<view class="cu-modal {{modalName=='DialogModal1'?'show':''}}">
+  <view class="cu-dialog">
+    <view class="cu-bar bg-white justify-end">
+      <view class="content">人员删除</view>
+      <view class="action" bindtap="hideModal">
+        <text class="cuIcon-close text-red"></text>
+      </view>
+    </view>
+    <view class="padding">
+     确定要删除<text class="text-red">{{userName}}</text>吗？
+    </view>
+    <view class="cu-bar bg-white justify-end">
+      <view class="action">
+        <button class="cu-btn text-blue" bindtap="hideModal">取消</button>
+        <button class="cu-btn margin-left bg-blue"  bindtap="deleteUser">确定</button>
       </view>
     </view>
   </view>

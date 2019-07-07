@@ -9,7 +9,7 @@ Page({
     userList: {},
     StatusBar: app.globalData.StatusBar,
     CustomBar: app.globalData.CustomBar,
-    userSortId:null
+    userSortId: null
   },
 
   /**
@@ -72,9 +72,10 @@ Page({
   showModal(e) {
     this.setData({
       modalName: e.currentTarget.dataset.target,
-      userSortId:e.currentTarget.dataset.id
+      userSortId: e.currentTarget.dataset.id,
+      userName:e.currentTarget.dataset.name
     })
-    console.log(e.currentTarget.dataset.id)
+    console.log(e.currentTarget.dataset)
   },
   hideModal(e) {
     this.setData({
@@ -91,10 +92,11 @@ Page({
       complete: function(res) {},
     })
   },
-  updateUser:function(e){
+  //人员信息更改
+  updateUser: function(e) {
     wx.navigateTo({
-      url: './updateUser?id=' + e.currentTarget.dataset.id+'&unit_id='+e.currentTarget.dataset.unit,
-      success:function(res){
+      url: './updateUser?id=' + e.currentTarget.dataset.id + '&unit_id=' + e.currentTarget.dataset.unit,
+      success: function(res) {
         // console.log(res)
       }
     })
@@ -102,6 +104,30 @@ Page({
       title: '正在加载',
     })
     // console.log(e.currentTarget)
+  },
+  // 人员信息删除
+  deleteUser(e) {
+    console.log(this.data.userSortId)
+    let that = this
+    wx.request({
+      url: app.globalData.Url + "/users/" + this.data.userSortId,
+      data: {
+        'userId': this.data.userSortId
+      },
+      header: {
+        'content-type': 'application/x-www-form-urlencoded'
+      },
+      method: 'DELETE',
+      success: function(res) {
+        console.log(res)
+        if (res.statusCode == 204) {
+          that.hideModal();
+          that.onLoad();
+        }
+      },
+      fail: function(res) {},
+      complete: function(res) {},
+    })
   },
 
   /**

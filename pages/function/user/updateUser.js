@@ -8,6 +8,27 @@ Page({
     userInfo: {},
     picker: [],
     unit_id: null,
+    items: [{
+        name: 'alluser',
+        value: '人员所有权限'
+      },
+      {
+        name: 'allequipment',
+        value: '设备所有权限'
+      },
+      {
+        name: 'allmedcine',
+        value: '药品所有权限'
+      },
+      {
+        name: 'ENG',
+        value: '英国'
+      },
+      {
+        name: 'TUR',
+        value: '法国'
+      },
+    ]
   },
 
   /**
@@ -16,7 +37,7 @@ Page({
   onLoad: function(options) {
     let that = this
     wx.request({
-      url: app.globalData.Url + "/user/" + options.id,
+      url: app.globalData.Url + "/users/" + options.id,
       success: function(res) {
         let unitList = Array();
         for (let i = 0; i < res.data.units.length; i++) {
@@ -57,27 +78,36 @@ Page({
       unit_id: e.detail.value
     })
   },
+  checkboxChange: function (e) {
+    let that = this
+    console.log(e.detail.value)
+    that.setData({
+      userPermission: e.detail.value
+    })
+  },
   formSubmit: function(e) {
     wx.request({
-      url: app.globalData.Url + '/user/' + e.detail.value.userId,
+      url: app.globalData.Url + '/users/' + e.detail.value.userId,
       data: {
         'name': e.detail.value.userName,
         'email': e.detail.value.userEmail,
-        'user_id':e.detail.value.userId ,
+        'user_id': e.detail.value.userId,
         'phone': e.detail.value.userPhone,
-        'unit_id': Number(e.detail.value.userUnit)+1,
-        'title':e.detail.value.userTitle
+        'unit_id': Number(e.detail.value.userUnit) + 1,
+        'title': e.detail.value.userTitle,
+        'permission': e.detail.value.userPermission
       },
       header: {
         'content-type': 'application/x-www-form-urlencoded'
       },
       method: 'PUT',
       success: function(res) {
-        if(res.statusCode==200){
-          wx.redirectTo({
-            url: './user',
-          })
-        }
+        console.log(res)
+        // if (res.statusCode == 200) {
+        //   wx.redirectTo({
+        //     url: './user',
+        //   })
+        // }
       },
       fail: function(res) {},
       complete: function(res) {},

@@ -18,7 +18,16 @@
     <view class="title">职称</view>
     <input placeholder="请输入职称" value='{{userInfo.title}}' name="userTitle" type='text'></input>
   </view>
-
+  <view class="cu-form-group ">
+    <text class='text-red text-xxl'>*</text>
+    <view class="title">邮箱</view>
+    <input placeholder="请输入邮箱" value='{{userInfo.email}}' name="userEmail"></input>
+  </view>
+  <view class="cu-form-group ">
+    <text class='text-red text-xxl'>*</text>
+    <view class="title">电话</view>
+    <input placeholder="请输入电话号码" value='{{userInfo.phone_number}}' name="userPhone"></input>
+  </view>
   <!-- 单位 -->
   <view class="cu-form-group">
     <text class='text-red text-xxl'>*</text>
@@ -29,16 +38,19 @@
       </view>
     </picker>
   </view>
-  <view class="cu-form-group ">
+  <!-- 权限 -->
+  <view class="cu-form-group">
     <text class='text-red text-xxl'>*</text>
-    <view class="title">邮箱</view>
-    <input placeholder="请输入邮箱" value='{{userInfo.email}}' name="userEmail"></input>
+    <view class="title">权限</view>
+    <input disabled='true'></input>
   </view>
-  <view class="cu-form-group ">
-    <text class='text-red text-xxls'>*</text>
-    <view class="title">电话</view>
-    <input placeholder="请输入电话号码" value='{{userInfo.phone_number}}' name="userPhone"></input>
-  </view>
+  <checkbox-group class="bg-white" bindchange="checkboxChange" name="userPermission">
+    <label class="checkbox line-blue" wx:for="{{items}}" wx:key="{{index}}">
+      <checkbox value="{{item.name}}" checked="{{item.checked}}"/>{{item.value}}
+    </label>
+  </checkbox-group>
+
+
   <button class='cu-btn  margin-top  margin-left margin-right bg-blue shadow lg block' form-type="submit">提交</button>
 </form>
 <!-- <view class="cu-form-group ">

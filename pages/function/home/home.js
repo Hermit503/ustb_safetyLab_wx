@@ -44,7 +44,7 @@ Component({
       let userPermission = wx.getStorageSync('Permission');
       //判断是否有人员管理的权限
       var permission = userPermission.find(function(value) {
-        if (value == '/readuser' || value == '/alluser') {
+        if (value == 'readuser' || value == 'alluser') {
           wx.navigateTo({
             url: '../function/user/user',
           })
@@ -61,7 +61,7 @@ Component({
       let userPermission = wx.getStorageSync('Permission');
       //判断是否有设备管理的权限
       var permission = userPermission.find(function (value) {
-        if (value == '/allequipment' || value == '/readequipment') {
+        if (value == 'allequipment' || value == 'readequipment') {
           wx.navigateTo({
             url: '../function/equipment/equipmentList',
             success: function (res) { },
