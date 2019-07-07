@@ -132,7 +132,7 @@ Page({
         storage_time: this.data.storagedate,
         scrap_time: this.data.scrapdate
       },
-      method: 'POST',
+      method: 'PUT',
       header: {
         'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8'
       },
