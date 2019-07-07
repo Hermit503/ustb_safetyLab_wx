@@ -163,21 +163,14 @@ Page({
     });
     //获取id为id的信息
     wx.request({
-      url: app.globalData.Url + '/equipment/getold',
-      data:{
-        id:that.data.id
-      },
+      url: app.globalData.Url + '/equipment/' + that.data.id,
       method: 'GET',
       success(res) {
-        var laboratory_id = res.data[0].laboratory_id;
+        var l_id = res.data[0].laboratory_id;
         wx.request({
-          url: app.globalData.Url + '/equipment/getlaboratory',
-          data: {
-            laboratory_id: laboratory_id
-          },
+          url: app.globalData.Url + '/equipment/getlaboratory/' + l_id,
           method: 'GET',
           success(res) {
-            console.log(res.data);
             that.setData({
               placetext: res.data[0].laboratory_name,
               placefinal: res.data[0].laboratory_name,
