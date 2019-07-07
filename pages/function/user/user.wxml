@@ -39,7 +39,7 @@
     </view>
     <view class="move">
       <view class="bg-grey" bindtap='updateUser' data-unit="{{item.unit.id}}" data-id="{{item.user_id}}">编辑</view>
-      <view class="bg-red">删除</view>
+      <view class="bg-red" bindtap="showDeleteModal" data-target="DialogModal1" data-id="{{item.id}}">删除</view>
     </view>
   </view>
 </view>
@@ -94,6 +94,27 @@
     <view class="padding-sm cu-bar bg-white justify-end">
       <view class="action">
         <button class="cu-btn bg-gradual-blue margin-left" bindtap="hideModal">确认</button>
+      </view>
+    </view>
+  </view>
+</view>
+
+<!--删除的模态框-->
+<view class="cu-modal {{modalName=='DialogModal1'?'show':''}}">
+  <view class="cu-dialog">
+    <view class="cu-bar bg-white justify-end">
+      <view class="content">删除</view>
+      <view class="action" bindtap="hideDeleteModal">
+        <text class="cuIcon-close text-red"></text>
+      </view>
+    </view>
+    <view class="padding-xl">
+      确认删除？
+    </view>
+    <view class="cu-bar bg-white justify-end">
+      <view class="action">
+        <button class="cu-btn line-green text-green" bindtap="hideDeleteModal">取消</button>
+        <button class="cu-btn bg-green margin-left" bindtap="deleteUser">确定</button>
       </view>
     </view>
   </view>
