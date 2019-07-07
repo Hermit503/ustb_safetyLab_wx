@@ -22,7 +22,7 @@ Page({
       data: {
         unit_id: wx.getStorageSync('UserData').unit_id,
       },
-      method: 'POST',
+      method: 'GET',
       header: {
         'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8'
       },
@@ -76,7 +76,7 @@ Page({
       data: {
         id: this.data.id
       },
-      method: 'GET',
+      method: 'DELETE',
       success(res) {
         that.hideModal();
         wx.showToast({

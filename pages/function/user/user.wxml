@@ -119,3 +119,24 @@
     </view>
   </view>
 </view>
+
+<!--删除的模态框-->
+<view class="cu-modal {{modalName=='DialogModal1'?'show':''}}">
+  <view class="cu-dialog">
+    <view class="cu-bar bg-white justify-end">
+      <view class="content">删除</view>
+      <view class="action" bindtap="hideDeleteModal">
+        <text class="cuIcon-close text-red"></text>
+      </view>
+    </view>
+    <view class="padding-xl">
+      确认删除？
+    </view>
+    <view class="cu-bar bg-white justify-end">
+      <view class="action">
+        <button class="cu-btn line-green text-green" bindtap="hideDeleteModal">取消</button>
+        <button class="cu-btn bg-green margin-left" bindtap="deleteUser">确定</button>
+      </view>
+    </view>
+  </view>
+</view>

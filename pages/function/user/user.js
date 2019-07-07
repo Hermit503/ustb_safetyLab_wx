@@ -82,6 +82,35 @@ Page({
       modalName: null
     })
   },
+  //删除的模态框
+  showDeleteModal(e) {
+    this.setData({
+      modalName: e.currentTarget.dataset.target,
+      id: e.target.dataset.id
+    });
+  },
+  hideDeleteModal(e) {
+    this.setData({
+      modalName: null
+    })
+  },
+  deleteUser: function (e) {
+    var that = this;
+    wx.request({
+      url: app.globalData.Url + '/user/delete',
+      data: {
+        id: this.data.id
+      },
+      method: 'DELETE',
+      success(res) {
+        that.hideModal();
+        wx.showToast({
+          title: res.data,
+          duration: 2000,
+        });
+      }
+    })
+  },
   addUser: function(e) {
     wx.navigateTo({
       url: './addUser',
