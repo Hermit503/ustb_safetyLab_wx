@@ -3970,3 +3970,6 @@ scroll-view.cu-steps .cu-item {
 .unit-width{
   width: 260rpx;
 }
+.equipment-width{
+  width: 155rpx;
+}

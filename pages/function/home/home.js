@@ -63,7 +63,7 @@ Component({
       var permission = userPermission.find(function (value) {
         if (value == '/allequipment' || value == '/readequipment') {
           wx.navigateTo({
-            url: '../function/equipmentList/equipmentList',
+            url: '../function/equipment/equipmentList',
             success: function (res) { },
             fail: function (res) { },
             complete: function (res) { },
