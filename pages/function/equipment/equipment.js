@@ -41,7 +41,7 @@ Page({
     let userPermission = wx.getStorageSync('Permission');
     //判断是否有设备管理的权限
     var permission = userPermission.find(function (value) {
-      if (value == '/allequipment' || value == '/addequipment') {
+      if (value == 'allequipment' || value == 'addequipment') {
         wx.navigateTo({
           url: '../../function/equipment/equipmentDetails',
           success: function (res) { },

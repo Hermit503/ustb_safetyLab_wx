@@ -9,6 +9,9 @@ Page({
     picker: [],
     unit_id: null,
     items: [{
+        name: 'all',
+        value: '所有权限'
+      }, {
         name: 'alluser',
         value: '人员所有权限'
       },
@@ -21,8 +24,8 @@ Page({
         value: '药品所有权限'
       },
       {
-        name: 'ENG',
-        value: '英国'
+        name: 'all',
+        value: '上传检修报告权限'
       },
       {
         name: 'TUR',
@@ -78,7 +81,7 @@ Page({
       unit_id: e.detail.value
     })
   },
-  checkboxChange: function (e) {
+  checkboxChange: function(e) {
     let that = this
     console.log(e.detail.value)
     that.setData({

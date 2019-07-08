@@ -45,8 +45,10 @@
     <input disabled='true'></input>
   </view>
   <checkbox-group class="bg-white" bindchange="checkboxChange" name="userPermission">
-    <label class="checkbox line-blue" wx:for="{{items}}" wx:key="{{index}}">
-      <checkbox value="{{item.name}}" checked="{{item.checked}}"/>{{item.value}}
+    <label class="checkbox " wx:for="{{items}}" wx:key="{{index}}">
+      <view>
+        <checkbox value="{{item.name}}" checked="{{item.checked}}" />{{item.value}}
+      </view>
     </label>
   </checkbox-group>
 

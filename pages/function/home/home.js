@@ -33,50 +33,43 @@ Component({
           that.setData({
             role: value
           })
-
           console.log(value)
         }
       })
     }
   },
   methods: {
-    getAllUser: function(e) {
-      let userPermission = wx.getStorageSync('Permission');
-      //判断是否有人员管理的权限
-      var permission = userPermission.find(function(value) {
-        if (value == 'readuser' || value == 'alluser') {
-          wx.navigateTo({
-            url: '../function/user/user',
-          })
-          return 1;
-        } else {
+    into: function(e) {
+      wx.request({
+        url: app.globalData.Url + "/users/permissions/" + wx.getStorageSync('UserData').user_id,
+        data: {
+          permission: e.currentTarget.dataset.btn,
+          user_id: wx.getStorageSync('UserData').user_id
+        },
+        header: {
+          'content-type': 'application/x-www-form-urlencoded'
+        },
+        method: 'GET',
+        dataType: 'json',
+        responseType: 'text',
+        success: function(res) {
+          if (res.data.hasPermission == 1) {
+            wx.navigateTo({
+              url: '../function/' + e.currentTarget.dataset.btn + "/" + e.currentTarget.dataset.btn,
+            })
+            return 1;
+          } else {
             wx.showToast({
               title: '你没有权限哦',
               icon: 'none'
             })
-        }
-      });
-    },
-    inquireEquipment: function (e) {
-      let userPermission = wx.getStorageSync('Permission');
-      //判断是否有设备管理的权限
-      var permission = userPermission.find(function (value) {
-        if (value == 'allequipment' || value == 'readequipment') {
-          wx.navigateTo({
-            url: '../function/equipment/equipmentList',
-            success: function (res) { },
-            fail: function (res) { },
-            complete: function (res) { },
-          })
-          return 1;
-        } else {
-          wx.showToast({
-            title: '你没有权限哦',
-            icon: 'none'
-          })
-        }
-      });
-    },
+          }
+        },
+        fail: function(res) {},
+        complete: function(res) {},
+      })
+      console.log(e.currentTarget.dataset.btn)
+    }
   },
 
 })
