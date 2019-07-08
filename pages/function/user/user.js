@@ -94,23 +94,6 @@ Page({
       modalName: null
     })
   },
-  deleteUser: function (e) {
-    var that = this;
-    wx.request({
-      url: app.globalData.Url + '/user/delete',
-      data: {
-        id: this.data.id
-      },
-      method: 'DELETE',
-      success(res) {
-        that.hideModal();
-        wx.showToast({
-          title: res.data,
-          duration: 2000,
-        });
-      }
-    })
-  },
   addUser: function(e) {
     wx.navigateTo({
       url: './addUser',
@@ -136,19 +119,18 @@ Page({
   },
   // 人员信息删除
   deleteUser(e) {
-    console.log(this.data.userSortId)
+    // console.log(this.data.userSortId)
     let that = this
     wx.request({
       url: app.globalData.Url + "/users/" + this.data.userSortId,
       data: {
-        'userId': this.data.userSortId
+        'user_Id': this.data.userSortId
       },
       header: {
         'content-type': 'application/x-www-form-urlencoded'
       },
       method: 'DELETE',
       success: function(res) {
-        console.log(res)
         if (res.statusCode == 204) {
           that.hideModal();
           that.onLoad();

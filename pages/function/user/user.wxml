@@ -22,8 +22,8 @@
   </view>
 </view>
 <view class="cu-list menu-avatar">
-  <view class="cu-item {{modalName=='move-box-'+ index?'move-cur':''}}" wx:for="{{userList}}" wx:key bindtouchstart="ListTouchStart" bindtouchmove="ListTouchMove" bindtouchend="ListTouchEnd" data-target="move-box-{{index}}">
-    <view class="name-list flex text-center">
+  <view class="cu-item {{modalName=='move-box-'+ index?'move-cur':''}}" wx:for="{{userList}}"  wx:key bindtouchstart="ListTouchStart" bindtouchmove="ListTouchMove" bindtouchend="ListTouchEnd" data-target="move-box-{{index}}">
+    <view class="name-list flex text-center" wx:if="{{item.isDelete==0}}">
       <view class='name-width'>
         <text bindtap='showModal' data-id="{{index}}" data-target="showUser">{{item.name}}</text>
       </view>
@@ -129,13 +129,13 @@
         <text class="cuIcon-close text-red"></text>
       </view>
     </view>
-    <view class="padding-xl">
-      确认删除？
+    <view class="padding">
+      确认删除 {{userName}}？
     </view>
     <view class="cu-bar bg-white justify-end">
       <view class="action">
-        <button class="cu-btn line-green text-green" bindtap="hideDeleteModal">取消</button>
-        <button class="cu-btn bg-green margin-left" bindtap="deleteUser">确定</button>
+        <button class="cu-btn line-blue text-blue" bindtap="hideDeleteModal">取消</button>
+        <button class="cu-btn bg-gradual-blue margin-left" bindtap="deleteUser">确定</button>
       </view>
     </view>
   </view>

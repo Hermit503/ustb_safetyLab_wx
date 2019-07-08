@@ -9,9 +9,6 @@ Page({
     picker: [],
     unit_id: null,
     items: [{
-        name: 'all',
-        value: '所有权限'
-      }, {
         name: 'alluser',
         value: '人员所有权限'
       },
@@ -22,15 +19,7 @@ Page({
       {
         name: 'allmedcine',
         value: '药品所有权限'
-      },
-      {
-        name: 'all',
-        value: '上传检修报告权限'
-      },
-      {
-        name: 'TUR',
-        value: '法国'
-      },
+      }
     ]
   },
 
@@ -106,11 +95,11 @@ Page({
       method: 'PUT',
       success: function(res) {
         console.log(res)
-        // if (res.statusCode == 200) {
-        //   wx.redirectTo({
-        //     url: './user',
-        //   })
-        // }
+        if (res.statusCode == 200) {
+          wx.redirectTo({
+            url: './user',
+          })
+        }
       },
       fail: function(res) {},
       complete: function(res) {},
