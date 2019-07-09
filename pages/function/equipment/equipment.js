@@ -79,10 +79,7 @@ Page({
       method: 'DELETE',
       success(res) {
         that.hideModal();
-        wx.showToast({
-          title: res.data,
-          duration: 2000,
-        });
+        that.onLoad();
       }
     })
   },
