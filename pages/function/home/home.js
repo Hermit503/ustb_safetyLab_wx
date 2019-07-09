@@ -22,6 +22,212 @@ Component({
       type: 'image',
       url: 'http://m.qpic.cn/psb?/V11ZA3cx2xY4Vc/yeYmIGBsW0PbutxCAvJ5SKUD.BGdqHuPNaot7ghhR5o!/b/dL4AAAAAAAAA&bo=qAg4BAAAAAADB74!&rf=viewer_4'
     }],
+    functions: {
+      '校级管理员': [{
+          title: '人员查询',
+          name: 'User',
+          color: 'cyan',
+          icon: 'friend',
+          btn: 'user'
+        },
+        {
+          title: '设备管理',
+          name: 'Equipment',
+          color: 'purple',
+          icon: 'repair'
+        },
+        {
+          title: '药品查询',
+          name: 'Medcine',
+          color: 'blue',
+          icon: 'colorlens',
+          btn: 'medcine'
+        },
+        {
+          title: '检修记录',
+          name: 'repair report',
+          color: 'mauve',
+          icon: 'form'
+        },
+        {
+          title: '隐患记录',
+          name: 'danger record',
+          color: 'olive',
+          icon: 'text'
+        },
+        {
+          title: '视察报告',
+          name: 'inspection report',
+          color: 'pink',
+          icon: 'text'
+        },
+        {
+          title: '下发通知',
+          name: 'Notification',
+          color: 'brown',
+          icon: 'refresharrow'
+        },
+      ],
+      '院级管理员': [{
+          title: '人员管理',
+          name: 'User',
+          color: 'cyan',
+          icon: 'friend',
+          btn: 'user'
+        },
+        {
+          title: '设备管理',
+          name: 'Equipment',
+          color: 'blue',
+          icon: 'repair'
+        },
+        {
+          title: '药品管理',
+          name: 'Medcine',
+          color: 'purple',
+          icon: 'colorlens',
+          btn: 'medcine'
+        },
+        {
+          title: '下发通知',
+          name: 'Notification',
+          color: 'mauve',
+          icon: 'refresharrow'
+        },
+        {
+          title: '检修记录',
+          name: 'repair report',
+          color: 'pink',
+          icon: 'form'
+        },
+        {
+          title: '隐患记录',
+          name: 'danger record',
+          color: 'brown',
+          icon: 'text'
+        },
+        {
+          title: '隐患上报',
+          name: 'hidden danger',
+          color: 'red',
+          icon: 'write'
+        },
+        {
+          title: '问题上报',
+          name: 'Issue Report',
+          color: 'orange',
+          icon: 'write'
+        },
+        {
+          title: '学习',
+          name: 'Study',
+          color: 'olive',
+          icon: 'wenzi'
+        },
+        {
+          title: '考试',
+          name: 'Examination',
+          color: 'green',
+          icon: 'wenzi'
+        },
+
+      ],
+      '实验室管理员': [{
+          title: '人员管理',
+          name: 'User',
+          color: 'cyan',
+          icon: 'friend',
+          btn: 'user'
+        },
+        {
+          title: '设备管理',
+          name: 'Equipment',
+          color: 'blue',
+          icon: 'repair'
+        },
+        {
+          title: '药品管理',
+          name: 'Medcine',
+          color: 'purple',
+          icon: 'colorlens',
+          btn: 'medcine'
+        },
+        {
+          title: '下发通知',
+          name: 'Notification',
+          color: 'mauve',
+          icon: 'refresharrow'
+        },
+        {
+          title: '隐患上报',
+          name: 'hidden danger',
+          color: 'red',
+          icon: 'write'
+        },
+        {
+          title: '问题上报',
+          name: 'Issue Report',
+          color: 'orange',
+          icon: 'write'
+        },
+        {
+          title: '检修记录',
+          name: 'repair report',
+          color: 'pink',
+          icon: 'form'
+        },
+        {
+          title: '实验室日志',
+          name: 'Laboratory logs',
+          color: 'brown',
+          icon: 'text'
+        },
+        {
+          title: '学习',
+          name: 'Study',
+          color: 'olive',
+          icon: 'wenzi'
+        },
+        {
+          title: '考试',
+          name: 'Examination',
+          color: 'green',
+          icon: 'wenzi'
+        },
+      ],
+      '教师': [
+        {
+          title: '隐患上报',
+          name: 'hidden danger',
+          color: 'red',
+          icon: 'write'
+        },
+        {
+          title: '问题上报',
+          name: 'Issue Report',
+          color: 'orange',
+          icon: 'write'
+        },
+        {
+          title: '学习',
+          name: 'Study',
+          color: 'olive',
+          icon: 'wenzi'
+        },
+        {
+          title: '考试',
+          name: 'Examination',
+          color: 'green',
+          icon: 'wenzi'
+        },
+        {
+          title: '课堂日志',
+          name: 'Class Log',
+          color: 'brown',
+          icon: 'text'
+        },
+      ],
+    }
   },
 
   lifetimes: {

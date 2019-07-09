@@ -5,55 +5,57 @@
   </swiper-item>
 </swiper>
 
+
+
+
+
+
 <view wx:if="{{role=='校级管理员'}}">
-  <view class='functions margin-top-xl'>
-    <view class='grid col-3 margin-bottom text-center justify-around'>
-      <button class="cu-btn bg-gradual-blue round lg shadow" data-btn='hidden' bindtap='into'>隐患记录查询</button>
-      <button class="cu-btn bg-gradual-blue round lg shadow" data-btn='medcine' bindtap='into'>药品危化品查询</button>
-    </view>
-    <view class='grid col-3 margin-bottom text-center justify-around'>
-      <button class="cu-btn bg-gradual-blue round lg shadow" data-btn='repaire' bindtap='into'>检修记录查询</button>
-      <button class="cu-btn bg-gradual-blue round lg shadow" data-btn='report' bindtap='into'>视察报告上传</button>
-    </view>
-    <view class='grid col-3 margin-bottom text-center justify-around'>
-      <button class="cu-btn bg-gradual-blue round lg shadow" data-btn='user' bindtap='into'>人员查询</button>
-      <button class="cu-btn bg-gradual-blue round lg shadow" data-btn='equipment' bindtap='into'>设备查询</button>
-      <button class="cu-btn bg-gradual-blue round lg shadow" data-btn='issue' bindtap='into'>下发通知</button>
+  <view class='cu-tabbar-height' style='min-height:45rpx;'></view>
+  <view class='nav-list nav-list'>
+    <view hover-class='none' class="nav-li bg-{{item.color}}" wx:for="{{functions['校级管理员']}}" wx:key bindtap='into' data-btn='{{item.btn}}'>
+      <view class="nav-title">{{item.title}}</view>
+      <view class="nav-name">{{item.name}}</view>
+      <text class='cuIcon-{{item.icon}}'></text>
     </view>
   </view>
+  <view class='cu-tabbar-height'></view>
 </view>
 
 
 
-<view wx:elif="{{role=='院级管理员'}}">
-  <button class="cu-btn bg-gradual-blue round lg shadow" bindtap='into'>人员查询</button>
-  <button class="cu-btn bg-gradual-blue round lg shadow" bindtap='into'>查看检修记录</button>
-  <button class="cu-btn bg-gradual-blue round lg shadow" bindtap='into'>药品危化品查询</button>
-  <button class="cu-btn bg-gradual-blue round lg shadow" bindtap='into'>检修记录查询</button>
-  <button class="cu-btn bg-gradual-blue round lg shadow" bindtap='into'>上传问题报告</button>
-  <button class="cu-btn bg-gradual-blue round lg shadow" bindtap='into'>上传隐患报告</button>
-  <button class="cu-btn bg-gradual-blue round lg shadow" bindtap='into'>上传视察报告</button>
-  <button class="cu-btn bg-gradual-blue round lg shadow" bindtap='into'>学习</button>
-  <button class="cu-btn bg-gradual-blue round lg shadow" bindtap='into'>考试</button>
-  <button class="cu-btn bg-gradual-blue round lg shadow" bindtap='into'>下发通知</button>
+<view class='cu-list' wx:elif="{{role=='院级管理员'}}">
+  <view class='cu-tabbar-height' style='min-height:45rpx;'></view>
+  <view class='nav-list nav-list'>
+    <view hover-class='none' class="nav-li bg-{{item.color}}" wx:for="{{functions['院级管理员']}}" wx:key bindtap='into' data-btn='{{item.btn}}'>
+      <view class="nav-title">{{item.title}}</view>
+      <view class="nav-name">{{item.name}}</view>
+      <text class='cuIcon-{{item.icon}}'></text>
+    </view>
+  </view>
+  <view class='cu-tabbar-height'></view>
 </view>
+
+
 <view wx:elif="{{role=='实验室管理员'}}">
-  <button class="cu-btn bg-gradual-blue round lg shadow" bindtap='into'>人员管理</button>
-  <button class="cu-btn bg-gradual-blue round lg shadow" bindtap='into'>设备管理</button>
-  <button class="cu-btn bg-gradual-blue round lg shadow" bindtap='into'>药品危化品管理</button>
-  <button class="cu-btn bg-gradual-blue round lg shadow" bindtap='into'>检修记录查询</button>
-  <button class="cu-btn bg-gradual-blue round lg shadow" bindtap='into'>上传问题报告</button>
-  <button class="cu-btn bg-gradual-blue round lg shadow" bindtap='into'>上传隐患报告</button>
-  <button class="cu-btn bg-gradual-blue round lg shadow" bindtap='into'>实验室上课日志</button>
-  <button class="cu-btn bg-gradual-blue round lg shadow" bindtap='into'>学习</button>
-  <button class="cu-btn bg-gradual-blue round lg shadow" bindtap='into'>考试</button>
-  <button class="cu-btn bg-gradual-blue round lg shadow" bindtap='into'>下发通知</button>
+  <view class='cu-tabbar-height' style='min-height:45rpx;'></view>
+  <view class='nav-list nav-list'>
+    <view hover-class='none' class="nav-li bg-{{item.color}}" wx:for="{{functions['实验室管理员']}}" wx:key bindtap='into' data-btn='{{item.btn}}'>
+      <view class="nav-title">{{item.title}}</view>
+      <view class="nav-name">{{item.name}}</view>
+      <text class='cuIcon-{{item.icon}}'></text>
+    </view>
+  </view>
+  <view class='cu-tabbar-height'></view>
 </view>
 <view wx:elif="{{role=='教师'}}">
-  <button class="cu-btn bg-gradual-blue round lg shadow" bindtap='into'>上传隐患报告</button>
-  <button class="cu-btn bg-gradual-blue round lg shadow" bindtap='into'>上传视察报告</button>
-  <button class="cu-btn bg-gradual-blue round lg shadow" bindtap='into'>课堂日志上传</button>
-  <button class="cu-btn bg-gradual-blue round lg shadow" bindtap='into'>学习</button>
-  <button class="cu-btn bg-gradual-blue round lg shadow" bindtap='into'>考试</button>
-  <button class="cu-btn bg-gradual-blue round lg shadow" bindtap='into'>通知</button>
+  <view class='cu-tabbar-height' style='min-height:45rpx;'></view>
+  <view class='nav-list nav-list'>
+    <view hover-class='none' class="nav-li bg-{{item.color}}" wx:for="{{functions['教师']}}" wx:key bindtap='into' data-btn='{{item.btn}}'>
+      <view class="nav-title">{{item.title}}</view>
+      <view class="nav-name">{{item.name}}</view>
+      <text class='cuIcon-{{item.icon}}'></text>
+    </view>
+  </view>
+  <view class='cu-tabbar-height'></view>
 </view>
