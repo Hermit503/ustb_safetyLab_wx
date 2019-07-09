@@ -31,10 +31,11 @@ Component({
           btn: 'user'
         },
         {
-          title: '设备管理',
+          title: '设备查询',
           name: 'Equipment',
           color: 'purple',
-          icon: 'repair'
+          icon: 'repair',
+          btn: 'equipment'
         },
         {
           title: '药品查询',
@@ -79,7 +80,8 @@ Component({
           title: '设备管理',
           name: 'Equipment',
           color: 'blue',
-          icon: 'repair'
+          icon: 'repair',
+          btn: 'equipment'
         },
         {
           title: '药品管理',
@@ -143,7 +145,8 @@ Component({
           title: '设备管理',
           name: 'Equipment',
           color: 'blue',
-          icon: 'repair'
+          icon: 'repair',
+          btn: 'equipment'
         },
         {
           title: '药品管理',
@@ -153,16 +156,17 @@ Component({
           btn: 'medcine'
         },
         {
-          title: '下发通知',
-          name: 'Notification',
+          title: '检修报告',
+          name: 'repair report',
           color: 'mauve',
-          icon: 'refresharrow'
+          icon: 'same'
         },
         {
           title: '隐患上报',
           name: 'hidden danger',
           color: 'red',
-          icon: 'write'
+          icon: 'write',
+          btn:'hidden'
         },
         {
           title: '问题上报',
@@ -195,8 +199,7 @@ Component({
           icon: 'wenzi'
         },
       ],
-      '教师': [
-        {
+      '教师': [{
           title: '隐患上报',
           name: 'hidden danger',
           color: 'red',
@@ -246,34 +249,40 @@ Component({
   },
   methods: {
     into: function(e) {
-      wx.request({
-        url: app.globalData.Url + "/users/permissions/" + wx.getStorageSync('UserData').user_id,
-        data: {
-          permission: e.currentTarget.dataset.btn,
-          user_id: wx.getStorageSync('UserData').user_id
-        },
-        header: {
-          'content-type': 'application/x-www-form-urlencoded'
-        },
-        method: 'GET',
-        dataType: 'json',
-        responseType: 'text',
-        success: function(res) {
-          if (res.data.hasPermission == 1) {
-            wx.navigateTo({
-              url: '../function/' + e.currentTarget.dataset.btn + "/" + e.currentTarget.dataset.btn,
-            })
-            return 1;
-          } else {
-            wx.showToast({
-              title: '你没有权限哦',
-              icon: 'none'
-            })
-          }
-        },
-        fail: function(res) {},
-        complete: function(res) {},
-      })
+      if (e.currentTarget.dataset.btn == 'user' || e.currentTarget.dataset.btn == 'equipment' || e.currentTarget.dataset.btn == 'medcine') {
+        wx.request({
+          url: app.globalData.Url + "/users/permissions/" + wx.getStorageSync('UserData').user_id,
+          data: {
+            permission: e.currentTarget.dataset.btn,
+            user_id: wx.getStorageSync('UserData').user_id
+          },
+          header: {
+            'content-type': 'application/x-www-form-urlencoded'
+          },
+          method: 'GET',
+          dataType: 'json',
+          responseType: 'text',
+          success: function(res) {
+            if (res.data.hasPermission == 1) {
+              wx.navigateTo({
+                url: '../function/' + e.currentTarget.dataset.btn + "/" + e.currentTarget.dataset.btn,
+              })
+              return 1;
+            } else {
+              wx.showToast({
+                title: '你没有权限哦',
+                icon: 'none'
+              })
+            }
+          },
+          fail: function(res) {},
+          complete: function(res) {},
+        })
+      } else {
+        wx.navigateTo({
+          url: '../function/' + e.currentTarget.dataset.btn + "/" + e.currentTarget.dataset.btn,
+        })
+      }
       console.log(e.currentTarget.dataset.btn)
     }
   },

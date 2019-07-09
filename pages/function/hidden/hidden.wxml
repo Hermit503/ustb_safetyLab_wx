@@ -1,0 +1,49 @@
+<cu-custom bgColor="bg-gradual-blue" isBack="{{true}}">
+  <view slot="backText">返回</view>
+  <view slot="content">隐患上报</view>
+</cu-custom>
+<form bindsubmit="formSubmit">
+  <view class="cu-form-group">
+    <view style='width:150rpx;'>
+      <view class="title">隐患位置</view>
+    </view>
+    <input placeholder="例如10教X0X" name="position"></input>
+  </view>
+  <view class="cu-form-group">
+    <view style='width:150rpx;'>
+      <view class="title" name="title">隐患简述</view>
+    </view>
+    <input placeholder="请输入隐患简述" name="title"></input>
+  </view>
+  <view class="cu-form-group">
+    <view style='width:150rpx;'>
+      <view class="title">隐患详情</view>
+    </view>
+    <!-- <input placeholder="请输入隐患详情" name="detail"></input> -->
+  </view>
+  <view class="cu-form-group">
+    <textarea maxlength="-1" disabled="{{modalName!=null}}" name="detail" bindinput="textareaAInput" placeholder="请输入隐患详情"></textarea>
+  </view>
+  <view class="cu-bar bg-white "style='border-top:1rpx solid #eee;'>
+    <view class="action">
+      照片上传
+    </view>
+    <view class="action">
+      {{imgList.length}}/1
+    </view>
+  </view>
+  <view class="cu-form-group">
+    <view class="grid col-4 grid-square flex-sub">
+      <view class="bg-img" wx:for="{{imgList}}" wx:key="{{index}}" bindtap="ViewImage" data-url="{{imgList[index]}}">
+        <image src='{{imgList[index]}}' name="image" mode='aspectFill'></image>
+        <view class="cu-tag bg-red" catchtap="DelImg" data-index="{{index}}">
+          <text class="cuIcon-close"></text>
+        </view>
+      </view>
+      <view class="solids" bindtap="ChooseImage" wx:if="{{imgList.length<1}}">
+        <text class="cuIcon-cameraadd"></text>
+      </view>
+    </view>
+  </view>
+  <button class='cu-btn  margin-top  margin-left margin-right bg-blue shadow lg block' form-type="submit">提交</button>
+</form>

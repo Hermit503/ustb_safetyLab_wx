@@ -24,7 +24,7 @@ Page({
         role: wx.getStorageSync('Roles'),
         id: wx.getStorageSync('UserData').id,
       },
-      method: 'POST',
+      method: 'GET',
       header: {
         'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8'
       },
@@ -92,16 +92,6 @@ Page({
   hideDeleteModal(e) {
     this.setData({
       modalName: null
-    })
-  },
-  addUser: function(e) {
-    wx.navigateTo({
-      url: './addUser',
-      success: function(res) {
-        console.log('this is adduser page');
-      },
-      fail: function(res) {},
-      complete: function(res) {},
     })
   },
   //人员信息更改

@@ -4,12 +4,11 @@
     "pages/index/index",
     "pages/function/home/home",
     "pages/function/user/user",
-    "pages/function/user/addUser",
     "pages/function/user/updateUser",
     "pages/function/equipment/equipment",
     "pages/function/equipment/equipmentDetails",
-    "pages/function/user/adduser",
-    "pages/function/equipment/equipmentModify"
+    "pages/function/equipment/equipmentModify",
+    "pages/function/hidden/hidden"
   ],
   "window": {
     "backgroundTextStyle": "light",
