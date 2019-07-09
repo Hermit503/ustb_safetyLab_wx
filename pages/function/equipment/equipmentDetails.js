@@ -14,33 +14,7 @@ Page({
     sindex:null,
     tpicker: ['特种设备', '普通设备'],
     spicker: ['正常', '维修','报废'],
-    multiArray: [
-      ['1教', '2教'],
-      ['101', '102', '103']
-    ],
-    objectMultiArray: [
-      [{
-        id: 0,
-        name: '1教'
-      },
-      {
-        id: 1,
-        name: '2教'
-      }
-      ],
-      [{
-        id: 0,
-        name: '101'
-      },
-      {
-        id: 1,
-        name: '102'
-      },
-      {
-        id: 2,
-        name: '103'
-      }],
-    ],
+    multiArray: [],
     storagedate: '2018-12-25',
     scrapdate: '2018-12-25',
   },
@@ -137,7 +111,19 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    var that = this;
+    var multiArray0 = "multiArray[0]";
+    var multiArray1 = "multiArray[1]";
+    wx.request({
+      url: app.globalData.Url + "/getlaboratory/List/" + wx.getStorageSync('UserData').unit_id,
+      success(res){
+        console.log(res.data);
+        that.setData({
+          [multiArray0]: res.data[0],
+          [multiArray1]: res.data[1]
+        })
+      }
+    });
   },
 
   /**

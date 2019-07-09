@@ -18,34 +18,7 @@ Page({
     tpicker: ['特种设备', '普通设备'],
     spicker: ['正常', '维修', '报废'],
     //TODO:列表动态加载出来
-    multiArray: [
-      ['1教', '2教'],
-      ['101', '102', '103']
-    ],
-    objectMultiArray: [
-      [{
-        id: 0,
-        name: '1教'
-      },
-      {
-        id: 1,
-        name: '2教'
-      }
-      ],
-      [{
-        id: 0,
-        name: '101'
-      },
-      {
-        id: 1,
-        name: '102'
-      },
-      {
-        id: 2,
-        name: '103'
-      }],
-    ],
-
+    multiArray: [],
     storagedate: '2018-12-25',
     scrapdate: '2018-12-25',
 
@@ -138,7 +111,7 @@ Page({
       },
       success(res) {
         wx.showToast({
-          title: res.data,
+          title: "修改成功",
           duration: 2000,
         });
       },
@@ -158,6 +131,20 @@ Page({
    */
   onLoad: function (options) {
     var that = this;
+
+    var multiArray0 = "multiArray[0]";
+    var multiArray1 = "multiArray[1]";
+    wx.request({
+      url: app.globalData.Url + "/getlaboratory/List/" + wx.getStorageSync('UserData').unit_id,
+      success(res) {
+        console.log(res.data);
+        that.setData({
+          [multiArray0]: res.data[0],
+          [multiArray1]: res.data[1]
+        })
+      }
+    });
+
     that.setData({
       id: options.id
     });
@@ -166,11 +153,15 @@ Page({
       url: app.globalData.Url + '/equipment/' + that.data.id,
       method: 'GET',
       success(res) {
-        var l_id = res.data[0].laboratory_id;
+        if (res.statusCode != 200) {
+          console.log("请求失败");
+        }
+        var l_id = res.data.result[0].laboratory_id;
         wx.request({
           url: app.globalData.Url + '/equipment/getlaboratory/' + l_id,
           method: 'GET',
           success(res) {
+            // console.log(res.statusCode);
             that.setData({
               placetext: res.data[0].laboratory_name,
               placefinal: res.data[0].laboratory_name,
@@ -178,14 +169,14 @@ Page({
           }
         })
         that.setData({
-          assetnumber: res.data[0].asset_number,
-          equipmentname: res.data[0].equipment_name,
-          typetext: res.data[0].equipment_type,
-          typefinal: res.data[0].equipment_type,
-          statustext: res.data[0].status,
-          statusfinal: res.data[0].status,
-          storagedate: res.data[0].storage_time,
-          scrapdate: res.data[0].scrap_time
+          assetnumber: res.data.result[0].asset_number,
+          equipmentname: res.data.result[0].equipment_name,
+          typetext: res.data.result[0].equipment_type,
+          typefinal: res.data.result[0].equipment_type,
+          statustext: res.data.result[0].status,
+          statusfinal: res.data.result[0].status,
+          storagedate: res.data.result[0].storage_time,
+          scrapdate: res.data.result[0].scrap_time
         });
       }
     })
