@@ -46,15 +46,16 @@ Component({
         },
         {
           title: '检修记录',
-          name: 'repair report',
+          name: 'repair recode',
           color: 'mauve',
           icon: 'form'
         },
         {
           title: '隐患记录',
-          name: 'danger record',
+          name: 'Hidden danger',
           color: 'olive',
-          icon: 'text'
+          icon: 'text',
+          btn:'hiddenRecode'
         },
         {
           title: '视察报告',
@@ -98,21 +99,23 @@ Component({
         },
         {
           title: '检修记录',
-          name: 'repair report',
+          name: 'repair recode',
           color: 'pink',
           icon: 'form'
         },
         {
           title: '隐患记录',
-          name: 'danger record',
-          color: 'brown',
-          icon: 'text'
+          name: 'Hidden danger',
+          color: 'olive',
+          icon: 'text',
+          btn: 'hiddenRecode'
         },
         {
           title: '隐患上报',
-          name: 'hidden danger',
+          name: 'hidden report',
           color: 'red',
-          icon: 'write'
+          icon: 'write',
+          btn: 'hidden'
         },
         {
           title: '问题上报',

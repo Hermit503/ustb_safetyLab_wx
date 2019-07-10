@@ -10,8 +10,8 @@ Page({
   ChooseImage() {
     wx.chooseImage({
       count: 1, //默认9
-      sizeType: ['original', 'compressed'], //可以指定是原图还是压缩图，默认二者都有
-      sourceType: ['camera'], //从相册选择
+      sizeType: ['compressed'], //可以指定是原图还是压缩图，默认二者都有
+      sourceType: ['camera'], //从相机拍摄
       success: (res) => {
         if (this.data.imgList.length != 0) {
           this.setData({
@@ -49,35 +49,51 @@ Page({
     })
   },
   formSubmit: function(e) {
-    wx.request({
-      url: app.globalData.Url + "/hiddens",
-      data: {
-        position: e.detail.value.position,
-        title: e.detail.value.title,
-        detail: e.detail.value.detail,
-        image: this.data.imgList[0],
-        user_id: wx.getStorageSync('UserData').user_id
-      },
-      header: {
-        'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8'
-      },
-      method: 'POST',
-      dataType: 'json',
-      responseType: 'text',
-      success: function(res) {
-        if (res.statusCode == 201) {
-          wx.navigateBack({
-            delta: 1
-          });
-          wx.showToast({
-            title: '提交成功',
-            duration:1500
-          });
-        }
-      },
-      fail: function(res) {},
-      complete: function(res) {},
-    })
+    // wx.compressImage({
+    //   src: this.data.imgList[0], // 图片路径
+    //   quality: 80,
+    //   success(res){
+        wx.uploadFile({
+          url: app.globalData.Url + "/hiddens/upload",
+          filePath: this.data.imgList[0],
+          name: 'file',
+          success(res) {
+            // console.log(res)
+            wx.request({
+              url: app.globalData.Url + "/hiddens",
+              data: {
+                position: e.detail.value.position,
+                title: e.detail.value.title,
+                detail: e.detail.value.detail,
+                image: res.data,
+                user_id: wx.getStorageSync('UserData').user_id
+              },
+              header: {
+                'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8'
+              },
+              method: 'POST',
+              dataType: 'json',
+              responseType: 'text',
+              success: function (res) {
+                console.log(res)
+                if (res.statusCode == 201) {
+                  wx.navigateBack({
+                    delta: 1
+                  });
+                  wx.showToast({
+                    title: '提交成功',
+                    duration: 1500
+                  });
+                }
+              },
+              fail: function (res) { },
+              complete: function (res) { },
+            })
+          }
+        })
+    //   }
+    // })
+    
   },
   textareaAInput(e) {
     this.setData({

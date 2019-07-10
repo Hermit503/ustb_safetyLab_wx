@@ -8,7 +8,8 @@
     "pages/function/equipment/equipment",
     "pages/function/equipment/equipmentDetails",
     "pages/function/equipment/equipmentModify",
-    "pages/function/hidden/hidden"
+    "pages/function/hidden/hidden",
+    "pages/function/hiddenRecode/hiddenRecode"
   ],
   "window": {
     "backgroundTextStyle": "light",

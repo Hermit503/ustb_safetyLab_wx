@@ -1,0 +1,28 @@
+<cu-custom bgColor="bg-gradual-blue" isBack="{{true}}">
+  <view slot="backText">返回</view>
+  <view slot="content">隐患记录</view>
+</cu-custom>
+<view wx:for="{{hiddenList}}" wx:key="{{index}}">
+  <view class="cu-card article {{isCard?'':'no-card'}} margin-top-xs">
+    <view class="cu-item shadow">
+      <view class="title">
+        <view class="text-cut">
+          <text class='cuIcon-titles text-orange'></text>{{item.title}}</view>
+      </view>
+      <view class="content">
+        <image src="{{item.image}}" mode="aspectFill"></image>
+        <view class="desc">
+          <view class="text-content">
+            <text>位置：{{item.position}}\n</text>
+            <text>详情：{{item.detail}}</text>
+          </view>
+          <view>
+            <view class="cu-tag bg-red light sm round">{{item.position}}</view>
+            <view class="cu-tag bg-green light sm round" wx:if="{{item.isSolve==0}}">未解决</view>
+            <view class="cu-tag bg-green light sm round" wx:if="{{item.isSolve==1}}">已解决</view>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>
