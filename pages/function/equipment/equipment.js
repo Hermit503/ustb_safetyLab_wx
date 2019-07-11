@@ -10,6 +10,10 @@ Page({
     StatusBar: app.globalData.StatusBar,
     CustomBar: app.globalData.CustomBar,
     id: null,
+    keyword: '',
+    tabletitle: 1,
+    msgdisplay: 'none',
+    msg: '',
   },
 
   /**
@@ -35,6 +39,43 @@ Page({
       }
     });
 
+  },
+
+  setkeyword: function (e) {
+    this.setData({
+      keyword: e.detail.value
+    });
+  },
+  searchEquipment: function (e) {
+    console.log(this.data.keyword);
+    var that = this;
+    wx.request({
+      url: app.globalData.Url + "/searchEquipment",
+      method: 'GET',
+      header: {
+        'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8'
+      },
+      data: {
+        keyword: that.data.keyword
+      },
+      success(res) {
+        console.log(typeof res.data);
+        if (typeof res.data == "string") {
+          that.setData({
+            equipmentList: [],
+            tabletitle: 'none',
+            msgdisplay: 1,
+            msg: res.data
+          })
+        } else {
+          that.setData({
+            msgdisplay: 'none',
+            tabletitle: 1,
+            equipmentList: res.data,
+          })
+        }
+      }
+    })
   },
   //增加设备跳转页面
   addEquipment: function (e) {

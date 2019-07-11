@@ -6,17 +6,19 @@
 <view class='flex p-xs search cu-bar align-center bg-white'>
   <view class="search-form round flex-six  margin-top-sm">
     <text class="cuIcon-search "></text>
-    <input type="text" placeholder="输入搜索的关键词" confirm-type="search"></input>
+    <input type="text" placeholder="请输入要搜索的人员姓名" confirm-type="search" bindinput="setkeyword"></input>
   </view>
   <view class="action">
-    <button class="cu-btn bg-gradual-blue shadow-blur round  flex-twice">搜索</button>
+    <button class="cu-btn bg-gradual-blue shadow-blur round  flex-twice" bindtap="searchUser">搜索</button>
   </view>
   <!-- <view wx:for="{{permissionList}}" wx:key="index">
     <view wx:if="{{item=='/alluser'||item=='/createuser'}}" class='cu-btn bg-gradual-blue round shadow  flex-half' bindtap='addUser'>增加人员</view>
   </view> -->
 </view>
-
-<view class="cu-bar solid-blue bg-white solid-bottom">
+<view style="display:{{msgdisplay}}" class="text-center padding">
+  <text>{{msg}}</text>
+</view>
+<view class="cu-bar solid-blue bg-white solid-bottom" style="display:{{tabletitle}}">
   <view class="action">
     <text class="cuIcon-title text-blue "></text > <text decode="{{true}}">&ensp;姓名&ensp;&ensp;&ensp;&ensp;&ensp;工号&ensp;&ensp;&ensp;&ensp;&ensp;所属单位&ensp;&ensp;&ensp;&ensp;&ensp;职称</text>
   </view>

@@ -9,9 +9,13 @@ Page({
     userList: {},
     StatusBar: app.globalData.StatusBar,
     CustomBar: app.globalData.CustomBar,
-    userSortId: null
+    userSortId: null,
+    keyword:'',
+    tabletitle:1,
+    msgdisplay: 'none',
+    msg: ''
   },
-
+ 
   /**
    * 生命周期函数--监听页面加载
    */
@@ -36,6 +40,42 @@ Page({
         })
       }
     });
+  },
+  setkeyword: function (e) {
+    this.setData({
+      keyword: e.detail.value
+    });
+  },
+  searchUser:function(e){
+    console.log(this.data.keyword);
+    var that = this;
+    wx.request({
+      url: app.globalData.Url + "/searchUser",
+      method: 'GET',
+      header: {
+        'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8'
+      },
+      data:{
+        keyword:that.data.keyword
+      },
+      success(res) {
+        console.log(typeof res.data);
+        if (typeof res.data == "string"){
+          that.setData({
+            userList: [],
+            tabletitle: 'none',
+            msgdisplay: 1,
+            msg: res.data
+          })
+        }else{
+          that.setData({
+            msgdisplay: 'none',
+            tabletitle:1,
+            userList: res.data,
+          })
+        }
+      }
+    })
   },
   // ListTouch触摸开始
   ListTouchStart(e) {
