@@ -1,1 +1,5 @@
 /* pages/function/hiddenRecode/hiddenRecode.wxss */
+.deal{
+  position: relative;
+  margin-right: 15rpx;
+}

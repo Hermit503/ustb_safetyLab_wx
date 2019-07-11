@@ -55,7 +55,7 @@ Component({
           name: 'Hidden danger',
           color: 'olive',
           icon: 'text',
-          btn:'hiddenRecode'
+          btn: 'hiddenRecode'
         },
         {
           title: '视察报告',
@@ -169,7 +169,7 @@ Component({
           name: 'hidden danger',
           color: 'red',
           icon: 'write',
-          btn:'hidden'
+          btn: 'hidden'
         },
         {
           title: '问题上报',
@@ -182,6 +182,13 @@ Component({
           name: 'repair report',
           color: 'pink',
           icon: 'form'
+        }, 
+        {
+          title: '隐患记录',
+          name: 'Hidden danger',
+          color: 'olive',
+          icon: 'text',
+          btn: 'hiddenRecode'
         },
         {
           title: '实验室日志',

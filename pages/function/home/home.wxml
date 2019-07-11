@@ -48,6 +48,8 @@
   </view>
   <view class='cu-tabbar-height'></view>
 </view>
+
+
 <view wx:elif="{{role=='教师'}}">
   <view class='cu-tabbar-height' style='min-height:45rpx;'></view>
   <view class='nav-list nav-list'>
