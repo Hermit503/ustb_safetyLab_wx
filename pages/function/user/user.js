@@ -13,7 +13,9 @@ Page({
     keyword:'',
     tabletitle:1,
     msgdisplay: 'none',
-    msg: ''
+    msg: '',
+    page: 1,
+    height: 0
   },
  
   /**
@@ -21,6 +23,14 @@ Page({
    */
   onLoad: function(options) {
     let that = this;
+    wx.getSystemInfo({
+      success: function (res) {
+        console.log(res.windowHeight)
+        that.setData({
+          height: res.windowHeight
+        })
+      },
+    })
     wx.request({
       url: app.globalData.Url + "/users",
       data: {
@@ -33,14 +43,44 @@ Page({
         'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8'
       },
       success(res) {
-        console.log(res.data);
+        console.log(res.data.data);
         that.setData({
-          userList: res.data,
+          userList: res.data.data,
           permissionList: wx.getStorageSync('Permission')
         })
       }
     });
   },
+
+  //分页
+  onReachBottom: function (e) {
+    var that = this;
+    that.data.page += 1;
+    var page = that.data.page;
+    console.log(page);
+    wx.request({
+      url: app.globalData.Url + "/users?page=" + page,
+      data: {
+        unit_id: wx.getStorageSync('UserData').unit_id,
+        role: wx.getStorageSync('Roles'),
+        id: wx.getStorageSync('UserData').id,
+      },
+      success(res) {
+        console.log(res.data.data);
+        that.setData({
+          //向页面已有数据后面加数据
+          userList: that.data.userList.concat(res.data.data),
+        })
+        if (res.data.data == '') {
+          wx.showToast({
+            // icon: ,
+            title: '没有更多数据',
+          })
+        }
+      }
+    })
+  },
+
   setkeyword: function (e) {
     this.setData({
       keyword: e.detail.value
@@ -201,13 +241,6 @@ Page({
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function() {
-
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function() {
 
   },
 
