@@ -9,7 +9,8 @@
     "pages/function/equipment/equipmentDetails",
     "pages/function/equipment/equipmentModify",
     "pages/function/hidden/hidden",
-    "pages/function/hiddenRecode/hiddenRecode"
+    "pages/function/hiddenRecode/hiddenRecode",
+    "pages/function/hiddenRecode/hiddenHandle"
   ],
   "window": {
     "backgroundTextStyle": "light",

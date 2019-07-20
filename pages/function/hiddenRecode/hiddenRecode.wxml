@@ -14,13 +14,13 @@
         <view class="desc">
           <view class="text-content">
             <text>位置：{{item.position}}\n</text>
-            <text>详情：{{item.detail}}</text>
+            <text style='overflow:hidden;text-overflow:ellipsis;'>详情：{{item.detail}}</text>
           </view>
           <view class=''>
             <view class="padding cu-tag bg-red light sm round">{{item.position}}</view>
             <view class="padding cu-tag bg-green light sm round" wx:if="{{item.isSolve==0}}">未解决</view>
             <view class="padding cu-tag bg-green light sm round" wx:if="{{item.isSolve==1}}">已解决</view>
-            <button class='padding cu-btn bg-cyan light sm round fr' data-id='{{item.user_id}}' wx:if="{{item.isSolve==0}}" bindtap='hiddenHandle'>隐患处理</button>
+            <button class='padding cu-btn bg-cyan light sm round fr' data-id='{{item.user_id}}' data-title="{{item.title}}" wx:if="{{item.isSolve==0}}" bindtap='hiddenHandle'>隐患处理</button>
           </view>
         </view>
       </view>

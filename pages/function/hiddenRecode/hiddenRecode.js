@@ -29,8 +29,15 @@ Page({
       complete: function(res) {},
     })
   },
-  hiddenHandle(e){
-    console.log(e)
+  hiddenHandle(e) {
+    // console.log(e.currentTarget.dataset)
+    wx.navigateTo({
+      url: './hiddenHandle?id='+e.currentTarget.dataset.id+"&title="+e.currentTarget.dataset.title,
+      success: function(res) {
+      },
+      fail: function(res) {},
+      complete: function(res) {},
+    })
   },
 
   /**
