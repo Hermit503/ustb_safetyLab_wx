@@ -40,7 +40,16 @@ Page({
       complete: function(res) {},
     })
   },
-
+  hiddenHandle(e) {
+    // console.log(e.currentTarget.dataset)
+    wx.navigateTo({
+      url: './hiddenHandle?id='+e.currentTarget.dataset.id+"&title="+e.currentTarget.dataset.title,
+      success: function(res) {
+      },
+      fail: function(res) {},
+      complete: function(res) {},
+    })
+  },
 
   //分页
   onReachBottom: function (e) {
@@ -68,15 +77,6 @@ Page({
       }
     })
   },
-  hiddenHandle(e) {
-    // console.log(e.currentTarget.dataset)
-    wx.navigateTo({
-      url: './hiddenHandle?id='+e.currentTarget.dataset.id+"&title="+e.currentTarget.dataset.title,
-      success: function(res) {
-      },
-      fail: function(res) {},
-      complete: function(res) {},
-    }),
 
   /**
    * 生命周期函数--监听页面初次渲染完成
