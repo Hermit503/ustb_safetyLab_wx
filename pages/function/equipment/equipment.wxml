@@ -1,3 +1,4 @@
+<scroll-view style="height:{{height}};" bindscrolltolower="onReachBottom" bindscroll="scroll" class="test">
 <cu-custom bgColor="bg-gradual-blue" isBack="{{true}}"><view slot="backText">返回</view><view slot="content">设备查询</view></cu-custom>
 
 <view class='flex p-xs search cu-bar align-center bg-white'>
@@ -49,6 +50,7 @@
     </view>
   </view>
 </view>
+</scroll-view>
 <!--删除的模态框-->
 <view class="cu-modal {{modalName=='DialogModal1'?'show':''}}">
   <view class="cu-dialog">

@@ -10,15 +10,18 @@ Page({
     unit_id: null,
     items: [{
         name: 'alluser',
-        value: '人员所有权限'
+        value: '人员所有权限',
+        checked: false
       },
       {
         name: 'allequipment',
-        value: '设备所有权限'
+        value: '设备所有权限',
+        checked: false
       },
       {
         name: 'allmedcine',
-        value: '药品所有权限'
+        value: '药品所有权限',
+        checked: false
       }
     ]
   },

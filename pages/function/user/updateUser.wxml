@@ -46,8 +46,8 @@
   </view>
   <checkbox-group class="bg-white" bindchange="checkboxChange" name="userPermission">
     <label class="checkbox " wx:for="{{items}}" wx:key="{{index}}">
-      <view>
-        <checkbox value="{{item.name}}" checked="{{item.checked}}" />{{item.value}}
+      <view class="checkoutbox-form-group">
+        <checkbox value="{{item.name}}" checked="{{item.checked}}"/><text decode="{{true}}">&ensp;</text>{{item.value}}
       </view>
     </label>
   </checkbox-group>

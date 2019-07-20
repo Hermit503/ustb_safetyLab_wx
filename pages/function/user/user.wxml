@@ -1,3 +1,4 @@
+<scroll-view style="height:{{height}};" bindscrolltolower="onReachBottom" bindscroll="scroll" class="test">
 <cu-custom bgColor="bg-gradual-blue" isBack="{{true}}">
   <view slot="backText">返回</view>
   <view slot="content">人员管理</view>
@@ -45,6 +46,7 @@
     </view>
   </view>
 </view>
+</scroll-view>
 <!-- 添加人员 -->
 <!--<view class='userList'>
   <view wx:for="{{userList}}" wx:key="index">

@@ -5,13 +5,24 @@ Page({
   /**
    * 页面的初始数据
    */
-  data: {},
+  data: {
+    page: 1,
+    height: 0
+  },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
     let that = this;
+    wx.getSystemInfo({
+      success: function (res) {
+        console.log(res.windowHeight)
+        that.setData({
+          height: res.windowHeight
+        })
+      },
+    })
     wx.request({
       url: app.globalData.Url + '/hiddens',
       data: {},
@@ -20,13 +31,41 @@ Page({
       },
       method: 'GET',
       success: function(res) {
-        console.log(res.data)
+        console.log(res.data.data)
         that.setData({
-          hiddenList: res.data
+          hiddenList: res.data.data
         })
       },
       fail: function(res) {},
       complete: function(res) {},
+    })
+  },
+
+
+  //分页
+  onReachBottom: function (e) {
+    var that = this;
+    that.data.page += 1;
+    var page = that.data.page;
+    console.log(page);
+    wx.request({
+      url: app.globalData.Url + "/hiddens?page=" + page,
+      data: {
+        
+      },
+      success(res) {
+        console.log(res.data.data);
+        that.setData({
+          //向页面已有数据后面加数据
+          hiddenList: that.data.hiddenList.concat(res.data.data),
+        })
+        if (res.data.data == '') {
+          wx.showToast({
+            // icon: ,
+            title: '没有更多数据',
+          })
+        }
+      }
     })
   },
   hiddenHandle(e) {
@@ -37,8 +76,7 @@ Page({
       },
       fail: function(res) {},
       complete: function(res) {},
-    })
-  },
+    }),
 
   /**
    * 生命周期函数--监听页面初次渲染完成
@@ -72,13 +110,6 @@ Page({
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function() {
-
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function() {
 
   },
 
