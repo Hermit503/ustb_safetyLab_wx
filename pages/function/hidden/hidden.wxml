@@ -21,10 +21,13 @@
     </view>
     <!-- <input placeholder="请输入隐患详情" name="detail"></input> -->
   </view>
+
   <view class="cu-form-group">
     <textarea maxlength="-1" disabled="{{modalName!=null}}" name="detail" bindinput="textareaAInput" placeholder="请输入隐患详情"></textarea>
   </view>
-  <view class="cu-bar bg-white "style='border-top:1rpx solid #eee;'>
+
+  
+  <view class="cu-bar bg-white " style='border-top:1rpx solid #eee;'>
     <view class="action">
       照片上传
     </view>

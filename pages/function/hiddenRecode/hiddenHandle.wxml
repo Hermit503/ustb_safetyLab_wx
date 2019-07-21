@@ -2,4 +2,66 @@
   <view slot="backText">返回</view>
   <view slot="content">隐患详情及处理</view>
 </cu-custom>
-<view >{{detail.title}}</view>
+
+<form bindsubmit="formSubmit" >
+  <view class="cu-card case {{isCard?'':'no-card'}}">
+    <view class="cu-item shadow">
+      <view class="image">
+        <image src="{{detail.image}}" mode="widthFix"></image>
+        <view class="cu-tag bg-gradual-blue" wx:if="{{detail.isSolve==1}}">已解决</view>
+        <view class="cu-tag bg-gradual-blue" wx:if="{{detail.isSolve==0}}">未解决</view>
+        <view class="cu-bar bg-shadeBottom">
+          <text class="text-cut">隐患照片</text>
+        </view>
+      </view>
+    </view>
+  </view>
+  <view class="cu-form-group">
+    <view style='width:150rpx;'>
+      <view class="title">隐患位置</view>
+    </view>
+    <input name="position" value='{{detail.position}}' disabled='true'></input>
+  </view>
+  <view class="cu-form-group">
+    <view style='width:150rpx;'>
+      <view class="title" name="title">隐患简述</view>
+    </view>
+    <input name="title" value='{{detail.title}}' disabled='true'></input>
+  </view>
+  <view class="cu-form-group">
+    <view style='width:150rpx;'>
+      <view class="title">隐患详情</view>
+    </view>
+  </view>
+  <view class="cu-form-group">
+    <textarea maxlength="-1" disabled="{{modalName!=null}}" name="detail" bindinput="textareaAInput" value='{{detail.detail}}'></textarea>
+  </view>
+
+  <view class="cu-form-group">
+    <view class="title">解决状态</view>
+    <switch checked="{{isSolve}}" disabled="{{isSolve}}" bindchange="changeSwitch"></switch>
+  </view>
+
+  <view class="cu-bar bg-white " style='border-top:1rpx solid #eee;' hidden="{{!addImage}}" wx:if="{{detail.isSolve==0}}">
+    <view class="action">
+      照片上传
+    </view>
+    <view class="action">
+      {{imgList.length}}/1
+    </view>
+  </view>
+  <view class="cu-form-group" hidden="{{!addImage}}" wx:if="{{detail.isSolve==0}}">
+    <view class="grid col-4 grid-square flex-sub">
+      <view class="bg-img" wx:for="{{imgList}}" wx:key="{{index}}" bindtap="ViewImage" data-url="{{imgList[index]}}">
+        <image src='{{imgList[index]}}' name="image" mode='aspectFill'></image>
+        <view class="cu-tag bg-red" catchtap="DelImg" data-index="{{index}}">
+          <text class="cuIcon-close"></text>
+        </view>
+      </view>
+      <view class="solids" bindtap="ChooseImage" wx:if="{{imgList.length<1}}">
+        <text class="cuIcon-cameraadd"></text>
+      </view>
+    </view>
+  </view>
+  <button class='cu-btn  margin-top  margin-left margin-right bg-blue  shadow lg block margin-bottom ' form-type="submit" wx:if="{{detail.isSolve==0}}">提交</button>
+</form>
