@@ -7,7 +7,8 @@ Page({
    */
   data: {
     page: 1,
-    height: 0
+    height: 0,
+    role:null
   },
 
   /**
@@ -15,11 +16,14 @@ Page({
    */
   onLoad: function(options) {
     let that = this;
+    that.setData({
+      role:wx.getStorageSync('Roles')[0]
+    })
     wx.getSystemInfo({
       success: function (res) {
         console.log(res.windowHeight)
         that.setData({
-          height: res.windowHeight
+          height: res.windowHeight,
         })
       },
     })
@@ -31,10 +35,20 @@ Page({
       },
       method: 'GET',
       success: function(res) {
-        console.log(res.data.data)
+        console.log(res.data.hidden.data)
         that.setData({
-          hiddenList: res.data.data
+          hiddenList: res.data.hidden.data,
         })
+      },
+      fail: function(res) {},
+      complete: function(res) {},
+    })
+  },
+  hiddenHandle(e) {
+    console.log(e.currentTarget.dataset)
+    wx.navigateTo({
+      url: './hiddenHandle?id=' + e.currentTarget.dataset.id + "&title=" + e.currentTarget.dataset.title + "&issolve=" + e.currentTarget.dataset.issolve,
+      success: function(res) {
       },
       fail: function(res) {},
       complete: function(res) {},
@@ -53,12 +67,12 @@ Page({
         
       },
       success(res) {
-        console.log(res.data.data);
+        console.log(res.data.hidden.data);
         that.setData({
           //向页面已有数据后面加数据
-          hiddenList: that.data.hiddenList.concat(res.data.data),
+          hiddenList: that.data.hiddenList.concat(res.data.hidden.data),
         })
-        if (res.data.data == '') {
+        if (res.data.hidden.data == '') {
           wx.showToast({
             // icon: ,
             title: '没有更多数据',
@@ -66,10 +80,6 @@ Page({
         }
       }
     })
-  },
-
-  hiddenHandle(e){
-    console.log(e)
   },
 
   /**

@@ -1,31 +1,32 @@
 <scroll-view style="height:{{height}};" bindscrolltolower="onReachBottom" bindscroll="scroll" class="test">
-<cu-custom bgColor="bg-gradual-blue" isBack="{{true}}">
-  <view slot="backText">返回</view>
-  <view slot="content">隐患记录</view>
-</cu-custom>
-<view wx:for="{{hiddenList}}" wx:key="{{index}}">
-  <view class="cu-card article {{isCard?'':'no-card'}} margin-top-xs">
-    <view class="cu-item shadow">
-      <view class="title">
-        <view class="text-cut">
-          <text class='cuIcon-titles text-orange'></text>{{item.title}}</view>
-      </view>
-      <view class="content">
-        <image src="{{item.image}}" mode="aspectFill"></image>
-        <view class="desc">
-          <view class="text-content">
-            <text>位置：{{item.position}}\n</text>
-            <text>详情：{{item.detail}}</text>
-          </view>
-          <view class=''>
-            <view class="padding cu-tag bg-red light sm round">{{item.position}}</view>
-            <view class="padding cu-tag bg-green light sm round" wx:if="{{item.isSolve==0}}">未解决</view>
-            <view class="padding cu-tag bg-green light sm round" wx:if="{{item.isSolve==1}}">已解决</view>
-            <button class='padding cu-btn bg-cyan light sm round fr' data-id='{{item.user_id}}' wx:if="{{item.isSolve==0}}" bindtap='hiddenHandle'>隐患处理</button>
+  <cu-custom bgColor="bg-gradual-blue" isBack="{{true}}">
+    <view slot="backText">返回</view>
+    <view slot="content">隐患记录</view>
+  </cu-custom>
+  <view wx:for="{{hiddenList}}" wx:key="{{index}}">
+    <view class="cu-card article {{isCard?'':'no-card'}} margin-top-xs">
+      <view class="cu-item shadow">
+        <view class="title">
+          <view class="text-cut">
+            <text class='cuIcon-titles text-orange'></text>{{item.title}}</view>
+        </view>
+        <view class="content">
+          <image src="{{item.image}}" mode="aspectFill"></image>
+          <view class="desc">
+            <view class="text-content">
+              <text>位置：{{item.position}}\n</text>
+              <text style='overflow:hidden;text-overflow:ellipsis;'>详情：{{item.detail}}</text>
+            </view>
+            <view class=''>
+              <view class="padding cu-tag bg-red light sm round">{{item.position}}</view>
+              <view class="padding cu-tag bg-green light sm round" wx:if="{{item.isSolve==0}}">未解决</view>
+              <view class="padding cu-tag bg-green light sm round" wx:if="{{item.isSolve==1}}">已解决</view>
+              <button class='padding cu-btn bg-cyan light sm round fr' data-id='{{item.user_id}}' data-isSolve="{{item.isSolve}}" data-title="{{item.title}}" wx:if="{{role=='实验室管理员'&&item.isSolve==0}}" bindtap='hiddenHandle'>隐患处理</button>
+              <button class='padding cu-btn bg-cyan light sm round fr' data-id='{{item.user_id}}' data-isSolve="{{item.isSolve}}" data-title="{{item.title}}" wx:elif="{{role!='实验室管理员'||item.isSolve==1}}" bindtap='hiddenHandle'>隐患详情</button>
+            </view>
           </view>
         </view>
       </view>
     </view>
   </view>
-</view>
 </scroll-view>
