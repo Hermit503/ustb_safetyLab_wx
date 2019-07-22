@@ -67,7 +67,8 @@ Component({
           title: '下发通知',
           name: 'Notification',
           color: 'brown',
-          icon: 'refresharrow'
+          icon: 'refresharrow',
+          btn: 'notice'
         },
       ],
       '院级管理员': [{
