@@ -1,1 +1,4 @@
 /* pages/function/hiddenRecode/hiddenHandle.wxss */
+Page{
+  background-color: white;
+}

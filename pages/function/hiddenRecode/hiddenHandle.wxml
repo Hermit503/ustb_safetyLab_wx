@@ -3,7 +3,7 @@
   <view slot="content">隐患详情及处理</view>
 </cu-custom>
 
-<form bindsubmit="formSubmit" >
+<form bindsubmit="formSubmit">
   <view class="cu-card case {{isCard?'':'no-card'}}">
     <view class="cu-item shadow">
       <view class="image">
@@ -16,30 +16,62 @@
       </view>
     </view>
   </view>
+
+  <view class="cu-form-group">
+    <view style='width:150rpx;'>
+      <view class="title">发现时间</view>
+    </view>
+    <input value='{{detail.occurrence_time}}' disabled='true'></input>
+  </view>
+
+  <view class="cu-form-group">
+    <view style='width:150rpx;'>
+      <view class="title">上报人</view>
+    </view>
+    <input value='{{user.title}}  ({{user.phone_number}})' disabled='true'></input>
+  </view>
+
   <view class="cu-form-group">
     <view style='width:150rpx;'>
       <view class="title">隐患位置</view>
     </view>
-    <input name="position" value='{{detail.position}}' disabled='true'></input>
+    <input value='{{detail.position}}' disabled='true'></input>
   </view>
+
   <view class="cu-form-group">
     <view style='width:150rpx;'>
-      <view class="title" name="title">隐患简述</view>
+      <view class="title">隐患简述</view>
     </view>
     <input name="title" value='{{detail.title}}' disabled='true'></input>
   </view>
+
   <view class="cu-form-group">
     <view style='width:150rpx;'>
       <view class="title">隐患详情</view>
     </view>
   </view>
-  <view class="cu-form-group">
-    <textarea maxlength="-1" disabled="{{modalName!=null}}" name="detail" bindinput="textareaAInput" value='{{detail.detail}}'></textarea>
+<view class="cu-form-group">
+    <textarea maxlength="-1" disabled="{{modalName!=null}}" bindinput="textareaAInput" value="{{detail.detail}}"></textarea>
   </view>
 
   <view class="cu-form-group">
     <view class="title">解决状态</view>
-    <switch checked="{{isSolve}}" disabled="{{isSolve}}" bindchange="changeSwitch"></switch>
+    <switch checked="{{isSolve}}" disabled="{{isSolve}}" bindchange="changeSwitch" class='blue sm'></switch>
+  </view>
+
+  <view class="cu-form-group" hidden="{{addImage}}" wx:if="{{detail.isSolve==0}}">
+    <view style='width:150rpx;'>
+      <view class="title">原因</view>
+    </view>
+    <input name="noSolveReason" placeholder='请输入未解决的原因'></input>
+  </view>
+
+
+  <view class="cu-form-group" hidden="{{!addImage}}">
+    <view style='width:150rpx;'>
+      <view class="title">原因</view>
+    </view>
+    <input name="SolveReason" placeholder='请输入解决的原因'></input>
   </view>
 
   <view class="cu-bar bg-white " style='border-top:1rpx solid #eee;' hidden="{{!addImage}}" wx:if="{{detail.isSolve==0}}">
@@ -63,5 +95,6 @@
       </view>
     </view>
   </view>
-  <button class='cu-btn  margin-top  margin-left margin-right bg-blue  shadow lg block margin-bottom ' form-type="submit" wx:if="{{detail.isSolve==0}}">提交</button>
+
+  <button class='cu-btn  margin-top  margin-left margin-right bg-gradual-blue  shadow lg block margin-bottom ' form-type="submit" wx:if="{{detail.isSolve==0}}">提交</button>
 </form>

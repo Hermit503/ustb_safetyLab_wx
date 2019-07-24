@@ -67,6 +67,9 @@ Page({
       method: 'PUT',
       success: function(res) {
         console.log(res)
+        that.setData({
+          solveList:res.data.detail[0].hiddens_logs
+        });
         if (res.data['detail'][0].isSolve == 1) {
           that.setData({
             isSolve: true,
@@ -79,7 +82,7 @@ Page({
         that.setData({
           detail: res.data['detail'][0],
           user: res.data['user'],
-          addImage:false
+          addImage: false
         })
       },
       fail: function(res) {},
@@ -93,15 +96,83 @@ Page({
       that.setData({
         addImage: true
       })
-      console.log(this.data.addImage)
-    }else{
+    } else {
       that.setData({
         addImage: false
       })
-      console.log(this.data.addImage)
     }
   },
-
+  formSubmit: function(e) {
+    console.log(e)
+    let that = this
+    if (that.data.addImage) {
+      wx.uploadFile({
+        url: app.globalData.Url + "/hiddens/upload",
+        filePath: that.data.imgList[0],
+        name: 'file',
+        success(res) {
+          console.log(res)
+          wx.request({
+            url: app.globalData.Url + "/hiddensLog",
+            data: {
+              reportPerson: that.data.user.user_id,
+              title: e.detail.value.title,
+              image: res.data,
+              reason: e.detail.value.SolveReason,
+              user_id: wx.getStorageSync('UserData').user_id,
+              solveStatus:that.data.addImage
+            },
+            header: {
+              'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8'
+            },
+            method: 'POST',
+            dataType: 'json',
+            responseType: 'text',
+            success(res) {
+              if (res.statusCode == 201) {
+                wx.navigateBack({
+                  delta: 1
+                });
+                wx.showToast({
+                  title: '隐患处理成功',
+                  duration: 1500
+                });
+              }
+            }
+          })
+        }
+      })
+    } else if (that.data.addImage == false) {
+      console.log(e)
+      wx.request({
+        url: app.globalData.Url + "/hiddensLog",
+        data: {
+          reportPerson: that.data.user.user_id,
+          title: e.detail.value.title,
+          reason: e.detail.value.noSolveReason,
+          user_id: wx.getStorageSync('UserData').user_id,
+          solveStatus: that.data.addImage
+        },
+        header: {
+          'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8'
+        },
+        method: 'POST',
+        dataType: 'json',
+        responseType: 'text',
+        success(res) {
+          if (res.statusCode == 201) {
+            wx.navigateBack({
+              delta: 1
+            });
+            wx.showToast({
+              title: '提交成功',
+              duration: 1500
+            });
+          }
+        }
+      })
+    }
+  },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
