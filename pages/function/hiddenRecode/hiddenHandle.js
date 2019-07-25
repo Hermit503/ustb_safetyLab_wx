@@ -7,6 +7,45 @@ Page({
    */
   data: {
     imgList: [],
+    click: false
+  },
+  /**
+ * 生命周期函数--监听页面加载
+ */
+  onLoad: function (options) {
+    console.log(options)
+    let that = this;
+    wx.request({
+      url: app.globalData.Url + '/hiddens/' + options.id,
+      data: {
+        user_id: options.id,
+        title: options.title
+      },
+      header: {
+        'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8'
+      },
+      method: 'PUT',
+      success: function (res) {
+        console.log(res)
+        if (res.data['detail'][0].isSolve == 1) {
+          that.setData({
+            isSolve: true,
+          })
+        } else {
+          that.setData({
+            isSolve: false
+          })
+        }
+        that.setData({
+          detail: res.data['detail'][0],
+          user: res.data['user'],
+          solveList: res.data.detail[0].hiddens_logs,
+          addImage: false
+        })
+      },
+      fail: function (res) { },
+      complete: function (res) { },
+    })
   },
   ChooseImage() {
     wx.chooseImage({
@@ -49,46 +88,7 @@ Page({
       }
     })
   },
-  /**
-   * 生命周期函数--监听页面加载
-   */
-  onLoad: function(options) {
-    console.log(options)
-    let that = this;
-    wx.request({
-      url: app.globalData.Url + '/hiddens/' + options.id,
-      data: {
-        user_id: options.id,
-        title: options.title
-      },
-      header: {
-        'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8'
-      },
-      method: 'PUT',
-      success: function(res) {
-        console.log(res)
-        that.setData({
-          solveList:res.data.detail[0].hiddens_logs
-        });
-        if (res.data['detail'][0].isSolve == 1) {
-          that.setData({
-            isSolve: true,
-          })
-        } else {
-          that.setData({
-            isSolve: false
-          })
-        }
-        that.setData({
-          detail: res.data['detail'][0],
-          user: res.data['user'],
-          addImage: false
-        })
-      },
-      fail: function(res) {},
-      complete: function(res) {},
-    })
-  },
+
   changeSwitch: function(e) {
     console.log(e.detail.value)
     let that = this
@@ -172,6 +172,12 @@ Page({
         }
       })
     }
+  },
+  showMore(e){
+    console.log(e)
+    this.setData({
+      click: !this.data.click
+    })
   },
   /**
    * 生命周期函数--监听页面初次渲染完成

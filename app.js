@@ -44,6 +44,7 @@ App({
         this.globalData.Custom = custom;
         this.globalData.CustomBar = custom.bottom + custom.top - e.statusBarHeight;
         this.globalData.Url = 'http://saftylab.test/api/v1';
+        // this.globalData.Url = 'http://139.199.122.67/api/v1';
       }
     })
   },

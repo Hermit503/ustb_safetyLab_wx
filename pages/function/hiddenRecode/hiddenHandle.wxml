@@ -45,14 +45,24 @@
     <input name="title" value='{{detail.title}}' disabled='true'></input>
   </view>
 
-  <view class="cu-form-group">
-    <view style='width:150rpx;'>
-      <view class="title">隐患详情</view>
-    </view>
-  </view>
-<view class="cu-form-group">
+
+  <view class="cu-form-group align-start">
+    <view class="title">隐患详情</view>
     <textarea maxlength="-1" disabled="{{modalName!=null}}" bindinput="textareaAInput" value="{{detail.detail}}"></textarea>
   </view>
+
+  <view class="cu-form-group action" bindtap="showMore">隐患处理记录
+    <view class="action">
+      <text class="cuIcon-{{click?'unfold':'fold'}} lg text-gray"></text>
+    </view>
+  </view>
+  <view class="cu-item solid-top solid-bottom margin-left margin-right" hidden="{{!click}}" wx:for="{{solveList}}" wx:key="{{index}}">
+    <text>{{item.user_name}}  于{{item.created_at}}，{{item.isSolve=='1'?'已解决':'未解决'}}该问题\n</text>
+    <text>{{item.isSolve=='1'?'已解决原因':'未解决原因'}}是:{{item.reason}}</text>
+    <image src="{{item.image}}" style="width:100%;" mode="aspectFit" wx:if="{{item.isSolve=='1'}}"></image>
+  </view>
+
+
 
   <view class="cu-form-group">
     <view class="title">解决状态</view>
@@ -65,7 +75,6 @@
     </view>
     <input name="noSolveReason" placeholder='请输入未解决的原因'></input>
   </view>
-
 
   <view class="cu-form-group" hidden="{{!addImage}}">
     <view style='width:150rpx;'>
@@ -82,6 +91,8 @@
       {{imgList.length}}/1
     </view>
   </view>
+
+  <!-- 选择照片 -->
   <view class="cu-form-group" hidden="{{!addImage}}" wx:if="{{detail.isSolve==0}}">
     <view class="grid col-4 grid-square flex-sub">
       <view class="bg-img" wx:for="{{imgList}}" wx:key="{{index}}" bindtap="ViewImage" data-url="{{imgList[index]}}">

@@ -1,1 +1,4 @@
 /* pages/function/hidden/hidden.wxss */
+Page{
+  background-color: white;
+}

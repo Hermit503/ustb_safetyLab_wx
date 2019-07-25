@@ -15,18 +15,14 @@
     </view>
     <input placeholder="请输入隐患简述" name="title"></input>
   </view>
-  <view class="cu-form-group">
-    <view style='width:150rpx;'>
-      <view class="title">隐患详情</view>
-    </view>
-    <!-- <input placeholder="请输入隐患详情" name="detail"></input> -->
-  </view>
 
-  <view class="cu-form-group">
+
+  <view class="cu-form-group align-start">
+    <view class="title">隐患详情</view>
     <textarea maxlength="-1" disabled="{{modalName!=null}}" name="detail" bindinput="textareaAInput" placeholder="请输入隐患详情"></textarea>
   </view>
 
-  
+
   <view class="cu-bar bg-white " style='border-top:1rpx solid #eee;'>
     <view class="action">
       照片上传
@@ -35,7 +31,7 @@
       {{imgList.length}}/1
     </view>
   </view>
-  <view class="cu-form-group">
+  <view class="cu-form-group solids-bottom">
     <view class="grid col-4 grid-square flex-sub">
       <view class="bg-img" wx:for="{{imgList}}" wx:key="{{index}}" bindtap="ViewImage" data-url="{{imgList[index]}}">
         <image src='{{imgList[index]}}' name="image" mode='aspectFill'></image>
