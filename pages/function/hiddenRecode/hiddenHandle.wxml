@@ -1,17 +1,17 @@
 <cu-custom bgColor="bg-gradual-blue" isBack="{{true}}">
   <view slot="backText">返回</view>
-  <view slot="content">隐患详情及处理</view>
+  <view slot="content">详情|处理</view>
 </cu-custom>
 
 <form bindsubmit="formSubmit">
   <view class="cu-card case {{isCard?'':'no-card'}}">
     <view class="cu-item shadow">
       <view class="image">
-        <image src="{{detail.image}}" mode="widthFix"></image>
+        <image src="{{detail.image}}" mode="widthFix" bindtap="ViewImage" data-url="{{detail.image}}"></image>
         <view class="cu-tag bg-gradual-blue" wx:if="{{detail.isSolve==1}}">已解决</view>
         <view class="cu-tag bg-gradual-blue" wx:if="{{detail.isSolve==0}}">未解决</view>
         <view class="cu-bar bg-shadeBottom">
-          <text class="text-cut">隐患照片</text>
+          <text class="text-cut">{{detail.type=='issue'?'问题':'隐患'}}照片如图</text>
         </view>
       </view>
     </view>
@@ -33,33 +33,44 @@
 
   <view class="cu-form-group">
     <view style='width:150rpx;'>
-      <view class="title">隐患位置</view>
+      <view class="title">{{detail.type=='issue'?'问题':'隐患'}}位置</view>
     </view>
     <input value='{{detail.position}}' disabled='true'></input>
   </view>
 
   <view class="cu-form-group">
     <view style='width:150rpx;'>
-      <view class="title">隐患简述</view>
+      <view class="title">{{detail.type=='issue'?'问题':'隐患'}}简述</view>
     </view>
     <input name="title" value='{{detail.title}}' disabled='true'></input>
   </view>
 
 
   <view class="cu-form-group align-start">
-    <view class="title">隐患详情</view>
+    <view class="title">{{detail.type=='issue'?'问题':'隐患'}}详情</view>
     <textarea maxlength="-1" disabled="{{modalName!=null}}" bindinput="textareaAInput" value="{{detail.detail}}"></textarea>
   </view>
 
-  <view class="cu-form-group action" bindtap="showMore">隐患处理记录
+  <view class="cu-form-group action" bindtap="showMore">{{detail.type=='issue'?'问题':'隐患'}}处理记录
     <view class="action">
       <text class="cuIcon-{{click?'unfold':'fold'}} lg text-gray"></text>
     </view>
   </view>
-  <view class="cu-item solid-top solid-bottom margin-left margin-right" hidden="{{!click}}" wx:for="{{solveList}}" wx:key="{{index}}">
-    <text>{{item.user_name}}  于{{item.created_at}}，{{item.isSolve=='1'?'已解决':'未解决'}}该问题\n</text>
-    <text>{{item.isSolve=='1'?'已解决原因':'未解决原因'}}是:{{item.reason}}</text>
-    <image src="{{item.image}}" style="width:100%;" mode="aspectFit" wx:if="{{item.isSolve=='1'}}"></image>
+  <view class="cu-item solid-top solid-bottom margin-left margin-right margin-top-xs" hidden="{{!click}}" wx:for="{{solveList}}" wx:key="{{index}}">
+    <view class="flex align-center">
+      <view class="cu-tag bg-{{item.isSolve=='1'?'cyan':'red'}} light radius sm">{{item.isSolve=='1'?'处理成功':'处理失败'}}</view>
+      <view style="margin-left:310rpx; color:#ccc;" class="margin-top-xs">
+        <text>{{item.created_at}}</text>
+      </view>
+      <!-- {{item.user_name}}，{{item.isSolve=='1'?'已解决':'未解决'}}该问题 -->
+    </view>
+    <view class="flex align-center">
+      <view class=""><text space="ensp"> {{item.user_name}}：</text></view> 
+      <!-- cu-tag bg-blue light radius  -->
+      <view class="">{{item.reason}}</view>
+      <!-- cu-tag radius  -->
+    </view>
+    <image src="{{item.image}}" style="width:100%;" mode="aspectFit" wx:if="{{item.isSolve=='1'}}" bindtap="ViewImage" data-url="{{item.image}}"></image>
   </view>
 
 

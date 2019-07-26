@@ -67,8 +67,9 @@ Page({
     });
   },
   ViewImage(e) {
+    console.log(e)
     wx.previewImage({
-      urls: this.data.imgList,
+      urls: [e.target.dataset.url],
       current: e.currentTarget.dataset.url
     });
   },
@@ -130,9 +131,9 @@ Page({
             responseType: 'text',
             success(res) {
               if (res.statusCode == 201) {
-                wx.navigateBack({
-                  delta: 1
-                });
+                wx.redirectTo({
+                  url: './hiddenRecode',
+                })
                 wx.showToast({
                   title: '隐患处理成功',
                   duration: 1500
