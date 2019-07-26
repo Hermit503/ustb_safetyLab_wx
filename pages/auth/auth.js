@@ -21,6 +21,15 @@ Page({
     })
   },
   onLoad: function (options) {
+    wx.getStorageInfo({
+      success: function(res) {
+        if (res.currentSize == 2){
+          wx.navigateTo({
+            url: '../index/index',
+          })
+        }
+      }
+    })
   },
   login: function (e) {
     let that = this

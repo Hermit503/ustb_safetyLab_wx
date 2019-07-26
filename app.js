@@ -44,7 +44,9 @@ App({
         this.globalData.Custom = custom;
         this.globalData.CustomBar = custom.bottom + custom.top - e.statusBarHeight;
         this.globalData.Url = 'http://saftylab.test/api/v1';
-        // this.globalData.Url = 'http://139.199.122.67/api/v1';
+        // this.globalData.Url = 'https://www.pipicui.wang/api/v1';
+        // this.globalData.Url = 'http://www.hlhs.xyz/api/v1';
+        // this.globalData.Url = 'http://119.23.243.176/api/v1';
       }
     })
   },

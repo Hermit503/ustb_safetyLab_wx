@@ -58,7 +58,8 @@ Page({
           filePath: this.data.imgList[0],
           name: 'file',
           success(res) {
-            // console.log(res)
+
+            console.log(res)
             wx.request({
               url: app.globalData.Url + "/hiddens",
               data: {
