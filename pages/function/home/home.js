@@ -96,7 +96,8 @@ Component({
           title: '下发通知',
           name: 'Notification',
           color: 'mauve',
-          icon: 'refresharrow'
+          icon: 'refresharrow',
+          btn: 'notice'
         },
         {
           title: '检修记录',
