@@ -6,6 +6,7 @@ Page({
    */
   data: {
     imgList: [],
+    type: 'hidden'
   },
   ChooseImage() {
     wx.chooseImage({
@@ -49,20 +50,21 @@ Page({
     })
   },
   formSubmit: function(e) {
+    let that = this
     // wx.compressImage({
     //   src: this.data.imgList[0], // 图片路径
     //   quality: 80,
-    //   success(res){
+    //   success(res) {
         wx.uploadFile({
           url: app.globalData.Url + "/hiddens/upload",
           filePath: this.data.imgList[0],
           name: 'file',
           success(res) {
-
             console.log(res)
             wx.request({
               url: app.globalData.Url + "/hiddens",
               data: {
+                type: that.data.type,
                 position: e.detail.value.position,
                 title: e.detail.value.title,
                 detail: e.detail.value.detail,
@@ -75,7 +77,7 @@ Page({
               method: 'POST',
               dataType: 'json',
               responseType: 'text',
-              success: function (res) {
+              success: function(res) {
                 console.log(res)
                 if (res.statusCode == 201) {
                   wx.navigateBack({
@@ -87,18 +89,23 @@ Page({
                   });
                 }
               },
-              fail: function (res) { },
-              complete: function (res) { },
+              fail: function(res) {},
+              complete: function(res) {},
             })
           }
         })
     //   }
     // })
-    
+
   },
   textareaAInput(e) {
     this.setData({
       textareaAValue: e.detail.value
+    })
+  },
+  checkboxChange(e) {
+    this.setData({
+      type: e.detail.value
     })
   },
   /**

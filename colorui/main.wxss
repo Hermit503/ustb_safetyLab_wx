@@ -3859,12 +3859,32 @@ scroll-view.cu-steps .cu-item {
 .equipment-width {
   width: 155rpx;
 }
-
-.checkoutbox-form-group {
-  background-color: var(--white);
-  padding: 1rpx 30rpx;
-  display: flex;
-  align-items: center;
-  min-height: 100rpx;
-  justify-content: flex-start;
+/*
+*重写 checkbox
+*/
+checkbox .wx-checkbox-input {
+  border-radius: 50%;
+  width: 40rpx;
+  height: 40rpx;
 }
+/*checkbox选中后样式  */
+checkbox .wx-checkbox-input.wx-checkbox-input-checked {
+  background: #0394F0 !important;
+  border-color:#0394F0;
+}
+/*checkbox选中后图标样式  */
+checkbox .wx-checkbox-input.wx-checkbox-input-checked::before {
+  border-radius: 50%;
+  width: 30rpx;
+  height: 30rpx;  
+  line-height: 20rpx;
+  text-align: center;
+  font-size: 22rpx;
+  color: #fff;
+  background: transparent;
+  transform: translate(-50%, -50%) scale(1);
+  -webkit-transform: translate(-50%, -50%) scale(1);
+}
+
+
+

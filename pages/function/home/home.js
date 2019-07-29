@@ -51,8 +51,8 @@ Component({
           icon: 'form'
         },
         {
-          title: '隐患记录',
-          name: 'Hidden danger',
+          title: '隐患/问题记录',
+          name: 'IssueRecode',
           color: 'olive',
           icon: 'text',
           btn: 'hiddenRecode'
@@ -106,24 +106,18 @@ Component({
           icon: 'form'
         },
         {
-          title: '隐患记录',
-          name: 'Hidden danger',
+          title: '隐患/问题记录',
+          name: 'IssueRecode',
           color: 'olive',
           icon: 'text',
           btn: 'hiddenRecode'
         },
         {
-          title: '隐患上报',
-          name: 'hidden report',
+          title: '隐患/问题上报',
+          name: 'Issue Report',
           color: 'red',
           icon: 'write',
           btn: 'hidden'
-        },
-        {
-          title: '问题上报',
-          name: 'Issue Report',
-          color: 'orange',
-          icon: 'write'
         },
         {
           title: '学习',
@@ -137,7 +131,6 @@ Component({
           color: 'green',
           icon: 'wenzi'
         },
-
       ],
       '实验室管理员': [{
           title: '人员管理',
@@ -161,42 +154,43 @@ Component({
           btn: 'medcine'
         },
         {
-          title: '检修报告',
-          name: 'repair report',
-          color: 'mauve',
-          icon: 'same'
+          title: '下发通知',
+          name: 'Notification',
+          color: 'grey',
+          icon: 'refresharrow',
+          btn: 'notice'
         },
         {
-          title: '隐患上报',
-          name: 'hidden danger',
+          title: '隐患/问题上报',
+          name: 'Issue Report',
           color: 'red',
-          icon: 'write',
+          icon: '',
           btn: 'hidden'
         },
         {
-          title: '问题上报',
-          name: 'Issue Report',
-          color: 'orange',
-          icon: 'write'
+          title: '隐患/问题记录',
+          name: 'IssueRecode',
+          color: 'olive',
+          icon: '',
+          btn: 'hiddenRecode'
         },
         {
           title: '检修记录',
           name: 'repair report',
           color: 'pink',
           icon: 'form'
-        }, 
-        {
-          title: '隐患记录',
-          name: 'Hidden danger',
-          color: 'olive',
-          icon: 'text',
-          btn: 'hiddenRecode'
         },
         {
           title: '实验室日志',
           name: 'Laboratory logs',
           color: 'brown',
           icon: 'text'
+        },
+        {
+          title: '检修报告',
+          name: 'repair report',
+          color: 'mauve',
+          icon: 'same'
         },
         {
           title: '学习',
@@ -212,16 +206,11 @@ Component({
         },
       ],
       '教师': [{
-          title: '隐患上报',
-          name: 'hidden danger',
-          color: 'red',
-          icon: 'write'
-        },
-        {
-          title: '问题上报',
+          title: '隐患/问题上报',
           name: 'Issue Report',
-          color: 'orange',
-          icon: 'write'
+          color: 'red',
+          icon: 'write',
+          btn: 'hidden'
         },
         {
           title: '学习',
