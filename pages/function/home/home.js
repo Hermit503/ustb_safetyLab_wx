@@ -38,11 +38,11 @@ Component({
           btn: 'equipment'
         },
         {
-          title: '药品查询',
-          name: 'Medcine',
+          title: '危化品查询',
+          name: 'chemical',
           color: 'blue',
           icon: 'colorlens',
-          btn: 'medcine'
+          btn: 'chemical'
         },
         {
           title: '检修记录',
@@ -86,11 +86,11 @@ Component({
           btn: 'equipment'
         },
         {
-          title: '药品管理',
-          name: 'Medcine',
+          title: '危化品管理',
+          name: 'chemical',
           color: 'purple',
           icon: 'colorlens',
-          btn: 'medcine'
+          btn: 'chemical'
         },
         {
           title: '下发通知',
@@ -147,11 +147,11 @@ Component({
           btn: 'equipment'
         },
         {
-          title: '药品管理',
-          name: 'Medcine',
+          title: '危化品管理',
+          name: 'chemical',
           color: 'purple',
           icon: 'colorlens',
-          btn: 'medcine'
+          btn: 'chemical'
         },
         {
           title: '下发通知',

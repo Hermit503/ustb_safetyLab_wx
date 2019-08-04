@@ -5,10 +5,10 @@
   </cu-custom>
   <scroll-view scroll-x class="bg-gradual-blue nav text-center">
     <view class="cu-item {{0==TabCur?'text-white cur':''}}" bindtap="tabSelect" data-id="0">
-      <text class="cuIcon-camerafill"></text> 隐患
+      <text class="cuIcon-cardboardfill"></text> 隐患
     </view>
     <view class="cu-item {{1==TabCur?'text-white cur':''}}" bindtap="tabSelect" data-id="1">
-      <text class="cuIcon-upstagefill"></text> 问题
+      <text class="cuIcon-creativefill"></text> 问题
     </view>
   </scroll-view>
 
@@ -28,12 +28,11 @@
               <text style='overflow:hidden;text-overflow:ellipsis;'>详情：{{item.detail}}</text>
             </view>
             <view class=''>
-              <view class="padding cu-tag bg-red light sm round">{{item.position}}</view>
-              <view class="padding cu-tag bg-blue light sm round" wx:if="{{item.type=='issue'}}">问题</view>
-              <view class="padding cu-tag bg-blue light sm round" wx:if="{{item.type=='hidden'}}">隐患</view>
-              <view class="padding cu-tag bg-green light sm round" wx:if="{{item.isSolve==0}}">未解决</view>
-              <view class="padding cu-tag bg-green light sm round" wx:if="{{item.isSolve==1}}">已解决</view>
-
+              <view class="padding cu-tag bg-red light sm round margin-top-xxs">{{item.position}}</view>
+              <view class="padding cu-tag bg-blue light sm round margin-top-xxs" wx:if="{{item.type=='issue'}}">问题</view>
+              <view class="padding cu-tag bg-blue light sm round margin-top-xxs" wx:if="{{item.type=='hidden'}}">隐患</view>
+              <view class="padding cu-tag bg-green light sm round margin-top-xxs" wx:if="{{item.isSolve==0}}">未解决</view>
+              <view class="padding cu-tag bg-green light sm round margin-top-xxs" wx:if="{{item.isSolve==1}}">已解决</view>
               <button class='padding cu-btn bg-cyan light sm round fr' data-id='{{item.user_id}}' data-isSolve="{{item.isSolve}}" data-title="{{item.title}}" wx:if="{{role=='实验室管理员'&&item.isSolve==0}}" bindtap='hiddenHandle'>{{item.type=='issue'?'问题':'隐患'}}处理</button>
               <button class='padding cu-btn bg-cyan light sm round fr' data-id='{{item.user_id}}' data-isSolve="{{item.isSolve}}" data-title="{{item.title}}" wx:elif="{{role!='实验室管理员'||item.isSolve==1}}" bindtap='hiddenHandle'>{{item.type=='issue'?'问题':'隐患'}}详情</button>
             </view>
@@ -59,11 +58,11 @@
               <text style='overflow:hidden;text-overflow:ellipsis;'>详情：{{item.detail}}</text>
             </view>
             <view class=''>
-              <view class="padding cu-tag bg-red light sm round">{{item.position}}</view>
-              <view class="padding cu-tag bg-blue light sm round" wx:if="{{item.type=='issue'}}">问题</view>
-              <view class="padding cu-tag bg-blue light sm round" wx:if="{{item.type=='hidden'}}">隐患</view>
-              <view class="padding cu-tag bg-green light sm round" wx:if="{{item.isSolve==0}}">未解决</view>
-              <view class="padding cu-tag bg-green light sm round" wx:if="{{item.isSolve==1}}">已解决</view>
+              <view class="padding cu-tag bg-red light sm round margin-top-xxs">{{item.position}}</view>
+              <view class="padding cu-tag bg-blue light sm round margin-top-xxs" wx:if="{{item.type=='issue'}}">问题</view>
+              <view class="padding cu-tag bg-blue light sm round margin-top-xxs" wx:if="{{item.type=='hidden'}}">隐患</view>
+              <view class="padding cu-tag bg-green light sm round margin-top-xxs" wx:if="{{item.isSolve==0}}">未解决</view>
+              <view class="padding cu-tag bg-green light sm round margin-top-xxs" wx:if="{{item.isSolve==1}}">已解决</view>
               <button class='padding cu-btn bg-cyan light sm round fr' data-id='{{item.user_id}}' data-isSolve="{{item.isSolve}}" data-title="{{item.title}}" wx:if="{{role=='实验室管理员'&&item.isSolve==0}}" bindtap='hiddenHandle'>{{item.type=='issue'?'问题':'隐患'}}处理</button>
               <button class='padding cu-btn bg-cyan light sm round fr' data-id='{{item.user_id}}' data-isSolve="{{item.isSolve}}" data-title="{{item.title}}" wx:elif="{{role!='实验室管理员'||item.isSolve==1}}" bindtap='hiddenHandle'>{{item.type=='issue'?'问题':'隐患'}}详情</button>
             </view>

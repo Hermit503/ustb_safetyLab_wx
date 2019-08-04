@@ -1,0 +1,181 @@
+<scroll-view style="height:{{height}};" bindscrolltolower="onReachBottom" bindscroll="scroll" class="test">
+  <cu-custom bgColor="bg-gradual-blue" isBack="{{true}}">
+    <view slot="backText">返回</view>
+    <view slot="content">药品管理</view>
+  </cu-custom>
+
+  <view class='flex p-xs search cu-bar align-center bg-white'>
+    <view class="search-form round flex-six  margin-top-sm">
+      <text class="cuIcon-search "></text>
+      <input type="text" placeholder="请输入要搜索的化学品名或CAS编号" confirm-type="search" bindinput="setkeyword"></input>
+    </view>
+    <view class="action">
+      <button class="cu-btn bg-gradual-blue shadow-blur round  flex-twice" bindtap="searchUser">搜索</button>
+    </view>
+    <!-- <view wx:for="{{permissionList}}" wx:key="index">
+      <view wx:if="{{item=='allchemical'||item=='createchemical'}}" class='cu-btn bg-gradual-blue round shadow  flex-half' bindtap='addUser'>增加人员</view>
+    </view> -->
+  </view>
+  <view class="cu-bar solid-blue bg-white solid-bottom" style="display:{{tabletitle}}">
+    <view class="action">
+      <text class="cuIcon-title text-blue "></text > <text decode="{{true}}">化学品id&ensp;&ensp;&ensp;品名&ensp;&ensp;&ensp;&ensp;&ensp;CAS&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;所属单位</text>
+    </view>
+  </view>
+  <view class="cu-list menu-avatar">
+    <view class="cu-item {{modalName=='move-box-'+ index?'move-cur':''}}" wx:for="{{chemicalList}}" wx:key bindtouchstart="ListTouchStart" bindtouchmove="ListTouchMove" bindtouchend="ListTouchEnd" data-target="move-box-{{index}}">
+      <view class="name-list flex text-center">
+        <view class='name-width'>
+          <text bindtap='showModal' data-id="{{index}}" data-target="showUser">{{item.chemical_id}}</text>
+        </view>
+        <view class="userid-width">
+          <text>{{item.name}}</text>
+        </view>
+        <view class="name-width">
+          <text>{{item.CAS}}</text>
+        </view>
+        <view class="title-width">
+          <text>{{item.unit.unit_name}}</text>
+        </view>
+      </view>
+      <view class="move">
+        <view class="bg-grey" bindtap='inout' data-target="inoutDialogModal" data-name="{{item.name}}" data-unit="{{item.unit_type}}" data-id="{{item.chemical_id}}" data-type="{{item.type}}" data-inout="in">入库</view>
+        <view class="bg-red" bindtap="inout" data-target="inoutDialogModal" data-name="{{item.name}}" data-unit="{{item.unit_type}}" data-id="{{item.chemical_id}}" data-type="{{item.type}}" data-inout="out">出库</view>
+      </view>
+    </view>
+  </view>
+</scroll-view>
+<!-- 添加人员 -->
+<!--<view class='userList'>
+  <view wx:for="{{userList}}" wx:key="index">
+    <view>{{item.name}}</view>
+  </view>
+</view> -->
+
+
+
+
+<view class="cu-modal {{modalName=='showUser'?'show':''}}">
+  <view class="cu-dialog">
+    <view class="cu-bar bg-white justify-end">
+      <view class="content">危化品详细信息</view>
+      <view class="action" bindtap="hideModal">
+        <text class="cuIcon-close text-red"></text>
+      </view>
+    </view>
+    <view class=" flex">
+      <view class='flex-sub  padding-xs margin-xs'>化学品id</view>
+      <view class='flex-twice  padding-top-xs margin-xs text-left'>{{chemicalList[userSortId].chemical_id}}</view>
+    </view>
+    <view class=" flex">
+      <view class='flex-sub  padding-xs margin-xs'>品名</view>
+      <view class='flex-twice  padding-top-xs margin-xs text-left'>{{chemicalList[userSortId].name}}</view>
+    </view>
+    <view class=" flex">
+      <view class='flex-sub  padding-xs margin-xs'>CAS</view>
+      <view class='flex-twice  padding-top-xs margin-xs text-left'>{{chemicalList[userSortId].CAS}}</view>
+    </view>
+    <view class="flex">
+      <view class='flex-sub  padding-xs margin-xs'>所属单位</view>
+      <view class='flex-twice  padding-top-xs margin-xs text-left'>{{chemicalList[userSortId].unit.unit_name}}</view>
+    </view>
+    <view class="flex">
+      <view class='flex-sub  padding-xs margin-xs'>当前库存量</view>
+      <view class='flex-twice  padding-top-xs margin-xs text-left'>{{chemicalList[userSortId].stock}}{{chemicalList[userSortId].unit_type}}</view>
+    </view>
+    <view class="flex">
+      <view class='flex-sub  padding-xs margin-xs'>管理员</view>
+      <view class='flex-twice  padding-top-xs margin-xs text-left '>
+        <text>{{chemicalList[userSortId].user.name}}</text>
+      </view>
+    </view>
+    <view class="flex">
+      <view class='flex-sub  padding-xs margin-xs'>邮箱</view>
+      <view class='flex-twice  padding-top-xs margin-xs text-left'>{{chemicalList[userSortId].user.email}}</view>
+    </view>
+    <view class="flex">
+      <view class='flex-sub  padding-xs margin-xs s'>电话</view>
+      <view class='flex-twice  padding-top-xs margin-xs text-left'>{{chemicalList[userSortId].user.phone_number}}</view>
+    </view>
+    <view class="flex">
+      <view class='flex-sub  padding-xs margin-xs'>备注</view>
+      <view class='flex-twice  padding-top-xs margin-xs text-left'>{{chemicalList[userSortId].remarks}}</view>
+    </view>
+    <view class="padding-sm cu-bar bg-white justify-end">
+      <view class="action">
+        <button class="cu-btn bg-gradual-blue margin-left " bindtap="hideModal">确认</button>
+      </view>
+    </view>
+  </view>
+</view>
+
+
+<view class="cu-modal {{modalName=='DialogModal1'?'show':''}}">
+  <view class="cu-dialog">
+    <view class="cu-bar bg-white justify-end">
+      <view class="content">人员删除</view>
+      <view class="action" bindtap="hideModal">
+        <text class="cuIcon-close text-red"></text>
+      </view>
+    </view>
+    <view class="padding">
+      确定要删除
+      <text class="text-red">{{userName}}</text>吗？
+    </view>
+    <view class="cu-bar bg-white justify-end">
+      <view class="action">
+        <button class="cu-btn text-blue" bindtap="hideModal">取消</button>
+        <button class="cu-btn margin-left bg-blue" bindtap="deleteUser">确定</button>
+      </view>
+    </view>
+  </view>
+</view>
+
+<!--删除的模态框-->
+<view class="cu-modal {{modalName=='DialogModal1'?'show':''}}">
+  <view class="cu-dialog">
+    <view class="cu-bar bg-white justify-end">
+      <view class="content">删除</view>
+      <view class="action" bindtap="hideDeleteModal">
+        <text class="cuIcon-close text-red"></text>
+      </view>
+    </view>
+    <view class="padding">
+      确认删除 {{userName}}？
+    </view>
+    <view class="cu-bar bg-white justify-end">
+      <view class="action">
+        <button class="cu-btn line-blue text-blue" bindtap="hideDeleteModal">取消</button>
+        <button class="cu-btn bg-gradual-blue margin-left" bindtap="deleteUser">确定</button>
+      </view>
+    </view>
+  </view>
+</view>
+
+
+<view class="cu-modal {{modalName=='inoutDialogModal'?'show':''}}">
+  <view class="cu-dialog">
+    <view class="cu-bar bg-white justify-end">
+      <view class="content">{{checimalId}}的{{checimalName}}{{inout=='in'?'入库':'出库'}}</view>
+      <view class="action" bindtap="hideDeleteModal">
+        <text class="cuIcon-close text-red"></text>
+      </view>
+    </view>
+    <form bindsubmit="inoutSubmit">
+      <view class="cu-form-group ">
+        <!-- <text class='text-red text-xxl'>*</text> -->
+        <view class="title">{{inout=='in'?'入库':'出库'}}数量</view>
+        <input style="text-align: right;" confirm-type="done" type="digit" placeholder="请输入数量" value='0.00' name="stock" type='text'></input>{{unitType}}
+      </view>
+      <view class="cu-form-group ">
+        <view class="title">{{inout=='in'?'入库':'出库'}}备注</view>
+        <input style="text-align: right;" placeholder="请输入备注" name="remarks" type='text'></input>
+      </view>
+      <view class="cu-bar bg-white justify-end">
+        <view class="action">
+          <button class="cu-btn line-blue text-blue" bindtap="hideDeleteModal">取消</button>
+          <button class="cu-btn bg-gradual-blue margin-left" form-type="submit">提交</button>
+        </view>
+      </view>
+    </form>
+  </view>
+</view>

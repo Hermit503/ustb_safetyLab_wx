@@ -11,7 +11,8 @@
     "pages/function/hidden/hidden",
     "pages/function/hiddenRecode/hiddenRecode",
     "pages/function/notice/notice",
-    "pages/function/hiddenRecode/hiddenHandle"
+    "pages/function/hiddenRecode/hiddenHandle",
+    "pages/function/chemical/chemical"
   ],
   "window": {
     "backgroundTextStyle": "light",
