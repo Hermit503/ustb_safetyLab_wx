@@ -18,19 +18,19 @@
   </view>
   <view class="cu-bar solid-blue bg-white solid-bottom" style="display:{{tabletitle}}">
     <view class="action">
-      <text class="cuIcon-title text-blue "></text > <text decode="{{true}}">化学品id&ensp;&ensp;&ensp;品名&ensp;&ensp;&ensp;&ensp;&ensp;CAS&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;所属单位</text>
+      <text class="cuIcon-title text-blue "></text > <text decode="{{true}}">化学品id&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;品名&ensp;&ensp;&ensp;&ensp;&emsp;CAS&ensp;&ensp;&ensp;&ensp;&ensp;所属单位</text>
     </view>
   </view>
   <view class="cu-list menu-avatar">
-    <view class="cu-item {{modalName=='move-box-'+ index?'move-cur':''}}" wx:for="{{chemicalList}}" wx:key bindtouchstart="ListTouchStart" bindtouchmove="ListTouchMove" bindtouchend="ListTouchEnd" data-target="move-box-{{index}}">
-      <view class="name-list flex text-center">
-        <view class='name-width'>
+    <view class="cu-item {{modalName=='move-box-'+ index?'move-cur':''}} solids-top" wx:for="{{chemicalList}}" wx:key bindtouchstart="ListTouchStart" bindtouchmove="ListTouchMove" bindtouchend="ListTouchEnd" data-target="move-box-{{index}}">
+      <view class="name-list flex  align-center">
+        <view class='chemical_id text-right'>
           <text bindtap='showModal' data-id="{{index}}" data-target="showUser">{{item.chemical_id}}</text>
         </view>
-        <view class="userid-width">
+        <view class="chemical_name text-center">
           <text>{{item.name}}</text>
         </view>
-        <view class="name-width">
+        <view class="checimal_CAS">
           <text>{{item.CAS}}</text>
         </view>
         <view class="title-width">
@@ -79,8 +79,8 @@
       <view class='flex-twice  padding-top-xs margin-xs text-left'>{{chemicalList[userSortId].unit.unit_name}}</view>
     </view>
     <view class="flex">
-      <view class='flex-sub  padding-xs margin-xs'>当前库存量</view>
-      <view class='flex-twice  padding-top-xs margin-xs text-left'>{{chemicalList[userSortId].stock}}{{chemicalList[userSortId].unit_type}}</view>
+      <view class='flex-sub  padding-xs margin-xs'>库存量</view>
+      <view class='flex-twice  padding-top-xs margin-xs text-left'>{{chemicalList[userSortId].stock}} {{chemicalList[userSortId].unit_type}}</view>
     </view>
     <view class="flex">
       <view class='flex-sub  padding-xs margin-xs'>管理员</view>

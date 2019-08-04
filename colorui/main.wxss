@@ -517,7 +517,7 @@ checkbox.white[checked] .wx-checkbox-input, radio.white[checked] .wx-radio-input
 }
 
 .solids-top::after {
-  border-top: 8rpx solid #eee;
+  border-top: 3rpx solid #eee;
 }
 
 .solids-right::after {
@@ -3861,6 +3861,18 @@ scroll-view.cu-steps .cu-item {
 
 .equipment-width {
   width: 155rpx;
+}
+
+
+
+.chemical_id{
+  width: 180rpx;
+}
+.chemical_name{
+  width: 220rpx;
+}
+.checimal_CAS{
+  width:100rpx; 
 }
 /*
 *重写 checkbox
