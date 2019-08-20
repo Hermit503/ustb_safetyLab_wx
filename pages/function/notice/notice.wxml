@@ -14,7 +14,7 @@
       <text class='text-red text-xxl'>*</text>通知人员
     </view>
   </view>
-  <view class="cu-bar bg-white solid-bottom">
+  <view class="cu-bar bg-white solid-bottom" style="display:{{display}};">
     <view class="action">
       <checkbox-group class="bg-white" bindchange="checkboxChange" name="userList">
         <label class="checkbox " wx:for="{{items}}" wx:key="{{index}}">
@@ -26,7 +26,7 @@
       </checkbox-group>
     </view>
   </view>
-  <view class="cu-bar bg-white solid-bottom margin-top" bindtap="showList">
+  <view class="cu-bar bg-white solid-bottom margin-top">
     <view class="action">
       通知概述
     </view>

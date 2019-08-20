@@ -7,6 +7,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+    display: 'none',
     imgList: [],
     index: null,
     items:[],
@@ -17,7 +18,7 @@ Page({
     pictures: new Array(), //上传成功后的图片路径
     finalPicture:null,
     finalFile: '',        //上传成功的文件路径
-    sucess: 0
+    sucess: 0,
   },
 
   ChooseImage() {
@@ -85,7 +86,15 @@ Page({
   },
 
   showList(e){
-    console.log("显示列表");
+    if(this.data.display == 'none'){
+      this.setData({
+        display: null
+      });
+    }else{
+      this.setData({
+        display: 'none'
+      });
+    }
   },
 
   checkboxChange(e){
@@ -218,13 +227,23 @@ Page({
         },
         success(res) {
           console.log(res.data);
-          // wx.showToast({
-          //   // icon: ,
-          //   title: res.data,
-          // })
-          // setTimeout(function () {
-          //   wx.navigateBack({});
-          // }, 1500)
+          wx.showToast({
+            // icon: ,
+            title: res.data,
+          })
+          setTimeout(function () {
+            wx.navigateBack({});
+          }, 1500)
+          wx.request({
+            url: app.globalData.Url + "/email",
+            data:{
+              users: JSON.stringify(that.data.userList)
+            },
+            sucess(r){
+              console.log("邮件发送成功");
+            }
+          })
+          
         }
       })
     } else if (that.data.fileList != null && that.data.imgList.length != 0){
