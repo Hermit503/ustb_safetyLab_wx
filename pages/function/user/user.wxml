@@ -11,7 +11,7 @@
   </view>
   <view class="action">
     <button class="cu-btn bg-gradual-blue shadow-blur round  flex-twice" bindtap="searchUser">搜索</button>
-  </view>
+  </view> 
   <!-- <view wx:for="{{permissionList}}" wx:key="index">
     <view wx:if="{{item=='/alluser'||item=='/createuser'}}" class='cu-btn bg-gradual-blue round shadow  flex-half' bindtap='addUser'>增加人员</view>
   </view> -->

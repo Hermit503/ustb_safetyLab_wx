@@ -5,13 +5,8 @@
   </swiper-item>
 </swiper>
 
-
-
-
-
-
 <view wx:if="{{role=='校级管理员'}}">
-  <view class='cu-tabbar-height' style='min-height:45rpx;'></view>
+  <view style='min-height:45rpx;'></view>
   <view class='nav-list nav-list'>
     <view hover-class='none' class="nav-li bg-{{item.color}}" wx:for="{{functions['校级管理员']}}" wx:key bindtap='into' data-btn='{{item.btn}}'>
       <view class="nav-title">{{item.title}}</view>
@@ -22,10 +17,8 @@
   <view class='cu-tabbar-height'></view>
 </view>
 
-
-
 <view class='cu-list' wx:elif="{{role=='院级管理员'}}">
-  <view class='cu-tabbar-height' style='min-height:45rpx;'></view>
+  <view style='min-height:45rpx;'></view>
   <view class='nav-list nav-list'>
     <view hover-class='none' class="nav-li bg-{{item.color}}" wx:for="{{functions['院级管理员']}}" wx:key bindtap='into' data-btn='{{item.btn}}'>
       <view class="nav-title">{{item.title}}</view>
@@ -36,9 +29,8 @@
   <view class='cu-tabbar-height'></view>
 </view>
 
-
 <view wx:elif="{{role=='实验室管理员'}}">
-  <view class='cu-tabbar-height' style='min-height:45rpx;'></view>
+  <view style='min-height:45rpx;'></view>
   <view class='nav-list nav-list'>
     <view hover-class='none' class="nav-li bg-{{item.color}}" wx:for="{{functions['实验室管理员']}}" wx:key bindtap='into' data-btn='{{item.btn}}'>
       <view class="nav-title">{{item.title}}</view>
@@ -49,9 +41,8 @@
   <view class='cu-tabbar-height'></view>
 </view>
 
-
 <view wx:elif="{{role=='教师'}}">
-  <view class='cu-tabbar-height' style='min-height:45rpx;'></view>
+  <view style='min-height:45rpx;'></view>
   <view class='nav-list nav-list'>
     <view hover-class='none' class="nav-li bg-{{item.color}}" wx:for="{{functions['教师']}}" wx:key bindtap='into' data-btn='{{item.btn}}'>
       <view class="nav-title">{{item.title}}</view>

@@ -517,7 +517,7 @@ checkbox.white[checked] .wx-checkbox-input, radio.white[checked] .wx-radio-input
 }
 
 .solids-top::after {
-  border-top: 8rpx solid #eee;
+  border-top: 3rpx solid #eee;
 }
 
 .solids-right::after {
@@ -2984,6 +2984,9 @@ scroll-view.cu-steps .cu-item {
   margin: 50rpx;
 }
 
+.margin-top-xxs{
+  margin-top: 7rpx;
+}
 .margin-top-xs {
   margin-top: 10rpx;
 }
@@ -3859,6 +3862,18 @@ scroll-view.cu-steps .cu-item {
 .equipment-width {
   width: 155rpx;
 }
+
+
+
+.chemical_id{
+  width: 180rpx;
+}
+.chemical_name{
+  width: 220rpx;
+}
+.checimal_CAS{
+  width:100rpx; 
+}
 /*
 *重写 checkbox
 */
@@ -3870,7 +3885,7 @@ checkbox .wx-checkbox-input {
 /*checkbox选中后样式  */
 checkbox .wx-checkbox-input.wx-checkbox-input-checked {
   background: #0394F0 !important;
-  border-color:#0394F0;
+  border-color:#0394F0 !important;
 }
 /*checkbox选中后图标样式  */
 checkbox .wx-checkbox-input.wx-checkbox-input-checked::before {
