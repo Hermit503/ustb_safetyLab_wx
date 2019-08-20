@@ -1,0 +1,15 @@
+/* pages/function/notice/noticeDetail.wxss */
+.imglist{
+  background-color: var(--white);
+  display: flex;
+  min-height: 100rpx;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+  width: 100%;
+}
+.img{
+  height: 200rpx;
+  width: 200rpx;
+  margin-top: 20rpx;
+  margin-bottom: 20rpx;
+}
