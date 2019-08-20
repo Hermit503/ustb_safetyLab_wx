@@ -1,0 +1,28 @@
+<scroll-view style="height:{{height}};" bindscrolltolower="onReachBottom" bindscroll="scroll" class="test">
+  <cu-custom bgColor="bg-gradual-blue" isBack="{{true}}">
+    <view slot="backText">返回</view>
+    <view slot="content">我的上传</view>
+  </cu-custom>
+  <!--通知没有图片的话，咋咋咋-->
+  <view wx:for="{{noticeList}}" wx:key="{{index}}">
+    <view class="cu-card case">
+      <view class="cu-item shadow" bindtap="getOneNotice" data-id="{{item.id}}">
+        <view class="image">
+          <image src="{{pictures[index]}}" mode="widthFix"></image>
+          <view class="cu-tag bg-blue">{{time[index]}}</view>
+          <view class="cu-bar bg-shadeBottom">
+            <text class="text-cut">{{item.comment}}</text>
+          </view>
+        </view>
+        <view class="cu-list menu-avatar">
+          <view class="cu-item" style="display: flex; justify-content: flex-end;">
+            <view class="text-gray text-sm">
+              <text class="cuIcon-attentionfill margin-lr-xs"></text> 10
+              <text decode="{{true}}">&ensp;&ensp;&ensp;</text>
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+</scroll-view>

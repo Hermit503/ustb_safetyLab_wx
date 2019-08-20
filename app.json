@@ -11,7 +11,10 @@
     "pages/function/hidden/hidden",
     "pages/function/hiddenRecode/hiddenRecode",
     "pages/function/notice/notice",
-    "pages/function/hiddenRecode/hiddenHandle"
+    "pages/function/hiddenRecode/hiddenHandle",
+    "pages/function/notice/noticeList",
+    "pages/function/notice/noticeDetail",
+    "pages/function/notice/message"
   ],
   "window": {
     "backgroundTextStyle": "light",

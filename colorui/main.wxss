@@ -3886,5 +3886,29 @@ checkbox .wx-checkbox-input.wx-checkbox-input-checked::before {
   -webkit-transform: translate(-50%, -50%) scale(1);
 }
 
+.checkoutbox-form-group{
+  background-color: var(--white);
+  padding: 1rpx 30rpx;
+  display: flex;
+  align-items: center;
+  min-height: 100rpx;
+  justify-content: flex-start;
+}
+
+.cu-form-show {
+  background-color: var(--white);
+  padding: 1rpx 30rpx;
+  display: flex;
+  align-items: center;
+  min-height: 100rpx;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+}
+
+.cu-form-show>text[class*="cuIcon-"] {
+  font-size: 36rpx;
+  padding: 0;
+  box-sizing: border-box;
+}
 
 
