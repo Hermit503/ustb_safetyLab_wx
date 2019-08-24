@@ -50,7 +50,7 @@
           <text class="cuIcon-close"></text>
         </view>
       </view>
-      <view class="solids" bindtap="ChooseImage" wx:if="{{imgList.length<1}}">
+      <view class="solids" bindtap="ChooseImage">
         <text class="cuIcon-cameraadd"></text>
       </view>
     </view>
