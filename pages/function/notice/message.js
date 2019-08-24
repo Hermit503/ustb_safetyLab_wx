@@ -1,4 +1,5 @@
 // pages/function/notice/message.js
+const app = new getApp();
 Page({
 
   /**
@@ -12,7 +13,24 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    let that = this
+      wx.request({
+        url: app.globalData.Url +"/notice/test",
+        data: {
+          userId: wx.getStorageSync('UserData').user_id
+        },
+        header: {
+          'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8'
+        },
+        method: 'GET',
+        success: function (res) {
+          console.log(res)
+          that.setData({
+            chemicalNoticesList: res.data.chemicalNoticesList,
+          }
+          )
+        }
+      })
   },
 
   /**

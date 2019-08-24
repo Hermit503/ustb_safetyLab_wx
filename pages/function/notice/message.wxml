@@ -4,3 +4,13 @@
     <view slot="content">我的消息</view>
   </cu-custom>
 </scroll-view>
+
+
+
+<view class="">
+<view wx:for="{{chemicalNoticesList}}" wx:key>
+<text>（{{item.user_id_1}}）{{item.user_name_1}}  请求 {{item.chemical_name}} {{item.stock}}备注：{{item.remarks}}   </text>
+<button>提交</button>
+</view>
+
+</view>

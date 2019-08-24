@@ -38,8 +38,9 @@
         </view>
       </view>
       <view class="move">
-        <view class="bg-grey" bindtap='inout' data-target="inoutDialogModal" data-name="{{item.name}}" data-unit="{{item.unit_type}}" data-id="{{item.chemical_id}}" data-type="{{item.type}}" data-inout="in">入库</view>
-        <view class="bg-red" bindtap="inout" data-target="inoutDialogModal" data-name="{{item.name}}" data-unit="{{item.unit_type}}" data-id="{{item.chemical_id}}" data-type="{{item.type}}" data-inout="out">出库</view>
+        <view class="bg-grey" bindtap='inout' data-target="inoutDialogModal" data-userid="{{item.user_id}}" data-monitorid="{{item.monitor_id}}" data-name="{{item.name}}" data-unit="{{item.unit_type}}" data-id="{{item.chemical_id}}" data-type="{{item.type}}"
+          data-inout="in">入库</view>
+        <view class="bg-red" bindtap="inout" data-target="inoutDialogModal" data-userid="{{item.user_id}}" data-monitorid="{{item.monitor_id}}" data-name="{{item.name}}" data-unit="{{item.unit_type}}" data-id="{{item.chemical_id}}" data-type="{{item.type}}" data-inout="out">出库</view>
       </view>
     </view>
   </view>
@@ -155,7 +156,7 @@
 <view class="cu-modal {{modalName=='inoutDialogModal'?'show':''}}">
   <view class="cu-dialog">
     <view class="cu-bar bg-white justify-end">
-      <view class="content">{{checimalId}}的{{checimalName}}{{inout=='in'?'入库':'出库'}}</view>
+      <view class="content">{{checimalName}}{{inout=='in'?'入库':'出库'}}</view>
       <view class="action" bindtap="hideDeleteModal">
         <text class="cuIcon-close text-red"></text>
       </view>
