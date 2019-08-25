@@ -9,8 +9,8 @@
 
 <view class="">
 <view wx:for="{{chemicalNoticesList}}" wx:key>
-<text>（{{item.user_id_1}}）{{item.user_name_1}}  请求 {{item.chemical_name}} {{item.stock}}备注：{{item.remarks}}   </text>
-<button>提交</button>
+<text>（{{item.user_id_1}}）{{item.user_name_1}}  请求 {{item.type}}{{item.chemical_name}} {{item.stock}}备注：{{item.remarks}}   </text>
+<view class="cu-btn bg-purple sm shadow" bindtap="confirm" data-chemical="{{item.chemical_id}}" data-stock="{{item.stock}}" data-id="{{item.id}}" data-type="{{item.type}}">提交</view>
 </view>
 
 </view>
