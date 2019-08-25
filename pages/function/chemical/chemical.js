@@ -95,7 +95,7 @@ Page({
       modalName: null
     })
   },
-  //入库
+  //出入库入库
   inout: function(e) {
     console.log(e)
     this.setData({
@@ -104,12 +104,14 @@ Page({
       checimalId: e.currentTarget.dataset.id,
       unitType: e.currentTarget.dataset.unit,
       chemicalType: e.currentTarget.dataset.type,
-      inout: e.currentTarget.dataset.inout
+      inout: e.currentTarget.dataset.inout,
+      userId:e.currentTarget.dataset.userid,
+      monitorId:e.currentTarget.dataset.monitorid
     })
   },
   inoutSubmit(e) {
     let that = this
-    console.log(that.data.checimalId)
+    console.log(that.data)
     if (that.data.inout == 'in') {
       var stock = Math.abs(Number(e.detail.value.stock))
       console.log(stock)
@@ -120,10 +122,14 @@ Page({
     wx.request({
       url: app.globalData.Url + '/chemical/inout',
       data: {
+        unitId: wx.getStorageSync('UserData').unit_id,
+        userName: wx.getStorageSync('UserData').name,
+        userId: that.data.userId,
+        monitorId:that.data.monitorId,
         chemicalId: that.data.checimalId,
         stock: stock,
         remarks: e.detail.value.remarks,
-        chemicalType: that.data.chemicalType
+        chemicalType: that.data.chemicalType,
       },
       header: {},
       method: 'POST',
@@ -131,12 +137,16 @@ Page({
       responseType: 'text',
       success: function(res) {
         console.log(res)
+        that.setData({
+          modalName: null
+        })
         if (res.data == "需要完成双人入库操作") {
-          console.log(res.data)
-        } else {
-          that.setData({
-            modalName: null
+          wx.showToast({
+            title: '请等待审核',
+            icon: 'success',
+            duration: 2000
           })
+        } else {
           wx.showToast({
             title: res.data,
             icon: 'success',

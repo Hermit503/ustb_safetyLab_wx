@@ -47,7 +47,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 5,
+			"current": 6,
 			"list": [
 				{
 					"id": -1,
@@ -88,6 +88,13 @@
 					"id": 5,
 					"name": "危化品管理",
 					"pathName": "pages/function/chemical/chemical",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": 6,
+					"name": "消息通知",
+					"pathName": "pages/function/notice/message",
 					"query": "",
 					"scene": null
 				}

@@ -1,4 +1,5 @@
 // pages/function/notice/message.js
+const app = new getApp();
 Page({
 
   /**
@@ -150,6 +151,30 @@ Page({
 
   },
 
+  /**
+   * 出入库确认 
+   */
+  confirm(e){
+    console.log(e.target.dataset)
+    wx.request({
+      url: app.globalData.Url + "/notice/test",
+      data: {
+        chemicalId:e.target.dataset.chemical,
+        type: e.target.dataset.type,
+        stock:e.target.dataset.stock,
+        id:e.target.dataset.id
+      },
+      header: {},
+      method: 'PUT',
+      dataType: 'json',
+      responseType: 'text',
+      success: function(res) {
+        console.log(res)
+      },
+      fail: function(res) {},
+      complete: function(res) {},
+    })
+  },
   /**
    * 生命周期函数--监听页面显示
    */
