@@ -3,4 +3,78 @@
     <view slot="backText">返回</view>
     <view slot="content">我的消息</view>
   </cu-custom>
+
+  <scroll-view scroll-x class="bg-white nav">
+    <view class="flex text-center">
+      <view class="cu-item flex-sub {{index==currentTab?'text-blue cur':''}}" wx:for="{{tabList}}" wx:key data-current="{{index}}" bindtap="swichNav">
+        {{tabList[index]}}
+      </view>
+    </view>
+  </scroll-view>
+
+  <swiper current="{{currentTab}}" class="swiper-box" duration="300" style="height:{{winHeight - 31}}px" bindchange="bindChange">
+    <swiper-item>
+      <view class="cu-list menu-avatar">
+        <view class="cu-item" wx:for="{{messageList}}" wx:key>
+          <view class="name-list flex text-center" bindtap="getOneMessage" data-id="{{item[0].id}}" data-type="{{item[0].type}}">
+            <view class="equipment-width">
+              <text>{{item[0].name}}</text>
+            </view>
+            <view class="text-sm text-cut abstract" style="width:470rpx;">
+              <text>{{item[0].main}}</text>
+            </view>
+            <view class="action">
+              <view class="cu-tag round bg-red sm"></view>
+            </view>
+          </view>
+          <!-- <view class="move">
+            <view class="bg-grey">标为已读</view>
+            <view class="bg-red">删除</view>
+          </view> -->
+        </view>
+      </view>
+    </swiper-item>
+    <!-- 历史消息 -->
+    <swiper-item>
+
+      <!--一旦用户改变了其中一个日期就向后端发请求，发请求前判断一下起始日期是否小于结束日期-->
+      <view class="cu-form-group">
+        <view class="title">起始日期</view>
+        <picker mode="date" fields="month" value="{{startDate}}" end="{{end}}" bindchange="StartDateChange">
+          <view class="picker">
+            {{startDate}}
+          </view>
+        </picker>
+      </view>
+
+      <view class="cu-form-group">
+        <view class="title">结束日期</view>
+        <picker mode="date" fields="month" value="{{endDate}}" end="{{end}}" bindchange="EndDateChange">
+          <view class="picker">
+            {{endDate}}
+          </view>
+        </picker>
+      </view>
+
+      <view class="cu-list menu-avatar" style="margin-top:20rpx;">
+        <view class="cu-item" wx:for="{{messageList}}" wx:key>
+          <view class="name-list flex text-center" bindtap="getOneMessage" data-id="{{item[0].id}}" data-type="{{item[0].type}}">
+            <view class="equipment-width">
+              <text>{{item[0].name}}</text>
+            </view>
+            <view class="text-sm text-cut abstract" style="width:470rpx;">
+              <text>{{item[0].main}}</text>
+            </view>
+            <view class="action">
+              <view class="text-grey text-xs">3天前</view>
+            </view>
+          </view>
+          <!-- <view class="move">
+            <view class="bg-grey">标为已读</view>
+            <view class="bg-red">删除</view>
+          </view> -->
+        </view>
+      </view>
+    </swiper-item>
+  </swiper>
 </scroll-view>
