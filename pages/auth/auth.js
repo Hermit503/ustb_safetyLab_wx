@@ -23,7 +23,7 @@ Page({
   onLoad: function (options) {
     wx.getStorageInfo({
       success: function(res) {
-        if (res.currentSize == 3){
+        if (res.currentSize != 1){
           wx.navigateTo({
             url: '../index/index',
           })
