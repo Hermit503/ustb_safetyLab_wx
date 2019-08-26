@@ -99,15 +99,26 @@ Page({
   inout: function(e) {
     console.log(e)
     this.setData({
-      modalName: e.currentTarget.dataset.target,
-      checimalName: e.currentTarget.dataset.name,
-      checimalId: e.currentTarget.dataset.id,
-      unitType: e.currentTarget.dataset.unit,
-      chemicalType: e.currentTarget.dataset.type,
-      inout: e.currentTarget.dataset.inout,
-      userId:e.currentTarget.dataset.userid,
-      monitorId:e.currentTarget.dataset.monitorid
+      userId: e.currentTarget.dataset.userid,
+      monitorId: e.currentTarget.dataset.monitorid
     })
+    if (wx.getStorageSync('UserData').user_id == this.data.monitorId || wx.getStorageSync('UserData').user_id == this.data.userId){
+      this.setData({
+        modalName: e.currentTarget.dataset.target,
+        checimalName: e.currentTarget.dataset.name,
+        checimalId: e.currentTarget.dataset.id,
+        unitType: e.currentTarget.dataset.unit,
+        chemicalType: e.currentTarget.dataset.type,
+        inout: e.currentTarget.dataset.inout,
+      })
+    }else{
+      this.setData({
+        modalName: null,
+      })
+      wx.showToast({
+        title: '您没有权限',
+      })
+    }
   },
   inoutSubmit(e) {
     let that = this
@@ -119,13 +130,22 @@ Page({
       var stock = Math.abs(Number(e.detail.value.stock)) * (-1)
       console.log(stock)
     }
+
+    let user = [ that.data.monitorId, that.data.userId]
+    console.log(user)
+    let user2;
+    if (user[0] == wx.getStorageSync('UserData').user_id){
+      user2 = user[1]
+    }else{
+      user2 = user[0]
+    }
     wx.request({
       url: app.globalData.Url + '/chemical/inout',
       data: {
         unitId: wx.getStorageSync('UserData').unit_id,
         userName: wx.getStorageSync('UserData').name,
-        userId: that.data.userId,
-        monitorId:that.data.monitorId,
+        userId: wx.getStorageSync('UserData').user_id,
+        monitorId:user2,
         chemicalId: that.data.checimalId,
         stock: stock,
         remarks: e.detail.value.remarks,
