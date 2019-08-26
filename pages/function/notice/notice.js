@@ -117,7 +117,7 @@ Page({
       url: app.globalData.Url + "/notice/",
       data:{
         // roles: wx.getStorageSync('Roles'),
-        roles: ["校级管理员"],
+        roles: [wx.getStorageSync('UserData').title],
         user_id: wx.getStorageSync('UserData').user_id,
         unit_id: wx.getStorageSync('UserData').unit_id,
       },
