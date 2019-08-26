@@ -62,6 +62,23 @@ Page({
     })
   },
 
+  //收到消息
+  receiveNotice:function(e){
+    var that = this;
+    wx.request({
+      url: app.globalData.Url + "/notice/receiveNotice",
+      data: {
+        id: that.data.id,
+        user: wx.getStorageSync('UserData').user_id,
+      },
+      success: function (res) {
+        wx.showToast({
+          title: res.data,
+        })
+      }
+    })
+  },
+
   /**
    * 生命周期函数--监听页面初次渲染完成
    */

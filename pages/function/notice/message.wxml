@@ -43,7 +43,63 @@
 
         </view>
       </view>
-      <!--模态框-->
+
+    </swiper-item>
+    <!-- 历史消息 -->
+    <swiper-item>
+
+      <!--一旦用户改变了其中一个日期就向后端发请求，发请求前判断一下起始日期是否小于结束日期-->
+      <view class="cu-form-group">
+        <view class="title">起始日期</view>
+        <picker mode="date" fields="month" value="{{startDate}}" end="{{end}}" bindchange="StartDateChange">
+          <view class="picker">
+            {{startDate}}
+          </view>
+        </picker>
+      </view>
+
+      <view class="cu-form-group">
+        <view class="title">结束日期</view>
+        <picker mode="date" fields="month" value="{{endDate}}" end="{{end}}" bindchange="EndDateChange">
+          <view class="picker">
+            {{endDate}}
+          </view>
+        </picker>
+      </view>
+
+      <view class="cu-list menu-avatar" style="margin-top:20rpx;">
+        <view class="cu-item" wx:for="{{messageList}}" wx:key style="border-bottom:1rpx solid WhiteSmoke;">
+
+          <view class="name-list flex" wx:if="{{item.noticeType=='chemical'}}" bindtap="showModal" data-target="showDetail" data-id="{{item.id}}" data-name="{{item.user_name_1}}" data-msg="{{item.msg}}" data-user_id="{{item.user_id_1}}">
+            <view class="equipment-width">
+              <text>{{item.user_name_1}}</text>
+            </view>
+            <view class="text-sm text-cut" style="width:470rpx; text-align:left;">
+              <text>{{item.msg}}</text>
+            </view>
+            <view class="action">
+              <view class="cu-tag round bg-red sm"></view>
+            </view>
+          </view>
+
+          <view class="name-list flex" wx:if="{{item.noticeType=='notice'}}" bindtap="getOneMessage" data-id="{{item.id}}" data-name="{{item.name}}" data-title="{{item.title}}" data-comment="{{item.comment}}" data-pictures="{{item.pictures}}">
+            <view class="equipment-width">
+              <text>{{item.name}}</text>
+            </view>
+            <view class="text-sm text-cut" style="width:470rpx; text-align:left;">
+              <text>{{item.msg}}</text>
+            </view>
+            <view class="action">
+              <view class="cu-tag round bg-red sm"></view>
+            </view>
+          </view>
+
+        </view>
+      </view>
+
+    </swiper-item>
+  </swiper>
+  <!--模态框-->
       <view class="cu-modal {{modalName=='showDetail'?'show':''}}">
         <view class="cu-dialog" style="background-color:white;">
           <view class="cu-bar bg-white justify-end">
@@ -110,48 +166,4 @@
           </view>
         </view>
       </view>
-
-    </swiper-item>
-    <!-- 历史消息 -->
-    <swiper-item>
-
-      <!--一旦用户改变了其中一个日期就向后端发请求，发请求前判断一下起始日期是否小于结束日期-->
-      <view class="cu-form-group">
-        <view class="title">起始日期</view>
-        <picker mode="date" fields="month" value="{{startDate}}" end="{{end}}" bindchange="StartDateChange">
-          <view class="picker">
-            {{startDate}}
-          </view>
-        </picker>
-      </view>
-
-      <view class="cu-form-group">
-        <view class="title">结束日期</view>
-        <picker mode="date" fields="month" value="{{endDate}}" end="{{end}}" bindchange="EndDateChange">
-          <view class="picker">
-            {{endDate}}
-          </view>
-        </picker>
-      </view>
-
-      <view class="cu-list menu-avatar" style="margin-top:20rpx;">
-        <view class="cu-item" wx:for="{{messageList}}" wx:key>
-          <view class="name-list flex text-center" bindtap="getOneMessage" data-id="{{item[0].id}}" data-type="{{item[0].type}}">
-            <view class="equipment-width" wx:if="{{item.noticeType=='chemical'}}">
-              <text>{{item.user_name_1}}</text>
-            </view>
-            <view class="equipment-width" wx:if="{{item.noticeType=='notice'}}">
-              <text>{{item.name}}</text>
-            </view>
-            <view class="text-sm text-cut abstract" style="width:470rpx;">
-              <text>{{item.msg}}</text>
-            </view>
-            <view class="action">
-              <view class="cu-tag round bg-red sm"></view>
-            </view>
-          </view>
-        </view>
-      </view>
-    </swiper-item>
-  </swiper>
 </scroll-view>

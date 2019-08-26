@@ -32,5 +32,5 @@
 </view>
 <!--TODO:下载附件暂时没做-->
 <button class='cu-btn  margin-top  margin-left margin-right bg-blue shadow lg block'>下载附件</button>
-<button class='cu-btn  margin-top  margin-left margin-right bg-blue shadow lg block'>已阅</button>
+<button class='cu-btn  margin-top  margin-left margin-right bg-blue shadow lg block' bindtap="receiveNotice">已阅</button>
 <text decode="{{true}}">&ensp;&ensp;&ensp;</text>
