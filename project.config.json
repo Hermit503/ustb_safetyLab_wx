@@ -47,7 +47,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 6,
+			"current": 7,
 			"list": [
 				{
 					"id": -1,
@@ -95,6 +95,13 @@
 					"id": 6,
 					"name": "消息通知",
 					"pathName": "pages/function/notice/message",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "电子巡检",
+					"pathName": "pages/function/inspection/inspection",
 					"query": "",
 					"scene": null
 				}

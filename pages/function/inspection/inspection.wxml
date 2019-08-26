@@ -1,0 +1,9 @@
+<cu-custom bgColor="bg-gradual-blue" isBack="{{true}}">
+  <view slot="backText">返回</view>
+  <view slot="content">电子巡检</view>
+</cu-custom>
+<view bindtap="getScanCode">start get scanCode</view>
+<view>{{code.result}}</view>
+<view>{{code.scanType}}</view>
+<view>{{code.charSet}}</view>
+<view>{{code.rawData}}</view>

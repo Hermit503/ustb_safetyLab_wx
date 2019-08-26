@@ -74,7 +74,7 @@ Component({
       '院级管理员': [{
           title: '人员管理',
           name: 'User',
-          color: 'cyan',
+          color: 'green',
           icon: 'friend',
           btn: 'user'
         },
@@ -100,8 +100,8 @@ Component({
           btn: 'notice'
         },
         {
-          title: '检修记录',
-          name: 'repair recode',
+          title: '巡检记录',
+          name: 'repair report',
           color: 'pink',
           icon: 'form'
         },
@@ -109,27 +109,29 @@ Component({
           title: '隐患/问题记录',
           name: 'IssueRecode',
           color: 'olive',
-          icon: 'text',
+          icon: '',
           btn: 'hiddenRecode'
         },
         {
           title: '隐患/问题上报',
           name: 'Issue Report',
           color: 'red',
-          icon: 'write',
+          icon: '',
           btn: 'hidden'
         },
         {
           title: '学习',
           name: 'Study',
-          color: 'olive',
-          icon: 'wenzi'
+          color: 'green',
+          icon: 'wenzi',
+          btn: 'study'
         },
         {
           title: '考试',
           name: 'Examination',
-          color: 'green',
-          icon: 'wenzi'
+          color: 'cyan',
+          icon: 'wenzi',
+          btn: 'exam'
         },
       ],
       '实验室管理员': [{
@@ -175,7 +177,14 @@ Component({
           btn: 'hiddenRecode'
         },
         {
-          title: '检修记录',
+          title: '电子巡检',
+          name: 'inspection',
+          color: 'pink',
+          icon: 'form',
+          btn: 'inspection'
+        },
+        {
+          title: '巡检记录',
           name: 'repair report',
           color: 'pink',
           icon: 'form'
@@ -187,22 +196,18 @@ Component({
           icon: 'text'
         },
         {
-          title: '检修报告',
-          name: 'repair report',
-          color: 'mauve',
-          icon: 'same'
-        },
-        {
           title: '学习',
           name: 'Study',
           color: 'olive',
-          icon: 'wenzi'
+          icon: 'wenzi',
+          btn: 'study'
         },
         {
           title: '考试',
           name: 'Examination',
           color: 'green',
-          icon: 'wenzi'
+          icon: 'wenzi',
+          btn: 'exam'
         },
       ],
       '教师': [{
@@ -216,13 +221,15 @@ Component({
           title: '学习',
           name: 'Study',
           color: 'olive',
-          icon: 'wenzi'
+          icon: 'wenzi',
+          btn: 'study'
         },
         {
           title: '考试',
           name: 'Examination',
           color: 'green',
-          icon: 'wenzi'
+          icon: 'wenzi',
+          btn: 'exam'
         },
         {
           title: '课堂日志',

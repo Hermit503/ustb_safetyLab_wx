@@ -23,11 +23,14 @@ Page({
   onLoad: function (options) {
     wx.getStorageInfo({
       success: function(res) {
-        if (res.currentSize == 2){
+        if (res.currentSize == 3){
           wx.navigateTo({
             url: '../index/index',
           })
         }
+      },
+      complete:function(res){
+        console.log(res)
       }
     })
   },
