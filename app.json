@@ -16,7 +16,8 @@
     "pages/function/notice/noticeDetail",
     "pages/function/notice/message",
     "pages/function/chemical/chemical",
-    "pages/function/inspection/inspection"
+    "pages/function/inspection/inspection",
+    "pages/function/notice/messageDetail"
   ],
   "window": {
     "backgroundTextStyle": "light",

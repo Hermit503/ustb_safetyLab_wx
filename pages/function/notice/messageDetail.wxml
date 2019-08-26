@@ -1,0 +1,36 @@
+<cu-custom bgColor="bg-gradual-blue" isBack="{{true}}">
+  <view slot="backText">返回</view>
+  <view slot="content">消息详情</view>
+</cu-custom>
+<view class="cu-form-group">
+  <view class="title">标题：</view>
+  <input value="{{title}}" name="title" type='text' disabled="true"></input>
+</view>
+<!-- 通知人员 -->
+<view class="cu-form-group">
+  <view class="title">From：</view>
+  <input value="{{name}}" name="name" type='text' disabled="true"></input>
+</view>
+<view class="cu-bar bg-white solid-bottom margin-top">
+  <view class="action">
+    通知概述
+  </view>
+</view>
+<view class="cu-form-show">
+  {{comment}}
+</view>
+<view class="cu-bar bg-white solid-bottom margin-top">
+  <view class="action">
+    通知内容
+  </view>
+</view>
+<!--图片-->
+<view class="imglist">
+  <view class="cu-form-show" wx:for="{{pictures}}" wx:key="{{index}}">
+    <image class="img" src="{{url}}{{item}}" data-index='{{index}}' bindtap='previewImg'></image>
+  </view>
+</view>
+<!--TODO:下载附件暂时没做-->
+<button class='cu-btn  margin-top  margin-left margin-right bg-blue shadow lg block'>下载附件</button>
+<button class='cu-btn  margin-top  margin-left margin-right bg-blue shadow lg block'>已阅</button>
+<text decode="{{true}}">&ensp;&ensp;&ensp;</text>

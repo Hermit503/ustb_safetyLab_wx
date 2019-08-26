@@ -3,14 +3,155 @@
     <view slot="backText">返回</view>
     <view slot="content">我的消息</view>
   </cu-custom>
+
+  <scroll-view scroll-x class="bg-white nav">
+    <view class="flex text-center">
+      <view class="cu-item flex-sub {{index==currentTab?'text-blue cur':''}}" wx:for="{{tabList}}" wx:key data-current="{{index}}" bindtap="swichNav">
+        {{tabList[index]}}
+      </view>
+    </view>
+  </scroll-view>
+
+  <swiper current="{{currentTab}}" class="swiper-box" duration="300" style="height:{{winHeight - 31}}px" bindchange="bindChange">
+    <swiper-item>
+      <view class="cu-list menu-avatar">
+        <view class="cu-item" wx:for="{{messageList}}" wx:key style="border-bottom:1rpx solid WhiteSmoke;">
+
+          <view class="name-list flex" wx:if="{{item.noticeType=='chemical'}}" bindtap="showModal" data-target="showDetail" data-id="{{item.id}}" data-name="{{item.user_name_1}}" data-msg="{{item.msg}}" data-user_id="{{item.user_id_1}}">
+            <view class="equipment-width">
+              <text>{{item.user_name_1}}</text>
+            </view>
+            <view class="text-sm text-cut" style="width:470rpx; text-align:left;">
+              <text>{{item.msg}}</text>
+            </view>
+            <view class="action">
+              <view class="cu-tag round bg-red sm"></view>
+            </view>
+          </view>
+
+          <view class="name-list flex" wx:if="{{item.noticeType=='notice'}}" bindtap="getOneMessage" data-id="{{item.id}}" data-name="{{item.name}}" data-title="{{item.title}}" data-comment="{{item.comment}}" data-pictures="{{item.pictures}}">
+            <view class="equipment-width">
+              <text>{{item.name}}</text>
+            </view>
+            <view class="text-sm text-cut" style="width:470rpx; text-align:left;">
+              <text>{{item.msg}}</text>
+            </view>
+            <view class="action">
+              <view class="cu-tag round bg-red sm"></view>
+            </view>
+          </view>
+
+        </view>
+      </view>
+      <!--模态框-->
+      <view class="cu-modal {{modalName=='showDetail'?'show':''}}">
+        <view class="cu-dialog" style="background-color:white;">
+          <view class="cu-bar bg-white justify-end">
+            <view class="content">通知详情</view>
+            <view class="action" bindtap="hideModal">
+              <text class="cuIcon-close text-red"></text>
+            </view>
+          </view>
+          <view class="flex">
+            <view class='flex-sub  padding-xs margin-xs s'>From</view>
+            <view class='flex-twice  padding-top-xs margin-xs text-left' style="text-align:left;">{{name}}({{user_id}})</view>
+          </view>
+          <view class="flex">
+            <view class='flex-sub  padding-xs margin-xs s'>详情</view>
+            <view class='flex-twice  padding-top-xs margin-xs text-left' style="text-align:left;">{{msg}}</view>
+          </view>
+          <view class="padding-sm cu-bar bg-white justify-end">
+            <view class="action">
+              <button class="cu-btn bg-red margin-left " data-target="disagreeModal" data-id="{{item.id}}" bindtap="showModal">驳回申请</button>
+              <button class="cu-btn bg-blue margin-left " data-target="agreeModal" data-id="{{item.id}}" bindtap="showModal">同意申请</button>
+            </view>
+          </view>
+        </view>
+      </view>
+
+      <!--驳回申请模态框-->
+       <view class="cu-modal {{modalName=='disagreeModal'?'show':''}}">
+        <view class="cu-dialog" style="background-color:white;">
+          <view class="cu-bar bg-white justify-end">
+            <view class="content"></view>
+            <view class="action" bindtap="hideModal">
+              <text class="cuIcon-close text-red"></text>
+            </view>
+          </view>
+          <view class="flex">
+            <view class='flex-twice  padding-top-xs margin-xs '>确认驳回申请？</view>
+          </view>
+          <view class="padding-sm cu-bar bg-white justify-end">
+            <view class="action">
+              <button class="cu-btn bg-grey margin-left " data-target="disagreeModal" data-id="{{item.id}}" bindtap="hideModal">取消</button>
+              <button class="cu-btn bg-blue margin-left " bindtap="hideModal">确认</button>
+            </view>
+          </view>
+        </view>
+      </view>
+
+      <!--同意申请模态框-->
+      <view class="cu-modal {{modalName=='agreeModal'?'show':''}}">
+        <view class="cu-dialog" style="background-color:white;">
+          <view class="cu-bar bg-white justify-end">
+            <view class="content"></view>
+            <view class="action" bindtap="hideModal">
+              <text class="cuIcon-close text-red"></text>
+            </view>
+          </view>
+          <view class="flex">
+            <view class='flex-twice  padding-top-xs margin-xs '>确认同意申请？</view>
+          </view>
+          <view class="padding-sm cu-bar bg-white justify-end">
+            <view class="action">
+              <button class="cu-btn bg-grey margin-left " data-target="disagreeModal" data-id="{{item.id}}" bindtap="hideModal">取消</button>
+              <button class="cu-btn bg-blue margin-left " bindtap="hideModal">确认</button>
+            </view>
+          </view>
+        </view>
+      </view>
+
+    </swiper-item>
+    <!-- 历史消息 -->
+    <swiper-item>
+
+      <!--一旦用户改变了其中一个日期就向后端发请求，发请求前判断一下起始日期是否小于结束日期-->
+      <view class="cu-form-group">
+        <view class="title">起始日期</view>
+        <picker mode="date" fields="month" value="{{startDate}}" end="{{end}}" bindchange="StartDateChange">
+          <view class="picker">
+            {{startDate}}
+          </view>
+        </picker>
+      </view>
+
+      <view class="cu-form-group">
+        <view class="title">结束日期</view>
+        <picker mode="date" fields="month" value="{{endDate}}" end="{{end}}" bindchange="EndDateChange">
+          <view class="picker">
+            {{endDate}}
+          </view>
+        </picker>
+      </view>
+
+      <view class="cu-list menu-avatar" style="margin-top:20rpx;">
+        <view class="cu-item" wx:for="{{messageList}}" wx:key>
+          <view class="name-list flex text-center" bindtap="getOneMessage" data-id="{{item[0].id}}" data-type="{{item[0].type}}">
+            <view class="equipment-width" wx:if="{{item.noticeType=='chemical'}}">
+              <text>{{item.user_name_1}}</text>
+            </view>
+            <view class="equipment-width" wx:if="{{item.noticeType=='notice'}}">
+              <text>{{item.name}}</text>
+            </view>
+            <view class="text-sm text-cut abstract" style="width:470rpx;">
+              <text>{{item.msg}}</text>
+            </view>
+            <view class="action">
+              <view class="cu-tag round bg-red sm"></view>
+            </view>
+          </view>
+        </view>
+      </view>
+    </swiper-item>
+  </swiper>
 </scroll-view>
-
-
-
-<view class="">
-<view wx:for="{{chemicalNoticesList}}" wx:key>
-<text>（{{item.user_id_1}}）{{item.user_name_1}}  请求 {{item.type}}{{item.chemical_name}} {{item.stock}}备注：{{item.remarks}}   </text>
-<view class="cu-btn bg-purple sm shadow" bindtap="confirm" data-chemical="{{item.chemical_id}}" data-stock="{{item.stock}}" data-id="{{item.id}}" data-type="{{item.type}}">提交</view>
-</view>
-
-</view>
