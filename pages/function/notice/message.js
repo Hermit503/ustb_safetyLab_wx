@@ -65,7 +65,8 @@ Page({
         console.log(res.data);
         for(i=0;i<res.data.length;i++){
           if (res.data[i]['noticeType'] == "chemical"){
-            res.data[i]['msg'] = res.data[i]['user_name_1'] + "申请" + res.data[i]['type'] + res.data[i]['stock'] + res.data[i]['chemical_name'];
+            // res.data[i]['user_name_1'] 
+            res.data[i]['msg'] = "申请" + res.data[i]['type'] + res.data[i]['stock'] + res.data[i]['chemical_name'];
           }else{
             res.data[i]['msg'] = res.data[i]['title'];
           }
@@ -167,55 +168,81 @@ Page({
 
   //模态框
   showModal(e) {
+    console.log(e)
     this.setData({
       modalName: e.currentTarget.dataset.target,
       name: e.currentTarget.dataset.name,
       msg: e.currentTarget.dataset.msg,
       id: e.currentTarget.dataset.id,
       user_id: e.currentTarget.dataset.user_id,
+      chemicalId:e.currentTarget.dataset.chemical,
+      stock:e.currentTarget.dataset.stock,
+      type: e.currentTarget.dataset.type,
+      remarks:e.currentTarget.dataset.remarks
     })
-    console.log(e.currentTarget.dataset)
+    // console.log(e.currentTarget.dataset)
   },
   hideModal(e) {
     this.setData({
       modalName: null
     })
   },
-
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-
+  isConfirm(e){
+    let that = this
+    that.setData({
+      modalName: e.currentTarget.dataset.target,
+      chemicalId:e.target.dataset.chemical,
+      id: e.target.dataset.id,
+      stock: e.target.dataset.stock,
+      type: e.target.dataset.type
+    })
   },
-
   /**
    * 出入库确认 
    */
   confirm(e){
-    console.log(e.target.dataset)
+    // this.hideModal();
+    let that = this 
+    console.log(e)
     wx.request({
-      url: app.globalData.Url + "/notice/test",
+      url: app.globalData.Url + "/chemical/confirm",
       data: {
-        chemicalId:e.target.dataset.chemical,
+        chemicalId: e.target.dataset.chemical,
         type: e.target.dataset.type,
-        stock:e.target.dataset.stock,
-        id:e.target.dataset.id
+        stock: e.target.dataset.stock,
+        id: e.target.dataset.id,
+        status:e.target.dataset.status
       },
       header: {},
       method: 'PUT',
       dataType: 'json',
       responseType: 'text',
       success: function(res) {
-        console.log(res)
+        if (res.data == "入库成功" || res.data == "出库成功" || res.data == "驳回申请完成"){
+          that.hideModal();
+          wx.showToast({
+            title: res.data,
+            content: res.data,
+          })
+          that.onLoad();
+        }
       },
       fail: function(res) {},
       complete: function(res) {},
     })
   },
+
+
+  /**
+ * 生命周期函数--监听页面初次渲染完成
+ */
+  onReady: function () {
+
+  },
   /**
    * 生命周期函数--监听页面显示
    */
+  
   onShow: function () {
 
   },

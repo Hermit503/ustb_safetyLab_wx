@@ -17,7 +17,7 @@
       <view class="cu-list menu-avatar">
         <view class="cu-item" wx:for="{{messageList}}" wx:key style="border-bottom:1rpx solid WhiteSmoke;">
 
-          <view class="name-list flex" wx:if="{{item.noticeType=='chemical'}}" bindtap="showModal" data-target="showDetail" data-id="{{item.id}}" data-name="{{item.user_name_1}}" data-msg="{{item.msg}}" data-user_id="{{item.user_id_1}}">
+          <view class="name-list flex" wx:if="{{item.noticeType=='chemical'}}" bindtap="showModal" data-target="showDetail" data-id="{{item.id}}" data-name="{{item.user_name_1}}" data-msg="{{item.msg}}" data-user_id="{{item.user_id_1}}" data-stock="{{item.stock}}" data-type="{{item.type}}" data-chemical="{{item.chemical_id}}" data-remarks="{{item.remarks}}">
             <view class="equipment-width">
               <text>{{item.user_name_1}}</text>
             </view>
@@ -109,17 +109,21 @@
             </view>
           </view>
           <view class="flex">
-            <view class='flex-sub  padding-xs margin-xs s'>From</view>
+            <view class='flex-sub  padding-xs margin-xs s'>申请人</view>
             <view class='flex-twice  padding-top-xs margin-xs text-left' style="text-align:left;">{{name}}({{user_id}})</view>
           </view>
           <view class="flex">
             <view class='flex-sub  padding-xs margin-xs s'>详情</view>
             <view class='flex-twice  padding-top-xs margin-xs text-left' style="text-align:left;">{{msg}}</view>
           </view>
+          <view class="flex">
+            <view class='flex-sub  padding-xs margin-xs s'>备注</view>
+            <view class='flex-twice  padding-top-xs margin-xs text-left' style="text-align:left;">{{remarks}}</view>
+          </view>
           <view class="padding-sm cu-bar bg-white justify-end">
             <view class="action">
-              <button class="cu-btn bg-red margin-left " data-target="disagreeModal" data-id="{{item.id}}" bindtap="showModal">驳回申请</button>
-              <button class="cu-btn bg-blue margin-left " data-target="agreeModal" data-id="{{item.id}}" bindtap="showModal">同意申请</button>
+              <button class="cu-btn bg-red margin-left " data-target="disagreeModal" data-id="{{id}}" data-stock="{{stock}}" data-type="{{type}}" data-chemical="{{chemicalId}}" bindtap="isConfirm">驳回申请</button>
+              <button class="cu-btn bg-blue margin-left " data-target="agreeModal" data-id="{{id}}" data-stock="{{stock}}" data-type="{{type}}" data-chemical="{{chemicalId}}" bindtap="isConfirm">同意申请</button>
             </view>
           </view>
         </view>
@@ -140,7 +144,7 @@
           <view class="padding-sm cu-bar bg-white justify-end">
             <view class="action">
               <button class="cu-btn bg-grey margin-left " data-target="disagreeModal" data-id="{{item.id}}" bindtap="hideModal">取消</button>
-              <button class="cu-btn bg-blue margin-left " bindtap="hideModal">确认</button>
+              <button class="cu-btn bg-blue margin-left " data-id="{{id}}" data-stock="{{stock}}" data-type="{{type}}" data-chemical="{{chemicalId}}" data-status="驳回" bindtap="confirm" >确认</button>
             </view>
           </view>
         </view>
@@ -161,7 +165,7 @@
           <view class="padding-sm cu-bar bg-white justify-end">
             <view class="action">
               <button class="cu-btn bg-grey margin-left " data-target="disagreeModal" data-id="{{item.id}}" bindtap="hideModal">取消</button>
-              <button class="cu-btn bg-blue margin-left " bindtap="hideModal">确认</button>
+              <button class="cu-btn bg-blue margin-left " data-id="{{id}}" data-stock="{{stock}}" data-type="{{type}}" data-chemical="{{chemicalId}}" data-status="同意" bindtap="confirm">确认</button>
             </view>
           </view>
         </view>
