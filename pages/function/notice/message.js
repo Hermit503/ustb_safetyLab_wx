@@ -8,19 +8,12 @@ Page({
   data: {
     tabList:['最近消息','历史消息'],
     messageList: {
-      0: [{
-        "name": "John",
-        "main": "DoeDoeDoeDoeDoeDoeDoeDoeDoeDoeDoeDoeDoeDoeDoeDoeDoeDoeDoeDoeDoeDoeDoeDoeDoeDoeDoeDoeDoeDoeDoeDoeDoeDoeDoeDoeDoeDoeDoeDoeDoeDoeDoeDoe",
-        "id": 1,
-        "type":"notice"
-      }],
-      1: [{
-        "name": "John",
-        "main": "DoeDoeDoeDoeDoeDoeDoeDoeDoeDoeDoeDoeDoeDoeDoeDoeDoeDoeDoeDoeDoeDoeDoeDoeDoeDoeDoeDoeDoeDoeDoeDoeDoeDoeDoeDoeDoeDoeDoeDoeDoeDoeDoeDoe",
-        "id": 2,
-        "type":"chemical"
-      }]
+     
     },
+    name:null,
+    msg:null,
+    id:null,
+    user_id: null,
     winWidth: 0,
     winHeight: 0,
     // tab切换  
@@ -44,6 +37,7 @@ Page({
     //获取月份  
     var M = (date.getMonth() + 1 < 10 ? '0' + (date.getMonth() + 1) : date.getMonth() + 1);
     var date = Y + '-' + M; 
+    var i;
     that.setData({
       endDate: date,
       end: date
@@ -57,12 +51,39 @@ Page({
         });
       }
 
-    });  
+    });
+    wx.request({
+      url: app.globalData.Url +'/notice/notices',
+      data: {
+        'user_id':wx.getStorageSync('UserData').user_id,
+      },
+      header: {},
+      method: 'GET',
+      dataType: 'json',
+      responseType: 'text',
+      success: function(res) {
+        console.log(res.data);
+        for(i=0;i<res.data.length;i++){
+          if (res.data[i]['noticeType'] == "chemical"){
+            res.data[i]['msg'] = res.data[i]['user_name_1'] + "申请" + res.data[i]['type'] + res.data[i]['stock'] + res.data[i]['chemical_name'];
+          }else{
+            res.data[i]['msg'] = res.data[i]['title'];
+          }
+        }
+        that.setData({
+          messageList: res.data
+        })
+      },
+      fail: function(res) {},
+      complete: function(res) {},
+    })
+
   },
 
   getOneMessage(e) {
+    console.log(e.currentTarget.dataset)
     wx.navigateTo({
-      url: 'messageDetail?id=' + e.currentTarget.dataset.id + '&type=' + e.currentTarget.dataset.type,
+      url: 'messageDetail?id=' + e.currentTarget.dataset.id + '&name=' + e.currentTarget.dataset.name + '&title=' + e.currentTarget.dataset.title + '&comment=' + e.currentTarget.dataset.comment + '&pictures=' + e.currentTarget.dataset.pictures,
       success: function (res) {
 
       }
@@ -141,6 +162,23 @@ Page({
   EndDateChange(e) {
     this.setData({
       endDate: e.detail.value
+    })
+  },
+
+  //模态框
+  showModal(e) {
+    this.setData({
+      modalName: e.currentTarget.dataset.target,
+      name: e.currentTarget.dataset.name,
+      msg: e.currentTarget.dataset.msg,
+      id: e.currentTarget.dataset.id,
+      user_id: e.currentTarget.dataset.user_id,
+    })
+    console.log(e.currentTarget.dataset)
+  },
+  hideModal(e) {
+    this.setData({
+      modalName: null
     })
   },
 

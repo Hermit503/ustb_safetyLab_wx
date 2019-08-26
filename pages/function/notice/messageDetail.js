@@ -1,13 +1,18 @@
 // pages/function/notice/messageDetail.js
+const app = new getApp();
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    type:'',
     name:'',
-    id:''
+    id:'',
+    title:null,
+    comment: null,
+    pictures: null,
+    file: null,
+    url: app.globalData.Domain
   },
 
   /**
@@ -16,9 +21,14 @@ Page({
   onLoad: function (options) {
     var that = this;
     that.setData({
-      type: options.type,
-      id: options.id
+      id: options.id,
+      name: options.name,
+      title: options.title,
+      comment: options.comment,
+      pictures: JSON.parse(options.pictures),
+      // file: options.file
     })
+    console.log(that.data)
   },
 
   showModal(e) {
@@ -30,6 +40,25 @@ Page({
   hideModal(e) {
     this.setData({
       modalName: null
+    })
+  },
+
+  //图片预览
+  previewImg: function (e) {
+    console.log(e.currentTarget.dataset.index);
+    var index = e.currentTarget.dataset.index;
+    var i = 0;
+    var imgArr = [];
+    for (i; i < this.data.pictures.length; i++) {
+      imgArr[i] = this.data.url + this.data.pictures[i];
+    }
+
+    wx.previewImage({
+      current: imgArr[index],     //当前图片地址
+      urls: imgArr,               //所有要预览的图片的地址集合 数组形式
+      success: function (res) { },
+      fail: function (res) { },
+      complete: function (res) { },
     })
   },
 
