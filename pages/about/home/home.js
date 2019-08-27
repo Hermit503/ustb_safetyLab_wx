@@ -4,9 +4,8 @@ Component({
     addGlobalClass: true,
   },
   data: {
-    starCount: 0,
-    forksCount: 0,
     messageTotal:0,
+    noticeTotal:0,
     userdata:'',
 
   },
@@ -35,8 +34,7 @@ Component({
         }, 20)
       } else {
         that.setData({
-          starCount: that.coutNum(3000),
-          forksCount: that.coutNum(484),
+          noticeTotal: that.coutNum(app.globalData.noticeLength),
           messageTotal: that.coutNum(app.globalData.length)
         })
       }

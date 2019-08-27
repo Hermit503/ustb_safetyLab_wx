@@ -52,6 +52,19 @@ Page({
       fail: function (res) { },
       complete: function (res) { },
     })
+
+    wx.request({
+      url: app.globalData.Url + "/notice/getSomeoneNoticeList",
+      data: {
+        user_id: wx.getStorageSync('UserData').user_id,
+      },
+      success(res) {
+        console.log(res.data.data)
+        app.globalData.noticeList = res.data.data;
+        app.globalData.noticeLength = res.data.data.length;
+        
+      }
+    })
   },
 
   /**

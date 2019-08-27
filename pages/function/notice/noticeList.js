@@ -26,38 +26,33 @@ Page({
         })
       },
     })
+    that.setData({
+      noticeList: app.globalData.noticeList,
+    })
+    var i = 0;
+    // 把json字符串转为json对象
+    for (i; i < app.globalData.noticeLength; i++) {
+      var str = app.globalData.Domain + JSON.parse(app.globalData.noticeList[i]['pictures'])[0];
+      that.setData({
+        pictures: that.data.pictures.concat(str),
+      })
+    }
+
+    //TODO:待优化
     wx.request({
-      url: app.globalData.Url + "/notice/getSomeoneNoticeList",
+      url: app.globalData.Url + "/notice/getTime",
       data: {
         user_id: wx.getStorageSync('UserData').user_id,
       },
-      success(res){
-        wx.request({
-          url: app.globalData.Url + "/notice/getTime",
-          data: {
-            user_id: wx.getStorageSync('UserData').user_id,
-          },
-          success(res) {
-            that.setData({
-              time: res.data
-            })
-            console.log(that.data.time);
-          }
-        })
-        var length = res.data.data.length;
-        var i = 0;
+      success(res) {
         that.setData({
-          noticeList: res.data.data
+          time: res.data
         })
-        //把json字符串转为json对象
-        for(i;i<length;i++){
-          var str = app.globalData.Domain+JSON.parse(that.data.noticeList[i]['pictures'])[0];
-          that.setData({
-            pictures: that.data.pictures.concat(str),
-          })
-        }
+        console.log(that.data.time);
       }
     })
+    
+    
   },
 
   //获取具体信息
