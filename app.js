@@ -36,6 +36,9 @@ App({
   globalData: {
     userInfo: null,
     msg: null,//cu-tag badge
+    messageList: null,
+    length: null,
+    indexPage: null
   },
   onLaunch: function () {
     wx.getSystemInfo({

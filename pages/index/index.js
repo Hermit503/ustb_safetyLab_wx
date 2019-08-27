@@ -9,6 +9,7 @@ Page({
     PageCur: 'function',
     UserData:wx.getStorageSync('UserData'),
     role:'',
+    length: 0
   },
   NavChange(e) {
     this.setData({
@@ -21,23 +22,35 @@ Page({
    */
   onLoad: function (options) {
     let that = this
+    var i;
+    app.globalData.indexPage = getCurrentPages(); // 当前页面;
     wx.request({
-      url: app.globalData.Url + "/notice/test",
+      url: app.globalData.Url + '/notice/notices',
       data: {
-        userId: wx.getStorageSync('UserData').user_id
+        'user_id': wx.getStorageSync('UserData').user_id,
       },
-      header: {
-        'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8'
-      },
+      header: {},
       method: 'GET',
+      dataType: 'json',
+      responseType: 'text',
       success: function (res) {
-        console.log(res)
-        that.setData({
-          chemicalNoticesList: res.data.chemicalNoticesList,
-          length: res.data.chemicalNoticesList.length
+        console.log(res.data);
+        for (i = 0; i < res.data.length; i++) {
+          if (res.data[i]['noticeType'] == "chemical") {
+            // res.data[i]['user_name_1'] 
+            res.data[i]['msg'] = "申请" + res.data[i]['type'] + res.data[i]['stock'] + res.data[i]['chemical_name'];
+          } else {
+            res.data[i]['msg'] = res.data[i]['title'];
+          }
         }
-        )
-      }
+        app.globalData.messageList = res.data;
+        app.globalData.length = res.data.length;
+        that.setData({
+          length: app.globalData.length
+        })
+      },
+      fail: function (res) { },
+      complete: function (res) { },
     })
   },
 

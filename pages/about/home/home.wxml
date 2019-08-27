@@ -12,7 +12,7 @@
   <view class="padding flex text-center text-grey bg-white shadow-warp">
     <view class="flex flex-sub flex-direction solid-right">
     <navigator class="content" url="/pages/function/notice/message" hover-class="none">
-      <view class="text-xxl text-orange">{{visitTotal}}</view>
+      <view class="text-xxl text-orange">{{messageTotal}}</view>
       <view class="margin-top-sm">
         <text class="cuIcon-attentionfill"></text>消息</view>
     </navigator>

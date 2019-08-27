@@ -7,9 +7,7 @@ Page({
    */
   data: {
     tabList:['最近消息','历史消息'],
-    messageList: {
-     
-    },
+    messageList: app.globalData.messageList,
     name:null,
     msg:null,
     id:null,
@@ -52,31 +50,8 @@ Page({
       }
 
     });
-    wx.request({
-      url: app.globalData.Url +'/notice/notices',
-      data: {
-        'user_id':wx.getStorageSync('UserData').user_id,
-      },
-      header: {},
-      method: 'GET',
-      dataType: 'json',
-      responseType: 'text',
-      success: function(res) {
-        console.log(res.data);
-        for(i=0;i<res.data.length;i++){
-          if (res.data[i]['noticeType'] == "chemical"){
-            // res.data[i]['user_name_1'] 
-            res.data[i]['msg'] = "申请" + res.data[i]['type'] + res.data[i]['stock'] + res.data[i]['chemical_name'];
-          }else{
-            res.data[i]['msg'] = res.data[i]['title'];
-          }
-        }
-        that.setData({
-          messageList: res.data
-        })
-      },
-      fail: function(res) {},
-      complete: function(res) {},
+    that.setData({
+      messageList: app.globalData.messageList
     })
 
   },

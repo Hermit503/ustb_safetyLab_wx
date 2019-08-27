@@ -75,6 +75,15 @@ Page({
         wx.showToast({
           title: res.data,
         })
+        var pages = getCurrentPages(); // 当前页面
+        var beforePage = app.globalData.indexPage; // 前一个页面
+        setTimeout(function () {
+          wx.navigateBack({
+            success: function () {
+              beforePage.onLoad(); // 执行index的onLoad方法
+            }
+          });
+        }, 1500)
       }
     })
   },
