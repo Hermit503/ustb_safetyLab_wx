@@ -1,4 +1,4 @@
-// pages/function/inspection/inspection.js
+// pages/function/inspection/inspectionDetail.js
 const app = new getApp();
 Page({
 
@@ -13,7 +13,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    let that = this;
+    console.log(options)
     wx.request({
       url: app.globalData.Url + '/inspections',
       data: {
@@ -23,20 +23,11 @@ Page({
       method: 'GET',
       dataType: 'json',
       responseType: 'text',
-      success: function (res) {
-        if (res instanceof Object){
-          console.log(res.data)
-          that.setData({
-            inspectionInfo:res.data
-          })
-        }else{
-          wx.showToast({
-            title: res.data,
-          })
-        }
+      success: function(res) {
+        console.log(res)
       },
-      fail: function (res) { },
-      complete: function (res) { },
+      fail: function(res) {},
+      complete: function(res) {},
     })
   },
 

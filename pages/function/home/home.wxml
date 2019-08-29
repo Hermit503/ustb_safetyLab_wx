@@ -52,3 +52,16 @@
   </view>
   <view class='cu-tabbar-height'></view>
 </view>
+
+
+
+
+  <view style='min-height:45rpx;'></view>
+  <view class='nav-list nav-list'>
+    <view hover-class='none' class="nav-li bg-{{item.color}}" wx:for="{{functions['实验室管理员']}}" wx:key bindtap='into' data-btn='{{item.btn}}'>
+      <view class="nav-title">{{item.title}}</view>
+      <view class="nav-name">{{item.name}}</view>
+      <text class='cuIcon-{{item.icon}}'></text>
+    </view>
+  </view>
+  <view class='cu-tabbar-height'></view>
