@@ -117,24 +117,22 @@ Page({
   },
   //增加设备跳转页面
   addEquipment: function (e) {
-    let userPermission = wx.getStorageSync('Permission');
-    //判断是否有设备管理的权限
-    var permission = userPermission.find(function (value) {
-      if (value == 'allequipment' || value == 'addequipment') {
-        wx.navigateTo({
-          url: '../../function/equipment/equipmentDetails',
-          success: function (res) { },
-          fail: function (res) { },
-          complete: function (res) { },
-        })
-        return 1;
-      } else {
-        wx.showToast({
-          title: '你没有权限哦',
-          icon: 'none'
-        })
-      }
-    });
+    
+    var hasPermission = app.checkPermission('allequipment','createequipment')
+    if (hasPermission) {
+      wx.navigateTo({
+        url: '../../function/equipment/equipmentDetails',
+        success: function (res) { },
+        fail: function (res) { },
+        complete: function (res) { },
+      })
+      return 1;
+    } else {
+      wx.showToast({
+        title: '你没有权限哦',
+        icon: 'none'
+      })
+    }
   },
   //删除设备显示模态框
   showModal(e) {

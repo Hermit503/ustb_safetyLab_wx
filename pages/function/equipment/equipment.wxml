@@ -45,6 +45,7 @@
       </view>
     </view>
     <view class="move">
+    <!--这里应该加一个权限判断-->
       <view class="bg-grey"><navigator url="/pages/function/equipment/equipmentModify?id={{item.id}}" hover-class="none">编辑</navigator></view>
       <view class="bg-red" bindtap="showModal" data-target="DialogModal1" data-id="{{item.id}}">删除</view>
     </view>

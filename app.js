@@ -57,4 +57,18 @@ App({
       }
     })
   },
+    checkPermission:function(permission_1,permission_2){
+      let userPermission = wx.getStorageSync('Permission');
+      //判断是否有设备管理的权限
+      var hasPermission;
+      for (var i = 0; i < userPermission.length; i++) {
+        if (userPermission[i] == permission_1 || userPermission[i] == permission_2) {
+          hasPermission = true;
+          break;
+        } else {
+          hasPermission = false;
+        }
+      }
+      return hasPermission;
+    }
   });
