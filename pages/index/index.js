@@ -34,9 +34,6 @@ Page({
       dataType: 'json',
       responseType: 'text',
       success: function (res) {
-        that.setData({
-          length:res.data.length
-        })
         console.log(res.data);
         for (i = 0; i < res.data.length; i++) {
           if (res.data[i]['noticeType'] == "chemical") {
@@ -67,8 +64,6 @@ Page({
         app.globalData.noticeLength = res.data.data.length;
         
       }
-      
-
     })
   },
 

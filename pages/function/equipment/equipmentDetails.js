@@ -195,7 +195,6 @@ Page({
         })
       }
     });
-    console.log(this)
   },
 
   /**

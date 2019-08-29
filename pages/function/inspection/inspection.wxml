@@ -2,29 +2,8 @@
   <view slot="backText">返回</view>
   <view slot="content">电子巡检</view>
 </cu-custom>
-
-
-<view class="cu-form-group">
-  <view style='width:210rpx;'>
-    <view class="title" name="title">{{inspectionInfo.asset_number!=null?'设备id':'药品id'}}</view>
-  </view>
-  <input value="{{inspectionInfo.asset_number||inspectionInfo.chemical_id}}" disabled="true"></input>
-</view>
-<view class="cu-form-group">
-  <view style='width:210rpx;'>
-    <view class="title" name="title">{{inspectionInfo.asset_number!=null?'设备名':'药品名'}}</view>
-  </view>
-  <input value="{{inspectionInfo.equipment_name||inspectionInfo.name}}" disabled="true"></input>
-</view>
-<view class="cu-form-group">
-  <view style='width:210rpx;'>
-    <view class="title" name="title">{{inspectionInfo.asset_number!=null?'设备位置':'药品位置'}}</view>
-  </view>
-  <input value="{{inspectionInfo.laboratories.building_name}} {{inspectionInfo.laboratories.classroom_num}} {{inspectionInfo.laboratories.laboratory_name}}" disabled="true"></input>
-</view>
-<view class="cu-form-group">
-  <view style='width:210rpx;'>
-    <view class="title" name="title">上次检修时间</view>
-  </view>
-  <input value=" {{inspectionInfo.updated_at}}" disabled="true"></input>
-</view>
+<view bindtap="getScanCode">start get scanCode</view>
+<view>{{code.result}}</view>
+<view>{{code.scanType}}</view>
+<view>{{code.charSet}}</view>
+<view>{{code.rawData}}</view>
