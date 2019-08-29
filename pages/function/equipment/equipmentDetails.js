@@ -14,7 +14,9 @@ Page({
     sindex:null,
     tpicker: ['特种设备', '普通设备'],
     spicker: ['正常', '维修','报废'],
-    multiArray: [],
+    multiArray:[],
+    selectList: [],
+    multiIndex:[0,0,0],
     storagedate: '2018-12-25',
     scrapdate: '2018-12-25',
   },
@@ -104,24 +106,92 @@ Page({
           title: res.data,
           duration: 2000,
         });
+        //TODO:返回上一页并刷新
+        setTimeout(function () {
+          wx.navigateBack({});
+        }, 1500)
       }
     });
   },
+
+  MultiColumnChange:function(e){
+
+    this.data.multiIndex[e.detail['column']] = e.detail['value'];
+    
+    var multiArray0 = "multiArray[0]";
+    var multiArray1 = "multiArray[1]";
+    var multiArray2 = "multiArray[2]";
+
+    var arr = this.data.multiIndex;
+    var data = this.data.selectList;
+
+    var classroom = [];
+    var name = [];
+
+    var i = 0;
+
+    for( i ; i < data[arr[0]+""]["children"].length ; i++){
+      classroom[i] = data[arr[0] + ""]["children"][i + ""]["0"]["0"];
+      console.log(classroom[i]);
+    }
+    this.setData({
+      [multiArray1]: classroom,
+    })
+
+    for (var j = 0; j < data["0"]["children"]["0"]["children"].length; j++) {
+      name[j] = data[arr[0] + ""]["children"][arr[1] + ""]["children"]["0"];
+    }
+
+    this.setData({
+      [multiArray2]: name,
+    })
+
+  },
+  
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
     var that = this;
-    var multiArray0 = "multiArray[0]";
-    var multiArray1 = "multiArray[1]";
+    var build = [];
+    var classroom = [];
+
     wx.request({
       url: app.globalData.Url + "/getlaboratory/List/" + wx.getStorageSync('UserData').unit_id,
       success(res){
-        console.log(res.data);
         that.setData({
-          [multiArray0]: res.data[0],
-          [multiArray1]: res.data[1]
+          selectList:res.data
+        })
+
+        console.log(res.data);
+        for(var i = 0 ; i < res.data.length ; i++){
+          build[i] = res.data[i + ""]["0"];
+        }
+
+        var multiArray0 = "multiArray[0]";
+        that.setData({
+          [multiArray0]: build,
+        })
+
+        var multiArray1 = "multiArray[1]";
+        var multiArray2 = "multiArray[2]";
+        
+        var name = [];
+
+        for (var i = 0; i < res.data["0"]["children"].length; i++) {
+          classroom[i] = res.data["0"]["children"][i+""]["0"]["0"];
+        }
+        that.setData({
+          [multiArray1]: classroom,
+        })
+
+        for (var j = 0; j < res.data["0"]["children"]["0"]["children"].length; j++) {
+          name[j] = res.data["0"]["children"][j + ""]["children"]["0"];
+        }
+
+        that.setData({
+          [multiArray2]: name,
         })
       }
     });

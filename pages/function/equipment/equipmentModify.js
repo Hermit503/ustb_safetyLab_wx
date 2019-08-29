@@ -17,8 +17,11 @@ Page({
 
     tpicker: ['特种设备', '普通设备'],
     spicker: ['正常', '维修', '报废'],
-    //TODO:列表动态加载出来
+
     multiArray: [],
+    selectList: [],
+    multiIndex: [0, 0, 0],
+    
     storagedate: '2018-12-25',
     scrapdate: '2018-12-25',
 
@@ -90,6 +93,39 @@ Page({
     });
   },
 
+  MultiColumnChange: function (e) {
+
+    this.data.multiIndex[e.detail['column']] = e.detail['value'];
+
+    var multiArray0 = "multiArray[0]";
+    var multiArray1 = "multiArray[1]";
+    var multiArray2 = "multiArray[2]";
+
+    var arr = this.data.multiIndex;
+    var data = this.data.selectList;
+
+    var classroom = [];
+    var name = [];
+
+    var i = 0;
+
+    for (i; i < data[arr[0] + ""]["children"].length; i++) {
+      classroom[i] = data[arr[0] + ""]["children"][i + ""]["0"]["0"];
+    }
+    this.setData({
+      [multiArray1]: classroom,
+    })
+
+    for (var j = 0; j < data["0"]["children"]["0"]["children"].length; j++) {
+      name[j] = data[arr[0] + ""]["children"][arr[1] + ""]["children"]["0"];
+    }
+
+    this.setData({
+      [multiArray2]: name,
+    })
+
+  },
+
   submit: function (e) {
     wx.request({
       url: app.globalData.Url + '/equipment/update',
@@ -132,15 +168,44 @@ Page({
   onLoad: function (options) {
     var that = this;
 
+    var build = [];
+    var classroom = [];
+    var name = [];
+
     var multiArray0 = "multiArray[0]";
     var multiArray1 = "multiArray[1]";
+    var multiArray2 = "multiArray[2]";
+
     wx.request({
       url: app.globalData.Url + "/getlaboratory/List/" + wx.getStorageSync('UserData').unit_id,
       success(res) {
-        console.log(res.data);
+
         that.setData({
-          [multiArray0]: res.data[0],
-          [multiArray1]: res.data[1]
+          selectList: res.data
+        })
+
+        for (var i = 0; i < res.data.length; i++) {
+          build[i] = res.data[i + ""]["0"];
+        }
+
+        that.setData({
+          [multiArray0]: build,
+        })
+
+
+        for (var i = 0; i < res.data["0"]["children"].length; i++) {
+          classroom[i] = res.data["0"]["children"][i + ""]["0"]["0"];
+        }
+        that.setData({
+          [multiArray1]: classroom,
+        })
+
+        for (var j = 0; j < res.data["0"]["children"]["0"]["children"].length; j++) {
+          name[j] = res.data["0"]["children"][j + ""]["children"]["0"];
+        }
+
+        that.setData({
+          [multiArray2]: name,
         })
       }
     });

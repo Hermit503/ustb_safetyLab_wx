@@ -24,9 +24,9 @@
 	<view class="cu-form-group">
 		<view class="title">实验室位置</view>
 		<picker mode="multiSelector" bindchange="MultiChange" bindcolumnchange="MultiColumnChange" value="{{multiIndex}}"
-		 range="{{multiArray}}" name="laboratory_id">
+		 range="{{multiArray}}" name="laboratory_id" bindtap="MultiPickerChange">
 			<view class="picker">
-				{{multiArray[0][multiIndex[0]]}}{{multiArray[1][multiIndex[1]]}}{{placetext}}
+				{{multiArray[0][multiIndex[0]]}}{{multiArray[1][multiIndex[1]]}}{{multiArray[2][multiIndex[2]]}}
 			</view>
 		</picker>
 	</view>
