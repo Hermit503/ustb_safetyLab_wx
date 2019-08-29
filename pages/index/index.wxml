@@ -9,7 +9,7 @@
   </view>
   <view class="action" bindtap="NavChange" data-cur="about">
     <view class='cuIcon-cu-image'>
-    <view class="cu-tag badge">{{length}}</view>
+    <view wx:if="{{length>0}}" class="cu-tag badge"></view>
       <image src="/images/tabbar/about{{PageCur=='about'?'_cur':''}}.png"></image>
     </view>
     <view class="{{PageCur=='about'?'text-green':'text-gray'}}">

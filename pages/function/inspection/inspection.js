@@ -1,4 +1,5 @@
 // pages/function/inspection/inspection.js
+const app = new getApp();
 Page({
 
   /**
@@ -12,7 +13,31 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    let that = this;
+    wx.request({
+      url: app.globalData.Url + '/inspections',
+      data: {
+        id: options.result
+      },
+      header: {},
+      method: 'GET',
+      dataType: 'json',
+      responseType: 'text',
+      success: function (res) {
+        if (res instanceof Object){
+          console.log(res.data)
+          that.setData({
+            inspectionInfo:res.data
+          })
+        }else{
+          wx.showToast({
+            title: res.data,
+          })
+        }
+      },
+      fail: function (res) { },
+      complete: function (res) { },
+    })
   },
 
   /**
@@ -20,17 +45,6 @@ Page({
    */
   onReady: function () {
 
-  },
-  getScanCode(res){
-    wx.scanCode({
-      onlyFromCamera: false,
-      scanType: ["barCode", "pdf417", "qrCode","datamatrix"],
-      success: function(res) {
-        console.log(res)
-      },
-      fail: function(res) {},
-      complete: function (res) { console.log(res)},
-    })
   },
 
   /**

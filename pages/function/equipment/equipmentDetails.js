@@ -117,13 +117,13 @@ Page({
     wx.request({
       url: app.globalData.Url + "/getlaboratory/List/" + wx.getStorageSync('UserData').unit_id,
       success(res){
-        console.log(res.data);
         that.setData({
           [multiArray0]: res.data[0],
           [multiArray1]: res.data[1]
         })
       }
     });
+    console.log(this)
   },
 
   /**

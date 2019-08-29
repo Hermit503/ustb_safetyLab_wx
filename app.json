@@ -17,6 +17,7 @@
     "pages/function/notice/message",
     "pages/function/chemical/chemical",
     "pages/function/inspection/inspection",
+    "pages/function/inspection/inspectionDetail",
     "pages/function/notice/messageDetail"
   ],
   "window": {

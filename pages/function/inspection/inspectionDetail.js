@@ -1,4 +1,4 @@
-// pages/index/index.js
+// pages/function/inspection/inspectionDetail.js
 const app = new getApp();
 Page({
 
@@ -6,37 +6,28 @@ Page({
    * 页面的初始数据
    */
   data: {
-    PageCur: 'function',
-    UserData:wx.getStorageSync('UserData'),
-    role:'',
-  },
-  NavChange(e) {
-    this.setData({
-      PageCur: e.currentTarget.dataset.cur
-    })
+
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    let that = this
+    console.log(options)
     wx.request({
-      url: app.globalData.Url + '/notice/notices',
+      url: app.globalData.Url + '/inspections',
       data: {
-        'user_id': wx.getStorageSync('UserData').user_id,
+        id: options.result
       },
       header: {},
       method: 'GET',
       dataType: 'json',
       responseType: 'text',
-      success: function (res) {
-        that.setData({
-          length:res.data.length
-        })
-      }
-      
-
+      success: function(res) {
+        console.log(res)
+      },
+      fail: function(res) {},
+      complete: function(res) {},
     })
   },
 
