@@ -1,16 +1,16 @@
+const app = new getApp();
 Component({
   options: {
     addGlobalClass: true,
   },
   data: {
-    starCount: 0,
-    forksCount: 0,
-    visitTotal: 0,
+    messageTotal:0,
+    noticeTotal:0,
     userdata:'',
 
   },
   attached() {
-    console.log("success")
+    console.log("success");
     let that = this;
     that.setData({
       userdata: wx.getStorageSync('UserData')
@@ -27,16 +27,15 @@ Component({
           that.setData({
             starCount: i,
             forksCount: i,
-            visitTotal: i
+            messageTotal: i
           })
           i++
           numDH();
         }, 20)
       } else {
         that.setData({
-          starCount: that.coutNum(3000),
-          forksCount: that.coutNum(484),
-          visitTotal: that.coutNum(24000)
+          noticeTotal: that.coutNum(app.globalData.noticeLength),
+          messageTotal: that.coutNum(app.globalData.length)
         })
       }
     }
