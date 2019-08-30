@@ -91,7 +91,7 @@
               <text>{{item.msg}}</text>
             </view>
             <view class="action">
-              <view class="cu-tag round bg-red sm"></view>
+              <view class="text-grey text-xs">22:20</view>
             </view>
           </view>
 

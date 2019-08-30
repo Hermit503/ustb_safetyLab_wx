@@ -68,6 +68,48 @@ Page({
   },
 
   getHistoryMessage(){
+    var that = this;
+    wx.request({
+      url: app.globalData.Url + '/notice/getHistoryMessage',
+      data: {
+        user_id: wx.getStorageSync('UserData').user_id,
+        startDate: '2018-12',
+        endDate: '2019-9'
+      },
+      success: function(res) {
+        var user_id = wx.getStorageSync('UserData').user_id;
+        console.log(res.data)
+        for(var i = 0 ; i < res.data.length ; i++){
+          if(res.data[i]['noticeType'] == "notice"){
+            res.data[i]['msg'] = res.data[i]['title'];
+          }else{
+            //user_id_2是自己 101
+            if (res.data[i]['user_id_2'] == user_id && res.data[i]['isConfirm_2'] == "0" && res.data[i]['receive'] == "1"){
+              res.data[i]['msg'] = '您已驳回"' + res.data[i]['type'] + res.data[i]['stock'] + res.data[i]['unit_type'] + '的' + res.data[i]['chemical_name'] + '"';
+            }
+            //102
+            if (res.data[i]['user_id_2'] == user_id && res.data[i]['isConfirm_2'] == "2") {
+              res.data[i]['msg'] = '您已驳回"' + res.data[i]['type'] + res.data[i]['stock'] + res.data[i]['unit_type'] + '的' + res.data[i]['chemical_name'] + '" 对方已读';}
+            //111
+            if (res.data[i]['user_id_2'] == user_id && res.data[i]['isConfirm_2'] == "1" && res.data[i]['receive'] == "1" ){
+              res.data[i]['msg'] = '您已同意"' + res.data[i]['type'] + res.data[i]['stock'] + res.data[i]['unit_type'] + '的' + res.data[i]['chemical_name'] + '"';
+              }
+
+
+            //user_id_1是自己 102
+            if (res.data[i]['user_id_1'] == user_id && res.data[i]['isConfirm_2'] == "0" && res.data[i]['receive'] == "2") {
+              res.data[i]['msg'] = '对方已驳回您的申请' + res.data[i]['type'] + res.data[i]['stock'] + res.data[i]['unit_type'] + '的' + res.data[i]['chemical_name'] + '"';
+            }
+          }
+        }
+        that.setData({
+          historyMessageList: res.data
+        })
+
+      },
+      fail: function(res) {},
+      complete: function(res) {},
+    })
   },
 
   // ListTouch触摸开始
