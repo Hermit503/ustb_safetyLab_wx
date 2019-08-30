@@ -134,7 +134,11 @@ Page({
         asset_number: this.data.assetnumber,
         equipment_name: this.data.equipmentname,
         equipment_type: this.data.typefinal,
-        laboratory_id: this.data.placefinal,
+
+        laboratory_build: this.data.multiArray[0][this.data.multiIndex[0]],
+        laboratory_class: this.data.multiArray[1][this.data.multiIndex[1]],
+        laboratory_room: this.data.multiArray[2][this.data.multiIndex[2]],
+        
         build_id: wx.getStorageSync('UserData').id,
         unit_id: wx.getStorageSync('UserData').unit_id,
         status: this.data.statusfinal,

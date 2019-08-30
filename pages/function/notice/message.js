@@ -8,6 +8,7 @@ Page({
   data: {
     tabList:['最近消息','历史消息'],
     messageList: app.globalData.messageList,
+    historyMessageList:[],
     name:null,
     msg:null,
     id:null,
@@ -66,6 +67,9 @@ Page({
     })
   },
 
+  getHistoryMessage(){
+  },
+
   // ListTouch触摸开始
   ListTouchStart(e) {
     this.setData({
@@ -114,12 +118,14 @@ Page({
   bindChange: function (e) {
     var that = this;
     that.setData({ currentTab: e.detail.current });
+    that.getHistoryMessage();
   },
   /** 
    * 点击tab切换 
    */
   swichNav: function (e) {
     var that = this;
+    that.getHistoryMessage();
     if (this.data.currentTab === e.target.dataset.current) {
       return false;
     } else {
@@ -152,6 +158,7 @@ Page({
       user_id: e.currentTarget.dataset.user_id,
       chemicalId:e.currentTarget.dataset.chemical,
       stock:e.currentTarget.dataset.stock,
+      receive:e.currentTarget.dataset.receive,
       type: e.currentTarget.dataset.type,
       remarks:e.currentTarget.dataset.remarks
     })
@@ -201,6 +208,23 @@ Page({
           })
           that.onLoad();
         }
+      },
+      fail: function(res) {},
+      complete: function(res) {},
+    })
+  },
+
+  know:function(e){
+    this.hideModal();
+    console.log(e.currentTarget.dataset);
+    wx.request({
+      url: app.globalData.Url +'/chemical/know',
+      data: {
+        id: e.currentTarget.dataset
+      },
+      method: 'PUT',
+      success: function(res) {
+        console.log("服务器说它知道了");
       },
       fail: function(res) {},
       complete: function(res) {},
