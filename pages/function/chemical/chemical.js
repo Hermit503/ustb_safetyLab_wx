@@ -139,6 +139,7 @@ Page({
     }else{
       user2 = user[0]
     }
+    //单位： console.log(that.data.unitType);
     wx.request({
       url: app.globalData.Url + '/chemical/inout',
       data: {
@@ -148,6 +149,7 @@ Page({
         monitorId:user2,
         chemicalId: that.data.checimalId,
         stock: stock,
+        unitType: that.data.unitType,
         remarks: e.detail.value.remarks,
         chemicalType: that.data.chemicalType,
       },
