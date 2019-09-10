@@ -17,8 +17,8 @@ Page({
     winHeight: 0,
     // tab切换  
     currentTab: 0,
-    startDate: '2018-12',
-    endDate: '2019-12',
+    startDate: '2018-01',
+    endDate: '',
     end:'',//结束日期
     // TabCur: 0,
     // scrollLeft: 0
@@ -35,8 +35,15 @@ Page({
     var Y = date.getFullYear();
     //获取月份  
     var M = (date.getMonth() + 1 < 10 ? '0' + (date.getMonth() + 1) : date.getMonth() + 1);
-    var date = Y + '-' + M; 
+    var mInt = parseInt(M)+1;
+    var date = Y + '-' + String(mInt); 
     var i;
+
+    if (app.globalData.messageList == []){
+      wx.showToast({
+        title: '暂无消息',
+      })
+    }
     that.setData({
       endDate: date,
       end: date
@@ -69,16 +76,17 @@ Page({
 
   getHistoryMessage(){
     var that = this;
+    var startDate = that.data.startDate;
+    var endDate = that.data.endDate;
     wx.request({
       url: app.globalData.Url + '/notice/getHistoryMessage',
       data: {
         user_id: wx.getStorageSync('UserData').user_id,
-        startDate: '2018-12',
-        endDate: '2019-9'
+        startDate: startDate,
+        endDate:  endDate,
       },
       success: function(res) {
         var user_id = wx.getStorageSync('UserData').user_id;
-        console.log(res.data)
         for(var i = 0 ; i < res.data.length ; i++){
           if(res.data[i]['noticeType'] == "notice"){
             res.data[i]['msg'] = res.data[i]['title'];
@@ -88,7 +96,7 @@ Page({
               res.data[i]['msg'] = '您已驳回"' + res.data[i]['type'] + res.data[i]['stock'] + res.data[i]['unit_type'] + '的' + res.data[i]['chemical_name'] + '"';
             }
             //102
-            if (res.data[i]['user_id_2'] == user_id && res.data[i]['isConfirm_2'] == "2") {
+            if (res.data[i]['user_id_2'] == user_id && res.data[i]['receive'] == "2") {
               res.data[i]['msg'] = '您已驳回"' + res.data[i]['type'] + res.data[i]['stock'] + res.data[i]['unit_type'] + '的' + res.data[i]['chemical_name'] + '" 对方已读';}
             //111
             if (res.data[i]['user_id_2'] == user_id && res.data[i]['isConfirm_2'] == "1" && res.data[i]['receive'] == "1" ){
@@ -179,14 +187,18 @@ Page({
 
   StartDateChange(e) {
     this.setData({
-      startDate: e.detail.value
+      startDate: e.detail.value,
+      historyMessageList: []
     })
+    this.getHistoryMessage();
   },
 
   EndDateChange(e) {
     this.setData({
-      endDate: e.detail.value
+      endDate: e.detail.value,
+      historyMessageList: []
     })
+    this.getHistoryMessage();
   },
 
   //模态框

@@ -30,7 +30,7 @@
             </view>
           </view>
 
-          <view class="name-list flex" wx:if="{{item.noticeType=='notice'}}" bindtap="getOneMessage" data-id="{{item.id}}" data-name="{{item.name}}" data-title="{{item.title}}" data-comment="{{item.comment}}" data-pictures="{{item.pictures}}">
+          <view class="name-list flex" wx:if="{{item.noticeType=='notice'}}" bindtap="getOneMessage" data-id="{{item.id}}" data-name="{{item.name}}" data-title="{{item.title}}" data-comment="{{item.comment}}" data-pictures="{{item.pictures}}" data-received="false">
             <view class="equipment-width">
               <text>{{item.name}}</text>
             </view>
@@ -83,7 +83,7 @@
             </view>
           </view>
 
-          <view class="name-list flex" wx:if="{{item.noticeType=='notice'}}" bindtap="getOneMessage" data-id="{{item.id}}" data-name="{{item.name}}" data-title="{{item.title}}" data-comment="{{item.comment}}" data-pictures="{{item.pictures}}">
+          <view class="name-list flex" wx:if="{{item.noticeType=='notice'}}" bindtap="getOneMessage" data-id="{{item.id}}" data-name="{{item.name}}" data-title="{{item.title}}" data-comment="{{item.comment}}" data-pictures="{{item.pictures}}" data-received="true">
             <view class="equipment-width">
               <text>{{item.name}}</text>
             </view>
