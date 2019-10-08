@@ -18,7 +18,7 @@
         <view class="cu-item" wx:for="{{messageList}}" wx:key style="border-bottom:1rpx solid WhiteSmoke;">
 
           <view class="name-list flex" wx:if="{{item.noticeType=='chemical'}}" bindtap="showModal" data-target="showDetail" data-id="{{item.id}}" data-name="{{item.user_name_1}}" data-msg="{{item.msg}}" data-user_id="{{item.user_id_1}}" data-stock="{{item.stock}}"
-            data-type="{{item.type}}" data-chemical="{{item.chemical_id}}" data-remarks="{{item.remarks}}" data-receive="{{item.receive}}">
+            data-type="{{item.type}}" data-chemical="{{item.chemical_id}}" data-remarks="{{item.remarks}}" data-receive="false">
             <view class="equipment-width">
               <text>{{item.user_name_1}}</text>
             </view>
@@ -30,7 +30,7 @@
             </view>
           </view>
 
-          <view class="name-list flex" wx:if="{{item.noticeType=='notice'}}" bindtap="getOneMessage" data-id="{{item.id}}" data-name="{{item.name}}" data-title="{{item.title}}" data-comment="{{item.comment}}" data-pictures="{{item.pictures}}" data-received="false">
+          <view class="name-list flex" wx:if="{{item.noticeType=='notice'}}" bindtap="getOneMessage" data-id="{{item.id}}" data-name="{{item.name}}" data-title="{{item.title}}" data-comment="{{item.comment}}" data-pictures="{{item.pictures}}" data-received="">
             <view class="equipment-width">
               <text>{{item.name}}</text>
             </view>
@@ -71,7 +71,7 @@
       <view class="cu-list menu-avatar" style="margin-top:20rpx;">
         <view class="cu-item" wx:for="{{historyMessageList}}" wx:key style="border-bottom:1rpx solid WhiteSmoke;">
 
-          <view class="name-list flex" wx:if="{{item.noticeType=='chemical'}}" bindtap="showModal" data-target="showDetail" data-id="{{item.id}}" data-name="{{item.user_name_1}}" data-msg="{{item.msg}}" data-user_id="{{item.user_id_1}}">
+          <view class="name-list flex" wx:if="{{item.noticeType=='chemical'}}" bindtap="showModal" data-target="showDetail" data-id="{{item.id}}" data-name="{{item.user_name_1}}" data-msg="{{item.msg}}" data-user_id="{{item.user_id_1}}" data-receive="true">
             <view class="equipment-width">
               <text>{{item.user_name_1}}</text>
             </view>
@@ -79,7 +79,7 @@
               <text>{{item.msg}}</text>
             </view>
             <view class="action">
-              <view class="text-grey text-xs">22:20</view>
+              <view class="text-grey text-xs">{{item.time}}</view>
             </view>
           </view>
 
@@ -91,7 +91,7 @@
               <text>{{item.msg}}</text>
             </view>
             <view class="action">
-              <view class="text-grey text-xs">22:20</view>
+              <view class="text-grey text-xs">{{item.time}}</view>
             </view>
           </view>
 
@@ -122,12 +122,12 @@
         <view class='flex-twice  padding-top-xs margin-xs text-left' style="text-align:left;">{{remarks}}</view>
       </view>
       <view class="padding-sm cu-bar bg-white justify-end">
-        <view class="action" wx:if='{{receive == "0"}}'>
+        <view class="action" wx:if='{{receive == "false"}}'>
           <button class="cu-btn bg-red margin-left " data-target="disagreeModal" data-id="{{id}}" data-stock="{{stock}}" data-type="{{type}}" data-chemical="{{chemicalId}}" bindtap="isConfirm">驳回申请</button>
           <button class="cu-btn bg-blue margin-left " data-target="agreeModal" data-id="{{id}}" data-stock="{{stock}}" data-type="{{type}}" data-chemical="{{chemicalId}}" bindtap="isConfirm">同意申请</button>
         </view>
 
-        <view class="action" wx:if='{{receive == "1"}}'>
+        <view class="action" wx:if='{{receive == "true"}}'>
           <button class="cu-btn bg-blue margin-left " data-id="{{id}}" bindtap="know">知道了</button>
           <!-- <button class="cu-btn bg-blue margin-left " data-target="agreeModal" data-id="{{id}}" data-stock="{{stock}}" data-type="{{type}}" data-chemical="{{chemicalId}}" bindtap="isConfirm">再次申请</button> -->
         </view>

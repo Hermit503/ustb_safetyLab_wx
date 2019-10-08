@@ -1,5 +1,6 @@
 // pages/index/index.js
 const app = new getApp();
+var common = require('../../utils/util.js');
 Page({
 
   /**
@@ -23,55 +24,9 @@ Page({
   onLoad: function (options) {
     let that = this
     var i;
-    app.globalData.indexPage = getCurrentPages(); // 当前页面;
-    wx.request({
-      url: app.globalData.Url + '/notice/notices',
-      data: {
-        'user_id': wx.getStorageSync('UserData').user_id,
-      },
-      header: {},
-      method: 'GET',
-      dataType: 'json',
-      responseType: 'text',
-      success: function (res) {
-        console.log(res.data);
-        for (i = 0; i < res.data.length; i++) {
-          if (res.data[i]['noticeType'] == "chemical") {
-            // res.data[i]['user_name_1'] 
-            //自己的没处理的消息
-            if (res.data[i]['user_id_2'] == wx.getStorageSync('UserData').user_id && res.data[i]['receive'] == "0"){
-              res.data[i]['msg'] = "申请" + res.data[i]['type'] + res.data[i]['stock'] +res.data[i]['unit_type']+ res.data[i]['chemical_name'];
-            }
-            //自己申请的被驳回的消息
-            if (res.data[i]['user_id_1'] == wx.getStorageSync('UserData').user_id && res.data[i]['receive'] == "1" && res.data[i]['isConfirm_2'] == "0"){
-              res.data[i]['msg'] = "您申请" + res.data[i]['type'] + res.data[i]['stock'] + res.data[i]['unit_type'] + res.data[i]['chemical_name'] +"被驳回";
-            }
-
-          } else {
-            res.data[i]['msg'] = res.data[i]['title'];
-          }
-        }
-        app.globalData.messageList = res.data;
-        app.globalData.length = res.data.length;
-        that.setData({
-          length: app.globalData.length
-        })
-      },
-      fail: function (res) { },
-      complete: function (res) { },
-    })
-
-    wx.request({
-      url: app.globalData.Url + "/notice/getSomeoneNoticeList",
-      data: {
-        user_id: wx.getStorageSync('UserData').user_id,
-      },
-      success(res) {
-        console.log(res.data.data)
-        app.globalData.noticeList = res.data.data;
-        app.globalData.noticeLength = res.data.data.length;
-        
-      }
+    console.log("indextest")
+    this.setData({
+      length: wx.getStorageSync('length')
     })
   },
 
@@ -86,7 +41,11 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    common.getAllMessageList();
+    common.getMyUpload();
+    this.setData({
+      length: wx.getStorageSync('length')
+    })
   },
 
   /**

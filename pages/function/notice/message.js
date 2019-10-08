@@ -1,5 +1,6 @@
 // pages/function/notice/message.js
 const app = new getApp();
+var common = require('../../../utils/util.js');
 Page({
 
   /**
@@ -67,7 +68,7 @@ Page({
   getOneMessage(e) {
     console.log(e.currentTarget.dataset)
     wx.navigateTo({
-      url: 'messageDetail?id=' + e.currentTarget.dataset.id + '&name=' + e.currentTarget.dataset.name + '&title=' + e.currentTarget.dataset.title + '&comment=' + e.currentTarget.dataset.comment + '&pictures=' + e.currentTarget.dataset.pictures,
+      url: 'messageDetail?id=' + e.currentTarget.dataset.id + '&name=' + e.currentTarget.dataset.name + '&title=' + e.currentTarget.dataset.title + '&comment=' + e.currentTarget.dataset.comment + '&pictures=' + e.currentTarget.dataset.pictures + '&received=' + e.currentTarget.dataset.received,
       success: function (res) {
 
       }
@@ -190,10 +191,12 @@ Page({
       startDate: e.detail.value,
       historyMessageList: []
     })
+    common.clearHistoryMessageList();
     this.getHistoryMessage();
   },
 
   EndDateChange(e) {
+    common.clearHistoryMessageList();
     this.setData({
       endDate: e.detail.value,
       historyMessageList: []
@@ -260,7 +263,9 @@ Page({
             title: res.data,
             content: res.data,
           })
-          that.onLoad();
+          // that.onLoad();
+          that.changeData();
+          common.clearHistoryMessageList();
         }
       },
       fail: function(res) {},
@@ -285,6 +290,14 @@ Page({
     })
   },
 
+  changeData: function () {
+    common.clearMessageList();
+    common.getAllMessageList();
+    
+    this.setData({
+      messageList: app.globalData.messageList
+    })
+  },
 
   /**
  * 生命周期函数--监听页面初次渲染完成

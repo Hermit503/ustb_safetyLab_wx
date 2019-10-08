@@ -34,12 +34,44 @@ Component({
         }, 20)
       } else {
         that.setData({
-          noticeTotal: that.coutNum(app.globalData.noticeLength),
-          messageTotal: that.coutNum(app.globalData.length)
+          noticeTotal: that.coutNum(wx.getStorageSync('uploadLength')),
+          messageTotal: that.coutNum(wx.getStorageSync('length'))
         })
       }
     }
     wx.hideLoading()
+  },
+  pageLifetimes: {
+    // 组件所在页面的生命周期函数
+    show: function () { 
+      let that = this;
+      let i = 0;
+      numDH();
+      function numDH() {
+        if (i < 20) {
+          setTimeout(function () {
+            that.setData({
+              starCount: i,
+              forksCount: i,
+              messageTotal: i
+            })
+            i++
+            numDH();
+          }, 20)
+        } else {
+          that.setData({
+            noticeTotal: that.coutNum(wx.getStorageSync('uploadLength')),
+            messageTotal: that.coutNum(wx.getStorageSync('length'))
+          })
+        }
+      }
+    },
+    hide: function () {
+      
+     },
+    resize: function () {
+      
+     },
   },
   methods: {
     coutNum(e) {
@@ -51,6 +83,7 @@ Component({
       }
       return e
     },
+    
     CopyLink(e) {
       wx.setClipboardData({
         data: e.currentTarget.dataset.link,
@@ -113,6 +146,6 @@ Component({
         wx.hideNavigationBarLoading()
         wx.stopPullDownRefresh()
       }, 2000);
-    },
+    }
   }
 })
