@@ -286,6 +286,46 @@ Component({
           fail: function(res) {},
           complete: function(res) {},
         })
+      } else if (e.currentTarget.dataset.btn == 'inspection') {
+        wx.scanCode({
+          onlyFromCamera: false,
+          scanType: ["barCode", "pdf417", "qrCode", "datamatrix"],
+          success: function(res) {
+            wx.showToast({
+              title: "正在查询",
+            })
+            wx.request({
+              url: app.globalData.Url + "/inspections",
+              data: {
+                id: res.result
+              },
+              header: {},
+              method: 'GET',
+              dataType: 'json',
+              responseType: 'text',
+              success: function(e) {
+                if (e.data == "该二维码不存在") {
+                  wx.showToast({
+                    title: e.data,
+                  })
+                } else {
+                  wx.navigateTo({
+                    url: '../../pages/function/inspection/inspection?id=' + res.result,
+                    success: function(e) {
+                      console.log("跳转OK")
+                    },
+                  })
+                }
+              },
+              fail: function(res) {},
+              complete: function(res) {},
+            })
+
+
+          },
+          fail: function(res) {},
+          complete: function(res) {},
+        })
       } else {
         wx.navigateTo({
           url: '../function/' + e.currentTarget.dataset.btn + "/" + e.currentTarget.dataset.btn,

@@ -49,7 +49,7 @@ App({
         let custom = wx.getMenuButtonBoundingClientRect();
         this.globalData.Custom = custom;
         this.globalData.CustomBar = custom.bottom + custom.top - e.statusBarHeight;
-        this.globalData.Url = 'http://saftylab.test/api/v1';
+        this.globalData.Url = 'http://safe.test/api/v1';
         this.globalData.Domain = 'http://saftylab.test';
         // this.globalData.Url = 'https://www.pipicui.wang/api/v1';
         // this.globalData.Url = 'http://www.hlhs.xyz/api/v1';
