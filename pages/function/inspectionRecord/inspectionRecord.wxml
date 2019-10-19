@@ -1,0 +1,21 @@
+<cu-custom bgColor="bg-gradual-blue" isBack="{{true}}">
+  <view slot="backText">返回</view>
+  <view slot="content">巡检记录</view>
+</cu-custom>
+
+
+
+<view class="cu-card article" style="" wx:for="{{inspectionLogList}}" wx:key>
+  <view class="cu-item" style="padding-bottom:10rpx; margin:20rpx 20rpx 10rpx 20rpx;">
+    <view class="title">
+      <view class="text-cut">{{item.created_at}}</view>
+    </view>
+    <view class="content">
+      <view class="desc">
+        <view class="text-content">{{item.log}}</view>
+        <view>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>

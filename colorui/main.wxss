@@ -2276,7 +2276,7 @@ button.icon.lg {
 .cu-card.article>.cu-item .content .text-content {
   font-size: 28rpx;
   color: #888;
-  height: 4.8em;
+  height: 6em;
   overflow: hidden;
 }
 
@@ -2295,6 +2295,7 @@ button.icon.lg {
 
 .cu-form-group+.cu-form-group {
   border-top: 1rpx solid #eee;
+  border-bottom: 1rpx solid #eee;
 }
 
 .cu-form-group .title {
@@ -3930,6 +3931,14 @@ checkbox .wx-checkbox-input.wx-checkbox-input-checked::before {
 .cu-form-group .title-xl {
   text-align: justify;
   padding-right: 70rpx;
+  font-size: 30rpx;
+  position: relative;
+  height: 60rpx;
+  line-height: 60rpx;
+}
+.cu-form-group .title-xxl {
+  text-align: justify;
+  padding-right: 100rpx;
   font-size: 30rpx;
   position: relative;
   height: 60rpx;

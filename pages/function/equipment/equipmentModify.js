@@ -127,6 +127,7 @@ Page({
   },
 
   submit: function (e) {
+    var date = new Date();
     wx.request({
       url: app.globalData.Url + '/equipment/update',
       data: {
@@ -142,7 +143,7 @@ Page({
         build_id: wx.getStorageSync('UserData').id,
         unit_id: wx.getStorageSync('UserData').unit_id,
         status: this.data.statusfinal,
-        storage_time: this.data.storagedate,
+        storage_time:date.getDate(),
         scrap_time: this.data.scrapdate
       },
       method: 'PUT',

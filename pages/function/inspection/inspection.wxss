@@ -1,1 +1,4 @@
 /* pages/function/inspection/inspection.wxss */
+Page{
+  background-color: white;
+}

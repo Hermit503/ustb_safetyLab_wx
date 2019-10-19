@@ -46,9 +46,10 @@ Component({
         },
         {
           title: '检修记录',
-          name: 'repair recode',
+          name: 'inspection Record',
           color: 'mauve',
-          icon: 'form'
+          icon: 'form',
+          btn:'inspectionRecord'
         },
         {
           title: '隐患/问题记录',
@@ -101,9 +102,10 @@ Component({
         },
         {
           title: '巡检记录',
-          name: 'repair report',
+          name: 'inspection Record',
           color: 'pink',
-          icon: 'form'
+          icon: 'form',
+          btn:'inspectionRecord'
         },
         {
           title: '隐患/问题记录',
@@ -185,9 +187,10 @@ Component({
         },
         {
           title: '巡检记录',
-          name: 'repair report',
+          name: 'inspection Record',
           color: 'pink',
-          icon: 'form'
+          icon: 'form',
+          btn: 'inspectionRecord'
         },
         {
           title: '实验室日志',
@@ -291,6 +294,7 @@ Component({
           onlyFromCamera: false,
           scanType: ["barCode", "pdf417", "qrCode", "datamatrix"],
           success: function(res) {
+            console.log(res)
             wx.showToast({
               title: "正在查询",
             })
@@ -312,7 +316,6 @@ Component({
                   wx.navigateTo({
                     url: '../../pages/function/inspection/inspection?id=' + res.result,
                     success: function(e) {
-                      console.log("跳转OK")
                     },
                   })
                 }
