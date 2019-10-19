@@ -18,6 +18,22 @@
       <view style="width:130px;line-height: 100rpx;">{{details['users'][index]}}</view>
     </view>
   </view>
+  <!--已收到人员-->
+  <view class="cu-bar bg-white solid-bottom margin-top">
+    <view class="action">
+      已收到人员
+    </view>
+  </view>
+  <view class="cu-form-show" wx:if="{{details['received_users'].length != 0}}">
+    <view wx:for="{{details['received_users']}}" wx:key="{{index}}">
+      <view style="width:130px;line-height: 100rpx;">{{details['received_users'][index]['name']}}({{details['received_users'][index]['user_id']}})</view>
+    </view>
+  </view>
+  <view class="cu-form-show" wx:if="{{details['received_users'].length == 0 }}">
+    <view>
+      <view style="width:130px;line-height: 100rpx;">还没有人看呐</view>
+    </view>
+  </view>
   <view class="cu-bar bg-white solid-bottom margin-top">
     <view class="action">
       通知概述
