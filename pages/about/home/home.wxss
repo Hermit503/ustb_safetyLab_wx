@@ -1,5 +1,5 @@
 .UCenter-bg {
-  background-image: url(https://image.weilanwl.com/color2.0/index.jpg);
+  background-image: url(https://cdn.nlark.com/yuque/0/2019/jpeg/280373/1551688744282-assets/web-upload/bb9e2f80-2740-4305-9c08-b92972ff9419.jpeg);
   background-size: cover;
   height: 550rpx;
   display: flex;

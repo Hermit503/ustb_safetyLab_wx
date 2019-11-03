@@ -1,13 +1,23 @@
 /* pages/auth/auth.wxss */
 
 Page{
-  height: auto;
+  height:auto;
   width: 100%;
-  background-image: var(--gradualBlue);
+  background-image:url('https://cdn.nlark.com/yuque/0/2019/png/223589/1551628180485-assets/web-upload/1431efa1-478c-4ea6-bd13-ab08e581cb57.png');
+  background-repeat: no-repeat;
+  background-size: 130%;
   z-index: -1;
 }
+.logo{
+  margin-top: 180rpx;
+ display:flex;                   
+ justify-content: center;
+}
+.logo image{
+width: 60%;
+}
 .login{
-  margin-top: 70%;
+  margin-top: 30%;
 }
 .cu-form-group{
   height: 100rpx;

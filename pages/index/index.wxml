@@ -5,14 +5,14 @@
     <view class='cuIcon-cu-image'>
       <image src="/images/tabbar/function{{PageCur=='function'?'_cur':''}}.png"></image>
     </view>
-    <view class="{{PageCur=='function'?'text-green':'text-gray'}}">功能</view>
+    <view class="{{PageCur=='function'?'text-blue':'text-gray'}}">功能</view>
   </view>
   <view class="action" bindtap="NavChange" data-cur="about">
     <view class='cuIcon-cu-image'>
     <view class="cu-tag badge" wx:if="{{length!=0}}">{{length}}</view>
       <image src="/images/tabbar/about{{PageCur=='about'?'_cur':''}}.png"></image>
     </view>
-    <view class="{{PageCur=='about'?'text-green':'text-gray'}}">
+    <view class="{{PageCur=='about'?'text-blue':'text-gray'}}">
       个人中心</view>
   </view>
 </view>

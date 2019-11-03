@@ -1,6 +1,9 @@
+<view class="logo">
+  <image src="../../images/logo.png"></image>
+</view>
 <view class='login'>
-  <input class="cu-form-group margin-top radiuss margin-left margin-right" name="userId" type='text' placeholder="请输入工号" bindinput="userIdInput" />
-  <input class="cu-form-group  margin-top radiuss margin-left margin-right" name="userPwd" type='password' placeholder="请输入密码" bindinput="userPwdInput" />
+  <input class="cu-form-group margin-top radiuss margin-left margin-right" name="userId" type='text' placeholder="Job number" bindinput="userIdInput" />
+  <input class="cu-form-group  margin-top radiuss margin-left margin-right" name="userPwd" type='password' placeholder="PassWord" bindinput="userPwdInput" />
   <button class='cu-btn  margin-top  margin-left margin-right bg-blue shadow lg block' open-type="getUserInfo" bindgetuserinfo="login" disabled="{{isClick}}" type='success'>
     <text wx:if="{{isClick}}" class='cuIcon-loading2 iconfont-spin'></text> 登录</button>
 </view>
