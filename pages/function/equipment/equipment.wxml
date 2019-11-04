@@ -1,55 +1,53 @@
 <scroll-view style="height:{{height}};" bindscrolltolower="onReachBottom" bindscroll="scroll" class="test">
-<cu-custom bgColor="bg-gradual-blue" isBack="{{true}}"><view slot="backText">返回</view><view slot="content">设备查询</view></cu-custom>
+  <cu-custom bgColor="bg-gradual-blue" isBack="{{true}}">
+    <view slot="backText">返回</view>
+    <view slot="content">设备查询</view>
+  </cu-custom>
 
-<view class='flex p-xs search cu-bar align-center bg-white'>
-  <view class="search-form round flex-six  margin-top-sm">
-    <text class="cuIcon-search "></text>
-    <input type="text" placeholder="请输入要搜索的设备名称" confirm-type="search" bindinput="setkeyword"></input>
+  <view class='flex p-xs search cu-bar align-center bg-white'>
+    <view class="search-form round flex-six  margin-top-sm">
+      <text class="cuIcon-search "></text>
+      <input type="text" placeholder="请输入要搜索的设备名称" confirm-type="search" bindinput="setkeyword"></input>
+    </view>
+    <view class="action">
+      <button class="cu-btn bg-gradual-blue shadow-blur round flex-twice" bindtap="searchEquipment">搜索</button>
+    </view>
+    <view wx:for="{{permissionList}}" wx:key="index">
+      <view wx:if="{{item=='allequipment'||item=='createequipment'}}" class='cu-btn bg-gradual-blue round shadow  flex-half' bindtap='addEquipment'>增加设备</view>
+    </view>
   </view>
-  <view class="action">
-    <button class="cu-btn bg-gradual-blue shadow-blur round flex-twice" bindtap="searchEquipment">搜索</button>
-  </view>
-  <view wx:for="{{permissionList}}" wx:key="index">
-    <view wx:if="{{item=='allequipment'||item=='createequipment'}}" class='cu-btn bg-gradual-blue round shadow  flex-half' bindtap='addEquipment'>增加设备</view>
-  </view>
-</view>
 
-<view style="display:{{msgdisplay}}" class="text-center padding">
-  <text>{{msg}}</text>
-</view>
-
-<view class="cu-bar solid-blue bg-white solid-bottom" style="display:{{tabletitle}}">
-  <view class="action">
-    <text class="cuIcon-title text-blue "></text>
-    <text class="equipment-width">设备id</text>
-    <text class="equipment-width">资产编号</text>
-    <text class="equipment-width">设备名</text>
-    <text class="equipment-width">设备状态</text>
+  <view style="display:{{msgdisplay}}" class="text-center padding">
+    <text>{{msg}}</text>
   </view>
-</view>
-<!--TODO:分散对齐-->
+
+  <view class="flex flex-wrap text-center">
+    <view class="basis-25 bg-white padding-sm radius">
+      <text class="cuIcon-title text-blue"></text > 设备id</view>
+  <view class="basis-25 bg-white padding-sm radius"><text></text >资产编号</view>
+  <view class="basis-25 bg-white padding-sm radius"><text></text >设备名</view>
+  <view class="basis-25 bg-white padding-sm radius"><text></text >设备状态</view>
+  </view>
+
+
 <view class="cu-list menu-avatar">
   <view class="cu-item {{modalName=='move-box-'+ index?'move-cur':''}}" wx:for="{{equipmentList}}" wx:key bindtouchstart="ListTouchStart" bindtouchmove="ListTouchMove" bindtouchend="ListTouchEnd" data-target="move-box-{{index}}">
-    <view class="name-list flex text-center">
-      <view class='equipment-width'>
-        <text decode="{{true}}">&ensp;&ensp;&ensp;{{item.id}}</text>
-      </view>
-      <view class="equipment-width">
-        <text>{{item.asset_number}}</text>
-      </view>
-      <view class="equipment-width">
-        <text>{{item.equipment_name}}</text>
-      </view>
-      <view class="equipment-width">
-        <text>{{item.status}}</text>
-      </view>
+  <view class="basis-25 bg-white padding-sm radius text-center">{{item.id}}</view>
+  <view class="basis-25 bg-white padding-sm radius text-center">{{item.asset_number}}</view>
+  <view class="basis-25 bg-white padding-sm radius text-center">{{item.equipment_name}}</view>
+  <view class="basis-25 bg-white padding-sm radius text-center">{{item.status}}</view>
+ 
+  <view class="move">
+    <view class="bg-grey">
+      <navigator url="/pages/function/equipment/equipmentModify?id={{item.id}}" hover-class="none">编辑</navigator>
     </view>
-    <view class="move">
-      <view class="bg-grey"><navigator url="/pages/function/equipment/equipmentModify?id={{item.id}}" hover-class="none">编辑</navigator></view>
-      <view class="bg-red" bindtap="showModal" data-target="DialogModal1" data-id="{{item.id}}">删除</view>
-    </view>
+    <view class="bg-red" bindtap="showModal" data-target="DialogModal1" data-id="{{item.id}}">删除</view>
   </view>
-</view>
+  </view>
+  </view>
+
+
+
 </scroll-view>
 <!--删除的模态框-->
 <view class="cu-modal {{modalName=='DialogModal1'?'show':''}}">
@@ -58,16 +56,16 @@
       <view class="content">删除</view>
       <view class="action" bindtap="hideModal">
         <text class="cuIcon-close text-red"></text>
-      </view>
-    </view>
-    <view class="padding-xl">
-      确认删除？
-    </view>
-    <view class="cu-bar bg-white justify-end">
-      <view class="action">
-        <button class="cu-btn line-green text-green" bindtap="hideModal">取消</button>
-        <button class="cu-btn bg-green margin-left" bindtap="deleteEquipment">确定</button>
-      </view>
     </view>
   </view>
-</view>
+  <view class="padding-xl">
+    确认删除？
+  </view>
+  <view class="cu-bar bg-white justify-end">
+    <view class="action">
+      <button class="cu-btn line-green text-green" bindtap="hideModal">取消</button>
+      <button class="cu-btn bg-green margin-left" bindtap="deleteEquipment">确定</button>
+    </view>
+  </view>
+  </view>
+  </view>

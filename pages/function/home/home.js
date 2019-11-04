@@ -53,7 +53,7 @@ Component({
         },
         {
           title: '隐患/问题记录',
-          name: 'IssueRecode',
+          name: 'Issue Recode',
           color: 'olive',
           icon: 'text',
           btn: 'hiddenRecode'
@@ -109,7 +109,7 @@ Component({
         },
         {
           title: '隐患/问题记录',
-          name: 'IssueRecode',
+          name: 'Issue Recode',
           color: 'olive',
           icon: '',
           btn: 'hiddenRecode'
@@ -173,7 +173,7 @@ Component({
         },
         {
           title: '隐患/问题记录',
-          name: 'IssueRecode',
+          name: 'Issue Recode',
           color: 'olive',
           icon: '',
           btn: 'hiddenRecode'

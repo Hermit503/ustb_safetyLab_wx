@@ -2748,6 +2748,7 @@ scroll-view.cu-steps .cu-item {
   flex-basis: 20%;
 }
 
+
 .basis-sm {
   flex-basis: 40%;
 }
@@ -3943,6 +3944,9 @@ checkbox .wx-checkbox-input.wx-checkbox-input-checked::before {
   position: relative;
   height: 60rpx;
   line-height: 60rpx;
+}
+.basis-25 {
+  flex-basis: 25%;
 }
 
 

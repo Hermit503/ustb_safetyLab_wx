@@ -1,51 +1,52 @@
 <scroll-view style="height:{{height}};" bindscrolltolower="onReachBottom" bindscroll="scroll" class="test">
-<cu-custom bgColor="bg-gradual-blue" isBack="{{true}}">
-  <view slot="backText">返回</view>
-  <view slot="content">人员管理</view>
-</cu-custom>
+  <cu-custom bgColor="bg-gradual-blue" isBack="{{true}}">
+    <view slot="backText">返回</view>
+    <view slot="content">人员管理</view>
+  </cu-custom>
 
-<view class='flex p-xs search cu-bar align-center bg-white'>
-  <view class="search-form round flex-six  margin-top-sm">
-    <text class="cuIcon-search "></text>
-    <input type="text" placeholder="请输入要搜索的人员姓名" confirm-type="search" bindinput="setkeyword"></input>
-  </view>
-  <view class="action">
-    <button class="cu-btn bg-gradual-blue shadow-blur round  flex-twice" bindtap="searchUser">搜索</button>
-  </view> 
-  <!-- <view wx:for="{{permissionList}}" wx:key="index">
+  <view class='flex p-xs search cu-bar align-center bg-white'>
+    <view class="search-form round flex-six  margin-top-sm">
+      <text class="cuIcon-search "></text>
+      <input type="text" placeholder="请输入要搜索的人员姓名" confirm-type="search" bindinput="setkeyword"></input>
+    </view>
+    <view class="action">
+      <button class="cu-btn bg-gradual-blue shadow-blur round  flex-twice" bindtap="searchUser">搜索</button>
+    </view>
+    <!-- <view wx:for="{{permissionList}}" wx:key="index">
     <view wx:if="{{item=='/alluser'||item=='/createuser'}}" class='cu-btn bg-gradual-blue round shadow  flex-half' bindtap='addUser'>增加人员</view>
   </view> -->
-</view>
-<view style="display:{{msgdisplay}}" class="text-center padding">
-  <text>{{msg}}</text>
-</view>
-<view class="cu-bar solid-blue bg-white solid-bottom" style="display:{{tabletitle}}">
-  <view class="action">
-    <text class="cuIcon-title text-blue "></text > <text decode="{{true}}">&ensp;姓名&ensp;&ensp;&ensp;&ensp;&ensp;工号&ensp;&ensp;&ensp;&ensp;&ensp;所属单位&ensp;&ensp;&ensp;&ensp;&ensp;职称</text>
   </view>
-</view>
-<view class="cu-list menu-avatar">
-  <view class="cu-item {{modalName=='move-box-'+ index?'move-cur':''}}" wx:for="{{userList}}"  wx:key bindtouchstart="ListTouchStart" bindtouchmove="ListTouchMove" bindtouchend="ListTouchEnd" data-target="move-box-{{index}}">
-    <view class="name-list flex text-center" wx:if="{{item.isDelete==0}}">
-      <view class='name-width'>
-        <text bindtap='showModal' data-id="{{index}}" data-target="showUser">{{item.name}}</text>
-      </view>
-      <view class="userid-width">
-        <text>{{item.user_id}}</text>
-      </view>
-      <view class="unit-width">
-        <text>{{item.unit.unit_name}}</text>
-      </view>
-      <view class="title-width">
-        <text>{{item.title}}</text>
-      </view>
+  <view style="display:{{msgdisplay}}" class="text-center padding">
+    <text>{{msg}}</text>
+  </view>
+  <view class="flex flex-wrap text-center">
+    <view class="basis-25 bg-white padding-sm">
+      <text class="cuIcon-title text-blue"></text > 姓名</view>
+  <view class="basis-25 bg-white padding-sm"><text></text >工号</view>
+  <view class="basis-25 bg-white padding-sm"><text></text >单位</view>
+  <view class="basis-25 bg-white padding-sm"><text></text >职称</view>
+  </view>
+  <view class="cu-list menu-avatar text-center">
+    <view class="cu-item {{modalName=='move-box-'+ index?'move-cur':''}}" wx:for="{{userList}}" wx:key bindtouchstart="ListTouchStart" bindtouchmove="ListTouchMove" bindtouchend="ListTouchEnd" data-target="move-box-{{index}}" style="width=100%;">
+        <view class='basis-25 bg-white padding-sm'>
+          <text bindtap='showModal' data-id="{{index}}" data-target="showUser">{{item.name}}</text>
     </view>
+    <view class="basis-25 bg-white padding-sm">
+      <text>{{item.user_id}}</text>
+    </view>
+    <view class="basis-25 bg-white padding-sm">
+      <text>{{item.unit.unit_name}}</text>
+    </view>
+    <view class="basis-25 bg-white padding-sm">
+      <text>{{item.title}}</text>
+    </view>
+
     <view class="move">
       <view class="bg-grey" bindtap='updateUser' data-unit="{{item.unit.id}}" data-id="{{item.user_id}}">编辑</view>
       <view class="bg-red" bindtap="showModal" data-id="{{item.user_id}}" data-name="{{item.name}}" data-target="DialogModal1">删除</view>
     </view>
   </view>
-</view>
+  </view>
 </scroll-view>
 <!-- 添加人员 -->
 <!--<view class='userList'>
@@ -97,7 +98,7 @@
     </view>
     <view class="padding-sm cu-bar bg-white justify-end">
       <view class="action">
-        <button class="cu-btn bg-gradual-blue margin-left "  bindtap="hideModal">确认</button>
+        <button class="cu-btn bg-gradual-blue margin-left " bindtap="hideModal">确认</button>
       </view>
     </view>
   </view>
@@ -113,12 +114,13 @@
       </view>
     </view>
     <view class="padding">
-     确定要删除<text class="text-red">{{userName}}</text>吗？
+      确定要删除
+      <text class="text-red">{{userName}}</text>吗？
     </view>
     <view class="cu-bar bg-white justify-end">
       <view class="action">
         <button class="cu-btn text-blue" bindtap="hideModal">取消</button>
-        <button class="cu-btn margin-left bg-blue"  bindtap="deleteUser">确定</button>
+        <button class="cu-btn margin-left bg-blue" bindtap="deleteUser">确定</button>
       </view>
     </view>
   </view>

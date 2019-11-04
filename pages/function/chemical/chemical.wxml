@@ -16,33 +16,37 @@
       <view wx:if="{{item=='allchemical'||item=='createchemical'}}" class='cu-btn bg-gradual-blue round shadow  flex-half' bindtap='addUser'>增加人员</view>
     </view> -->
   </view>
-  <view class="cu-bar solid-blue bg-white solid-bottom" style="display:{{tabletitle}}">
-    <view class="action">
-      <text class="cuIcon-title text-blue "></text > <text decode="{{true}}">化学品id&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;品名&ensp;&ensp;&ensp;&ensp;&emsp;CAS&ensp;&ensp;&ensp;&ensp;&ensp;所属单位</text>
-    </view>
+
+  <view class="flex flex-wrap text-center">
+    <view class="basis-25 bg-white padding-sm">
+      <text class="cuIcon-title text-blue"></text > 化学品id</view>
+  <view class="basis-25 bg-white padding-sm"><text></text >品名</view>
+  <view class="basis-25 bg-white padding-sm"><text></text >CAS</view>
+  <view class="basis-25 bg-white padding-sm"><text></text >所属单位</view>
   </view>
+
   <view class="cu-list menu-avatar">
     <view class="cu-item {{modalName=='move-box-'+ index?'move-cur':''}} solids-top" wx:for="{{chemicalList}}" wx:key bindtouchstart="ListTouchStart" bindtouchmove="ListTouchMove" bindtouchend="ListTouchEnd" data-target="move-box-{{index}}">
-      <view class="name-list flex  align-center">
-        <view class='chemical_id text-right'>
+      <view class="flex flex-wrap text-center align-center">
+        <view class='basis-25 bg-white padding-sm'>
           <text bindtap='showModal' data-id="{{index}}" data-target="showUser">{{item.chemical_id}}</text>
-        </view>
-        <view class="chemical_name text-center">
-          <text>{{item.name}}</text>
-        </view>
-        <view class="checimal_CAS">
-          <text>{{item.CAS}}</text>
-        </view>
-        <view class="title-width">
-          <text>{{item.unit.unit_name}}</text>
-        </view>
-      </view>
-      <view class="move">
-        <view class="bg-grey" bindtap='inout' data-target="inoutDialogModal" data-userid="{{item.user_id}}" data-monitorid="{{item.monitor_id}}" data-name="{{item.name}}" data-unit="{{item.unit_type}}" data-id="{{item.chemical_id}}" data-type="{{item.type}}"
-          data-inout="in">入库</view>
-        <view class="bg-red" bindtap="inout" data-target="inoutDialogModal" data-userid="{{item.user_id}}" data-monitorid="{{item.monitor_id}}" data-name="{{item.name}}" data-unit="{{item.unit_type}}" data-id="{{item.chemical_id}}" data-type="{{item.type}}" data-inout="out">出库</view>
-      </view>
     </view>
+    <view class="basis-25 bg-white padding-sm">
+      <text>{{item.name}}</text>
+    </view>
+    <view class="basis-25 bg-white padding-sm">
+      <text>{{item.CAS}}</text>
+    </view>
+    <view class="basis-25 bg-white padding-sm">
+      <text>{{item.unit.unit_name}}</text>
+    </view>
+  </view>
+  <view class="move">
+    <view class="bg-grey" bindtap='inout' data-target="inoutDialogModal" data-userid="{{item.user_id}}" data-monitorid="{{item.monitor_id}}" data-name="{{item.name}}" data-unit="{{item.unit_type}}" data-id="{{item.chemical_id}}" data-type="{{item.type}}"
+      data-inout="in">入库</view>
+    <view class="bg-red" bindtap="inout" data-target="inoutDialogModal" data-userid="{{item.user_id}}" data-monitorid="{{item.monitor_id}}" data-name="{{item.name}}" data-unit="{{item.unit_type}}" data-id="{{item.chemical_id}}" data-type="{{item.type}}" data-inout="out">出库</view>
+  </view>
+  </view>
   </view>
 </scroll-view>
 <!-- 添加人员 -->
