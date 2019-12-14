@@ -129,7 +129,7 @@ Page({
   submit: function (e) {
     var date = new Date();
     wx.request({
-      url: app.globalData.Url + '/equipment/update',
+      url: app.globalData.Url + '/equipment/' + this.data.id,
       data: {
         id: this.data.id,
         asset_number: this.data.assetnumber,

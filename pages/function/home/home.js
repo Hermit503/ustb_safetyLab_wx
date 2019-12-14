@@ -58,12 +58,12 @@ Component({
           icon: 'text',
           btn: 'hiddenRecode'
         },
-        {
-          title: '视察报告',
-          name: 'inspection report',
-          color: 'pink',
-          icon: 'text'
-        },
+        // {
+        //   title: '视察报告',
+        //   name: 'inspection report',
+        //   color: 'pink',
+        //   icon: 'text'
+        // },
         {
           title: '下发通知',
           name: 'Notification',
@@ -217,7 +217,6 @@ Component({
           title: '隐患/问题上报',
           name: 'Issue Report',
           color: 'red',
-          icon: 'write',
           btn: 'hidden'
         },
         {

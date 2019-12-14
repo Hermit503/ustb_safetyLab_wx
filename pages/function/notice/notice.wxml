@@ -9,7 +9,7 @@
     <input placeholder="请输入标题" value='{{userInfo.user_id}}' name="title" type='text'></input>
   </view>
   <!-- 通知人员 -->
-  <view class="cu-bar bg-white solid-bottom margin-top" bindtap="showList">
+  <view class="cu-bar bg-white solid-bottom" bindtap="showList">
     <view class="action">
       <text class='text-red text-xxl'>*</text>通知人员
     </view>
@@ -26,7 +26,7 @@
       </checkbox-group>
     </view>
   </view>
-  <view class="cu-bar bg-white solid-bottom margin-top">
+  <view class="cu-bar bg-white solid-bottom">
     <view class="action">
       通知概述
     </view>
@@ -58,7 +58,7 @@
   <view class="cu-form-group margin-top">
     <view class="title">附件</view>
     <input placeholder="请选择附件" value="{{file}}"></input>
-    <button class="cu-btn bg-green shadow" bindtap="chooseFile">选择</button>
+    <button class="cu-btn bg-blue shadow" bindtap="chooseFile">选择</button>
   </view>
   <button class='cu-btn  margin-top  margin-left margin-right bg-blue shadow lg block' form-type="submit">提交</button>
   <text decode="{{true}}">&ensp;&ensp;&ensp;</text>

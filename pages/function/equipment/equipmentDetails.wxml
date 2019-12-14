@@ -63,7 +63,7 @@
 		</picker>
 	</view>
   <view class="padding flex flex-direction">
-    <button class="cu-btn bg-green margin-tb-sm lg" bindtap='submit'>提交</button>
+    <button class="cu-btn bg-blue margin-tb-sm lg" bindtap='submit'>提交</button>
   </view>
 </form>
 
