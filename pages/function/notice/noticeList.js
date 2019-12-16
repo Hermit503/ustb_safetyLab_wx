@@ -31,10 +31,10 @@ Page({
     })
     var i = 0;
     // 把json字符串转为json对象
-    for (i; i < app.globalData.noticeLength; i++) {
-      var str = app.globalData.Domain + JSON.parse(app.globalData.noticeList[i]['pictures'])[0];
+    for (i; i < that.data.noticeList.length; i++) {
+      var str = "pictures["+i+"]"
       that.setData({
-        pictures: that.data.pictures.concat(str),
+        [str]: app.globalData.Domain + JSON.parse(that.data.noticeList[i]['pictures'])[0]
       })
     }
 
