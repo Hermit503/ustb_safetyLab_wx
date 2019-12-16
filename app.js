@@ -51,7 +51,7 @@ App({
         this.globalData.CustomBar = custom.bottom + custom.top - e.statusBarHeight;
         //需要将safe.test 改为本地ip 非127/local/ 即可手机调试
         this.globalData.Url = 'http://safe.test/api/v1';
-        this.globalData.Domain = 'http://saftylab.test';
+        this.globalData.Domain = 'http://safe.test';
         // this.globalData.Url = 'https://www.pipicui.wang/api/v1';
         // this.globalData.Url = 'http://www.hlhs.xyz/api/v1';
         // this.globalData.Url = 'http://119.23.243.176/api/v1';

@@ -1,1 +1,4 @@
 /* pages/function/notice/notice.wxss */
+Page{
+  background-color: white;
+}

@@ -24,7 +24,7 @@
       <text class="cuIcon-title text-blue"></text > 姓名</view>
   <view class="basis-25 bg-white padding-sm"><text></text >工号</view>
   <view class="basis-25 bg-white padding-sm"><text></text >单位</view>
-  <view class="basis-25 bg-white padding-sm"><text></text >职称</view>
+  <view class="basis-25 bg-white padding-sm"><text></text >职位</view>
   </view>
   <view class="cu-list menu-avatar text-center">
     <view class="cu-item {{modalName=='move-box-'+ index?'move-cur':''}}" wx:for="{{userList}}" wx:key bindtouchstart="ListTouchStart" bindtouchmove="ListTouchMove" bindtouchend="ListTouchEnd" data-target="move-box-{{index}}" style="width=100%;">

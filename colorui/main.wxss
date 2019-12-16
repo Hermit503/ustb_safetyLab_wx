@@ -3905,10 +3905,10 @@ checkbox .wx-checkbox-input.wx-checkbox-input-checked::before {
 
 .checkoutbox-form-group{
   background-color: var(--white);
-  padding: 1rpx 30rpx;
+  padding: 1rpx 20rpx;
   display: flex;
   align-items: center;
-  min-height: 100rpx;
+  min-height: 60rpx;
   justify-content: flex-start;
 }
 

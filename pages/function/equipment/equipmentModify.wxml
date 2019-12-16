@@ -1,5 +1,6 @@
 <cu-custom bgColor="bg-gradual-blue" isBack="{{true}}"><view slot="backText">返回</view><view slot="content">编辑信息</view></cu-custom>
-<form>
+<view class="bg-white">
+<form >
   <!--资产编号-->
 	<view class="cu-form-group">
 		<view class="title">资产编号</view>
@@ -58,9 +59,9 @@
 		</picker>
 	</view>
   <view class="padding flex flex-direction">
-    <button class="cu-btn bg-green margin-tb-sm lg" bindtap='submit'>保存修改</button>
+    <button class="cu-btn bg-blue margin-tb-sm lg" bindtap='submit'>保存修改</button>
   </view>
 </form>
-
+</view>
 
 

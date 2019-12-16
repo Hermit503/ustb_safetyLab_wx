@@ -27,9 +27,14 @@
 
   <view class="cu-list menu-avatar">
     <view class="cu-item {{modalName=='move-box-'+ index?'move-cur':''}} solids-top" wx:for="{{chemicalList}}" wx:key bindtouchstart="ListTouchStart" bindtouchmove="ListTouchMove" bindtouchend="ListTouchEnd" data-target="move-box-{{index}}">
-      <view class="flex flex-wrap text-center align-center">
+
+      <view class="basis-25 bg-white padding-sm radius text-center" bindtap='showModal' data-id="{{index}}">{{item.chemical_id}}</view>
+  <view class="basis-25 bg-white padding-sm radius text-center">{{item.name}}</view>
+  <view class="basis-25 bg-white padding-sm radius text-center">{{item.CAS}}</view>
+  <view class="basis-25 bg-white padding-sm radius text-center">{{item.unit.unit_name}}</view>
+      <!-- <view class="flex flex-wrap text-center align-center">
         <view class='basis-25 bg-white padding-sm'>
-          <text bindtap='showModal' data-id="{{index}}" data-target="showUser">{{item.chemical_id}}</text>
+          <text  data-target="showUser">{{item.chemical_id}}</text>
     </view>
     <view class="basis-25 bg-white padding-sm">
       <text>{{item.name}}</text>
@@ -40,7 +45,7 @@
     <view class="basis-25 bg-white padding-sm">
       <text>{{item.unit.unit_name}}</text>
     </view>
-  </view>
+  </view> -->
   <view class="move">
     <view class="bg-grey" bindtap='inout' data-target="inoutDialogModal" data-userid="{{item.user_id}}" data-monitorid="{{item.monitor_id}}" data-name="{{item.name}}" data-unit="{{item.unit_type}}" data-id="{{item.chemical_id}}" data-type="{{item.type}}"
       data-inout="in">入库</view>

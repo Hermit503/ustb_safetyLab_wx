@@ -19,8 +19,9 @@
 
           <view class="name-list flex" wx:if="{{item.noticeType=='chemical'}}" bindtap="showModal" data-target="showDetail" data-id="{{item.id}}" data-name="{{item.user_name_1}}" data-msg="{{item.msg}}" data-user_id="{{item.user_id_1}}" data-stock="{{item.stock}}"
             data-type="{{item.type}}" data-chemical="{{item.chemical_id}}" data-remarks="{{item.remarks}}" data-receive="false">
-            <view class="equipment-width">
-              <text>{{item.user_name_1}}</text>
+            <view class="basis-25">
+              <text class="cuIcon-title text-blue"></text>
+              {{item.user_name_1}}
             </view>
             <view class="text-sm text-cut" style="width:470rpx; text-align:left;">
               <text>{{item.msg}}</text>
@@ -31,8 +32,9 @@
           </view>
 
           <view class="name-list flex" wx:if="{{item.noticeType=='notice'}}" bindtap="getOneMessage" data-id="{{item.id}}" data-name="{{item.name}}" data-title="{{item.title}}" data-comment="{{item.comment}}" data-pictures="{{item.pictures}}" data-received="">
-            <view class="equipment-width">
-              <text>{{item.name}}</text>
+            <view class="basis-25">
+              <text class="cuIcon-title text-blue"></text>
+              {{item.name}}
             </view>
             <view class="text-sm text-cut" style="width:470rpx; text-align:left;">
               <text>{{item.msg}}</text>

@@ -84,15 +84,12 @@ Component({
       return e
     },
     
-    CopyLink(e) {
-      wx.setClipboardData({
-        data: e.currentTarget.dataset.link,
-        success: res => {
-          wx.showToast({
-            title: '已复制',
-            duration: 1000,
-          })
-        }
+    userAbout(e) {
+      wx.redirectTo({
+        url: '../../../../function/user/userAbout/userAbout',
+        success: function(res) {},
+        fail: function(res) {},
+        complete: function(res) {},
       })
     },
     showModal(e) {
