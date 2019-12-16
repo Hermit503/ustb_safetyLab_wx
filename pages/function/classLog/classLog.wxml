@@ -1,0 +1,46 @@
+<cu-custom bgColor="bg-gradual-blue" isBack="{{true}}">
+    <view slot="backText">返回</view>
+    <view slot="content">课堂日志</view>
+</cu-custom>
+
+
+
+
+<form bindsubmit="formSubmit">
+<view class="cu-form-group">
+    <view style='width:150rpx;'>
+      <view class="title">实验名称</view>
+    </view>
+    <input placeholder="请输入实验名称" name="experimentName" bindinput="experimentNameInput"></input>
+  </view> 
+	<view class="cu-form-group">
+  
+		<view class="title">上课班级</view>
+		<picker mode="multiSelector" class='asdas' bindchange="bindMultiPickerChange" bindcolumnchange="bindMultiPickerColumnChange" value="{{multiIndex}}" range="{{multiArray}}">
+        <!-- <input value='{{multiArray[0][multiIndex[0]]}} {{multiArray[1][multiIndex[1]]}}'></input> -->
+        			<view class="picker">
+				{{multiArray[0][multiIndex[0]]?multiArray[0][multiIndex[0]]+multiArray[1][multiIndex[1]]:'请选择'}}
+			</view>
+  </picker>
+	</view>
+
+	<view class="cu-form-group">
+		<view class="title">上课人数</view>
+		<picker bindchange="PickerChange" value="{{index}}" range="{{picker}}">
+			<view class="picker">
+				{{index?picker[index]:'请选择'}}
+			</view>
+		</picker>
+	</view>
+
+ 
+<view class="cu-form-group">
+  <view class="title">实验情况</view>
+  <input value="{{status}}" disabled="true"></input>
+  <switch class="blue" bindchange="Change" checked="true"></switch>
+</view>
+  
+
+
+  <button class='cu-btn  margin-top  margin-left margin-right bg-blue shadow lg block' form-type="submit" bindtap="submit">提交</button>
+</form>

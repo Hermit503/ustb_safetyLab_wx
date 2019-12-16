@@ -1,0 +1,4 @@
+/* pages/function/classLog/classLog.wxss */
+Page{
+  background-color: white;
+}

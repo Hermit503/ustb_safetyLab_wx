@@ -135,6 +135,13 @@ Component({
           icon: 'wenzi',
           btn: 'exam'
         },
+        {
+          title: '课堂日志',
+          name: 'Class Log',
+          color: 'brown',
+          icon: 'text',
+          btn: 'classLog'
+        },
       ],
       '实验室管理员': [{
           title: '人员管理',
@@ -212,6 +219,13 @@ Component({
           icon: 'wenzi',
           btn: 'exam'
         },
+        {
+          title: '课堂日志',
+          name: 'Class Log',
+          color: 'brown',
+          icon: 'text',
+          btn: 'classLog'
+        },
       ],
       '教师': [{
           title: '隐患/问题上报',
@@ -237,7 +251,8 @@ Component({
           title: '课堂日志',
           name: 'Class Log',
           color: 'brown',
-          icon: 'text'
+          icon: 'text',
+          btn:'classLog'
         },
       ],
     }
