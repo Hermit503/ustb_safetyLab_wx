@@ -11,7 +11,7 @@
 <view wx:if="{{role=='校级管理员'}}">
   <view style='min-height:45rpx;'></view>
   <view class='nav-list nav-list'>
-    <view hover-class='none' class="nav-li bg-{{item.color}}" wx:for="{{functions['校级管理员']}}" wx:key bindtap='into' data-btn='{{item.btn}}'>
+    <view hover-class='none' class="nav-li bg-{{item.color}}" wx:for="{{functions['校级管理员']}}" wx:key="*this" bindtap='into' data-btn='{{item.btn}}' >
       <view class="nav-title">{{item.title}}</view>
       <view class="nav-name">{{item.name}}</view>
       <text class='cuIcon-{{item.icon}}'></text>
@@ -23,7 +23,7 @@
 <view class='cu-list' wx:elif="{{role=='院级管理员'}}">
   <view style='min-height:45rpx;'></view>
   <view class='nav-list nav-list'>
-    <view hover-class='none' class="nav-li bg-{{item.color}}" wx:for="{{functions['院级管理员']}}" wx:key bindtap='into' data-btn='{{item.btn}}'>
+    <view hover-class='none' class="nav-li bg-{{item.color}}" wx:for="{{functions['院级管理员']}}" wx:key="*this" bindtap='into' data-btn='{{item.btn}}'>
       <view class="nav-title">{{item.title}}</view>
       <view class="nav-name">{{item.name}}</view>
       <text class='cuIcon-{{item.icon}}'></text>
