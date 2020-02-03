@@ -46,6 +46,10 @@
 			"currentL": -1,
 			"list": []
 		},
+		"gamePlugin": {
+			"current": -1,
+			"list": []
+		},
 		"miniprogram": {
 			"current": -1,
 			"list": [
@@ -103,6 +107,12 @@
 					"name": "消息通知",
 					"pathName": "pages/function/notice/message",
 					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "课堂日志",
+					"pathName": "pages/function/classLog/classLog",
 					"scene": null
 				}
 			]
