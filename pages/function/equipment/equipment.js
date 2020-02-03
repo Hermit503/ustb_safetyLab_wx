@@ -15,7 +15,8 @@ Page({
     msgdisplay: 'none',
     msg: '',
     page: 1,
-    height: 0
+    height: 0,
+    updateDisplay: 'none'
   },
 
   /**
@@ -48,7 +49,15 @@ Page({
         })
       }
     });
-
+    //判断有没有修改设备信息的权限，没有的话就不显示
+    let userPermission = wx.getStorageSync('Permission');
+    var permission = userPermission.find(function (value) {
+      if (value == 'updateEquipment') {
+        that.setData({
+          updateDisplay: 1
+        })
+      }
+    })
   },
 
   //分页
@@ -120,7 +129,7 @@ Page({
     let userPermission = wx.getStorageSync('Permission');
     //判断是否有设备管理的权限
     var permission = userPermission.find(function (value) {
-      if (value == 'allequipment' || value == 'addequipment') {
+      if (value == 'createEquipment') {
         wx.navigateTo({
           url: '../../function/equipment/equipmentDetails',
           success: function (res) { },
@@ -150,6 +159,10 @@ Page({
   },
   deleteEquipment:function(e){
     var that = this;
+    let userPermission = wx.getStorageSync('Permission');
+    //判断是否有设备管理的权限
+    var permission = userPermission.find(function (value) {
+      if (value == 'createEquipment') {
     wx.request({
       url: app.globalData.Url + '/equipment/delete',
       data: {
@@ -159,6 +172,13 @@ Page({
       success(res) {
         that.hideModal();
         that.onLoad();
+      }
+    })
+      }else{
+        wx.showToast({
+          title: '你没有权限哦',
+          icon: 'none'
+        })
       }
     })
   },
