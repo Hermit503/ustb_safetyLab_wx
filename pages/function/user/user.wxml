@@ -42,8 +42,8 @@
     </view>
 
     <view class="move">
-      <view class="bg-grey" bindtap='updateUser' data-unit="{{item.unit.id}}" data-id="{{item.user_id}}">编辑</view>
-      <view class="bg-red" bindtap="showModal" data-id="{{item.user_id}}" data-name="{{item.name}}" data-target="DialogModal1">删除</view>
+      <view class="bg-grey" bindtap='updateUser' data-unit="{{item.unit.id}}" data-id="{{item.user_id}}" style="display:{{updateDisplay}}">编辑</view>
+      <view class="bg-red" bindtap="showDeleteModal" data-id="{{item.user_id}}" data-name="{{item.name}}"  data-target="DialogModal1">删除</view>
     </view>
   </view>
   </view>

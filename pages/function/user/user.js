@@ -15,7 +15,8 @@ Page({
     msgdisplay: 'none',
     msg: '',
     page: 1,
-    height: 0
+    height: 0,
+    updateDisplay:'none'
   },
  
   /**
@@ -50,6 +51,14 @@ Page({
         })
       }
     });
+    let userPermission = wx.getStorageSync('Permission');
+    var permission = userPermission.find(function (value) {
+      if (value == 'updateUser') {
+        that.setData({
+          updateDisplay: 1
+        })
+      }
+    })
   },
 
   //分页
@@ -150,6 +159,7 @@ Page({
    * 模态框
    */
   showModal(e) {
+    
     this.setData({
       modalName: e.currentTarget.dataset.target,
       userSortId: e.currentTarget.dataset.id,
@@ -164,10 +174,23 @@ Page({
   },
   //删除的模态框
   showDeleteModal(e) {
-    this.setData({
-      modalName: e.currentTarget.dataset.target,
-      id: e.target.dataset.id
-    });
+    var that = this;
+    let userPermission = wx.getStorageSync('Permission');
+    var permission = userPermission.find(function (value) {
+      if (value == 'deleteUser') {
+        that.setData({
+          modalName: e.currentTarget.dataset.target,
+          userSortId: e.currentTarget.dataset.id,
+          userName: e.currentTarget.dataset.name
+        })
+      } else {
+        wx.showToast({
+          title: '你没有权限哦',
+          icon: 'none'
+        })
+      }
+    })
+    console.log(e.currentTarget.dataset)
   },
   hideDeleteModal(e) {
     this.setData({
@@ -181,9 +204,6 @@ Page({
       success: function(res) {
         // console.log(res)
       }
-    })
-    wx.showLoading({
-      title: '正在加载',
     })
     // console.log(e.currentTarget)
   },
