@@ -44,6 +44,7 @@ page {
   --pinkLight: #f9d7ea;
   --brownLight: #ede1d9;
   --greyLight: #e7ebed;
+  --bluee:#13AFFF;
   /* 渐变色 */
   --gradualRed: linear-gradient(45deg, #f43f3b, #ec008c);
   --gradualOrange: linear-gradient(45deg, #ff9700, #ed1c24);
@@ -3394,7 +3395,10 @@ scroll-view.cu-steps .cu-item {
   background-color: var(--blue);
   color: var(--white);
 }
-
+.bg-bluee{
+  background-color: var(--bluee);
+  color: var(--white);
+}
 .bg-purple {
   background-color: var(--purple);
   color: var(--white);
@@ -3812,7 +3816,9 @@ scroll-view.cu-steps .cu-item {
 .text-blue, .line-blue, .lines-blue {
   color: var(--blue);
 }
-
+.text-bluee, .line-bluee, .lines-bluee {
+  color: var(--bluee);
+}
 .text-purple, .line-purple, .lines-purple {
   color: var(--purple);
 }

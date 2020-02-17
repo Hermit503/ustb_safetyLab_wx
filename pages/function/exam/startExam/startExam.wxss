@@ -1,0 +1,146 @@
+page{
+  height: 100%;
+  background-color: gainsboro;
+}
+.UCenter-bg {
+  background-image: url(https://cdn.nlark.com/yuque/0/2019/png/280373/1569319056453-assets/web-upload/b70f536a-ff63-4ecd-ac8e-e0d301d4166b.png);
+  background-size:100% 100% ;
+  height:15rem;
+  display: flex;
+  justify-content: left;
+  overflow: hidden;
+  position: relative;
+  /* flex-direction: column; */
+  /* align-items: center; */
+  color: #fff;
+  font-weight: 300;
+  text-shadow: 0 0 3px rgba(0,0,0,0.3);
+}
+.time{
+  position: absolute;
+  width: 100%;
+  height: auto;
+  top: 6em;
+  text-align: center;
+}
+.exp{
+  color: #fff;
+  font-size: 50rpx;
+}
+
+.con{
+  background-color: rgb(240, 240, 240);
+  width: 80%;
+  height: 30em;
+  position: absolute;
+
+  top: 11em;
+  margin: 0 10%;
+  border-radius:5%;
+  box-shadow: 0rpx 0rpx 15rpx 1rpx rgb(160, 160, 160);
+}
+.logo{
+  width: 100%;
+  height: 4em;
+  /* background-color: red; */
+  position: absolute;
+  top: 9em;
+  z-index: 1;
+}
+.imgbox{
+  width:15%;
+  height: 100%;
+  background-color: white;
+  margin:0 44%;
+  border-radius: 50%;
+}
+.image{
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  box-shadow: 0rpx 0rpx 15rpx 1rpx grey;
+}
+.tip{
+  width: 100%;
+  height: 3em;
+  /* background-color: red; */
+}
+.dan{
+  margin-left: 0.5em;
+  margin-right: auto;
+  color: rgb(29, 29, 29);
+  font-size: 40rpx;
+}
+.currentQuestion{
+  margin-right: 1em;
+  margin-left: auto;
+  color: #13AFFF;
+  font-size: 50rpx;
+}
+.total{
+  color: #13AFFF;
+  font-size: 40rpx;
+}
+.question{
+  width: auto;
+  height: auto;
+  /* background-color: red; */
+  margin:5% 5%;
+  font-size: 35rpx;
+}
+.option{
+  margin-top: 2em;
+}
+.option-btn{
+  text-align: center;
+  margin-top: 1em;
+}
+.btn{
+  width: 80%;
+  padding: 0 20rpx;
+  height: 3em;
+  /* height: 4.4em; */
+  line-height: 3em;
+  text-align: left;
+  /* text-indent: -0.5em;  */
+  /* margin-left: 1em; */
+  border-radius: 1000rpx;
+  background:none;
+  border: 1rpx #13AFFF solid;
+  transform: translate(1rpx, 1rpx);
+  color: #13AFFF;
+  box-shadow: var(--ShadowSize) var(--blueShadow);
+}
+.btnclick{
+  width: 80%;
+  padding: 0 20rpx;
+  height: 3em;
+  /* height: 4.4em; */
+  line-height: 3em;
+  text-align: left;
+  /* text-indent: -0.5em;  */
+  /* margin-left: 1em; */
+  border-radius: 1000rpx;
+  background:none;
+  border: 1rpx white solid;
+  transform: translate(1rpx, 1rpx);
+  color: white;
+  background-color: #13AFFF;
+  box-shadow: var(--ShadowSize) var(--blueShadow);
+}
+
+.discribe{
+  /* background-color: red; */
+  width: 90%;
+  height: min-content;
+  line-height: 1;
+  align-self: center;
+}
+.sub{
+  height: 4em;
+  width: 100%;
+  /* background-color: red; */
+  position: absolute;
+  top:42em;
+
+}

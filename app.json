@@ -20,7 +20,11 @@
     "pages/function/inspection/inspection",
     "pages/function/notice/messageDetail",
     "pages/function/inspectionRecord/inspectionRecord",
-    "pages/function/classLog/classLog"
+    "pages/function/classLog/classLog",
+    "pages/function/study/study",
+    "pages/function/exam/exam",
+    "pages/function/exam/startExam/startExam",
+    "pages/function/exam/examResult/examResult"
   ],
   "window": {
     "backgroundTextStyle": "light",

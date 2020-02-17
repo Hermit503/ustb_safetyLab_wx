@@ -6,8 +6,8 @@
 
 
 
-<view class="cu-card article {{isCard?'no-card':''}}" wx:if="{{role!='实验室管理员'}}" style="background-color:#F5F5F5;padding-bottom:0rpx;padding-top:0rpx;" wx:for="{{classLog}}" wx:key>
-	<view class="cu-item shadow" style="padding-bottom:10rpx;margin-top:5rpx;margin-bottom:15rpx">
+<view class="cu-card article {{isCard?'no-card':''}}" wx:if="{{role!='实验室管理员'}}" style="background-color:#F5F5F5;padding-bottom:0rpx;padding-top:2rpx;" wx:for="{{classLog}}" wx:key>
+	<view class="cu-item shadow" style="padding-bottom:10rpx;margin-top:5rpx;margin-bottom:15rpx;">
 		<view class="title">
 			<view class='action'>
 				<text class='cuIcon-titles text-orange '></text> 课程名称：{{item.experimentalName}}
@@ -15,10 +15,11 @@
 		</view>
 		<view class="content">
 			<view class="desc">
-				<view class="text-content">
+				<view class="text-content" style="height:100%;">
 					<view>授课时间：{{item.created_at}}</view>
 					<view>上课地点：{{item.buildingName}}{{item.classroomNum}}</view>
 					<view>上课人数：{{item.studentNum}}人</view>
+					<view>授课教师：{{item.teacherName}}({{item.phoneNum}})</view>
 					<view>上课状况：{{item.status}}</view>
 				</view>
 				<view>

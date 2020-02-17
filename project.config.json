@@ -113,6 +113,28 @@
 					"id": -1,
 					"name": "课堂日志",
 					"pathName": "pages/function/classLog/classLog",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "在线考试",
+					"pathName": "pages/function/exam/exam",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "开始考试",
+					"pathName": "pages/function/exam/startExam/startExam",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": 11,
+					"name": "考试成绩",
+					"pathName": "pages/function/exam/examResult/examResult",
+					"query": "result=90",
 					"scene": null
 				}
 			]

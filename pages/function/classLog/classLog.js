@@ -160,10 +160,23 @@ Page({
         className:that.data.multiArray[0][that.data.multiIndex[0]],
         classNum:that.data.multiArray[1][that.data.multiIndex[1]],
         studentNum:parseInt(that.data.index) + 15,
-        status:that.data.status
+        status:that.data.status,
+        teacherName:wx.getStorageSync('UserData').name,
+        phoneNum:wx.getStorageSync('UserData').phone_number
       },
       success(res) {
         console.log(res)
+        if(res.statusCode==200){
+          wx.showToast({
+            title: '提交完成',
+            duration: 2000,
+            success:function(res){
+              wx.redirectTo({
+                url: '../../index/index',
+              })
+            }
+          });
+        }
       }
     })
   },

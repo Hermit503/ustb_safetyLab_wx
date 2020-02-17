@@ -1,0 +1,90 @@
+<cu-custom bgColor="bg-gradual-white" isBack="{{true}}" class="UCenter-bg">
+	<view slot="backText" bindtap="showModal" data-target="DialogModal1">退出考试</view>
+	<view slot="content">在线考试</view>
+</cu-custom>
+<view class="time">
+	<view class="exp" wx:if="{{minute+second!=0}}"><text>倒计时：{{minute}}:{{second}}</text></view>
+	<view class="exp" wx:else><text class="cuIcon-notice lg text-white"></text><text>时间到啦~</text></view>
+</view>
+<view class="logo">
+	<view class="imgbox">
+		<image class="image" src="https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=503728923,919053496&fm=26&gp=0.jpg"></image>
+	</view>
+</view>
+<view class="con">
+	<view class="flex  align-center tip">
+		<view class="dan">
+			<text>单项选择题</text>
+		</view>
+		<view class="currentQuestion">
+			<text>{{questionNum+1}}</text>
+			<text class="total">/50</text>
+		</view>
+	</view>
+
+	<view class="question">{{question[questionNum].question}}</view>
+
+	<view class="option flex-cloumn" wx:if="{{question[questionNum].option1!=null}}">
+		<view class="option-btn">
+			<button class="{{isClick[0]==1?'btnclick':'btn'}} flex" bindtap="btn" data-option="A">
+				<view class="A">A.</view>
+				<view class="discribe">{{question[questionNum].option1}}</view>
+			</button>
+		</view>
+		<view class="option-btn" wx:if="{{question[questionNum].option2!=null}}">
+			<button class="{{isClick[1]==1?'btnclick':'btn'}} flex" bindtap="btn" data-option="B">
+				<view class="A">B.</view>
+				<view class="discribe">{{question[questionNum].option2}}</view>
+			</button>
+		</view>
+		<view class="option-btn" wx:if="{{question[questionNum].option3!=null}}">
+			<button class="{{isClick[2]==1?'btnclick':'btn'}} flex" bindtap="btn" data-option="C">
+				<view class="A">C.</view>
+				<view class="discribe">{{question[questionNum].option3}}</view>
+			</button>
+		</view>
+		<view class="option-btn" wx:if="{{question[questionNum].option4!=null}}">
+			<button class="{{isClick[3]==1?'btnclick':'btn'}} flex" bindtap="btn" data-option="D">
+				<view class="A">D.</view>
+				<view class="discribe">{{question[questionNum].option4}}</view>
+			</button>
+		</view>
+	</view>
+</view>
+<view class="sub flex solid-bottom padding justify-around align-center">
+ <view class="last" wx:if="{{questionNum!=0}}">
+ <button class="cu-btn round line-bluee lg" bindtap="last">上 一 题</button>
+ </view>
+ <view class="next" wx:if="{{questionNum<49}}">
+ <button class="cu-btn round bg-bluee lg" bindtap="next" disabled="{{question?false:true}}">下 一 题</button>
+ </view>
+ <view class="submit" wx:if="{{questionNum>=49}}">
+ <button class="cu-btn round bg-bluee lg" bindtap="showModal" data-target="DialogModal1">交  卷</button>
+ </view>
+</view>
+
+
+
+
+
+<view class="cu-modal {{modalName=='DialogModal1'?'show':''}}">
+  <view class="cu-dialog">
+    <view class="cu-bar bg-white justify-end">
+      <view class="content">交卷确认</view>
+      <view class="action" bindtap="hideModal">
+        <text class="cuIcon-close text-red"></text>
+      </view>
+    </view>
+    <view class="padding-xl">
+      您确定要提交试卷？
+    </view>
+    <view class="cu-bar bg-white justify-end">
+      <view class="action">
+        <button class="cu-btn line-bluee text-green" bindtap="hideModal">继续做题</button>
+        <button class="cu-btn bg-bluee margin-left" bindtap="submit" >确定交卷</button>
+
+      </view>
+    </view>
+  </view>
+</view>
+
