@@ -40,7 +40,8 @@ Page({
         'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8'
       },
       data:{
-        'user_id':wx.getStorageSync('UserData').user_id
+        'user_id':wx.getStorageSync('UserData').user_id,
+        'unit_id':wx.getStorageSync('UserData').unit_id
       },
       success(res){
         wx.hideLoading({
@@ -94,8 +95,6 @@ Page({
   },
   next:function(res){
     let that = this;
-    //console.log(that.data.isClick)
-    //console.log(that.data.questionNum)
     let question  = that.data.questionNum+1;
     let clickCaches = "clickCache["+that.data.questionNum+"]";
     let click = [0,0,0,0];
@@ -129,6 +128,8 @@ Page({
     that.setData({
       [clickCaches]:that.data.isClick
     })
+
+    
     wx.request({
       url: app.globalData.Url+"/submitAchievement",
       method: 'POST',
@@ -136,14 +137,21 @@ Page({
         'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8'
       },
       data:{
-        achievement:[that.data.clickCache],
+        'achievement':[that.data.clickCache],
         'user_id':wx.getStorageSync('UserData').user_id
       },
       success(res){
-        // console.log(res);
+        //TODO: 修改成绩加入缓存
+        console.log(res);
+        if(res.data.result>=wx.getStorageSync('UserData').exam_result){
+          const stroage = wx.getStorageSync('UserData')
+          stroage.exam_result = res.data.result
+          wx.setStorageSync('UserData', stroage)
+       }
+        
         if(res.statusCode===200){
           wx.redirectTo({
-            url: '../examResult/examResult?result='+res.data,
+            url: '../examResult/examResult?result='+res.data.result,
             complete: (res) => {},
             fail: (res) => {},
             success: (res) => {},
@@ -156,6 +164,7 @@ Page({
     })
     // console.log(this.data.isClickCache)
   },
+
   showModal(e) {
     this.setData({
       modalName: e.currentTarget.dataset.target

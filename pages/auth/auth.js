@@ -99,9 +99,18 @@ Page({
                   wx.setStorageSync('UserData', res.data.data ? res.data.data : '')
                   wx.setStorageSync('Roles', userRoles)
                   wx.setStorageSync('Permission', userPermissions)
-                  wx.redirectTo({
-                    url: '/pages/index/index',
-                  })
+                  if(res.data.data.exam_result<80){
+                    wx.showToast({
+                      title: '您未通过考试',
+                    })
+                    wx.redirectTo({
+                      url: '../function/exam/exam',
+                    })
+                  }else{
+                    wx.redirectTo({
+                      url: '/pages/index/index',
+                    })
+                  }
                 }
               }
             });

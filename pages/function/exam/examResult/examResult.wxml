@@ -8,8 +8,8 @@
 	<view class="congradlation">{{result>=80?'恭喜您！通过考试':'很遗憾！未能通过考试'}}</view>
 	<view class="flex-cloumn btn">
 		<view class="study"><button class="cu-btn  bg-bluee round lg shadow " bindtap="study">继 续 学 习</button></view>
-		<view class="index"><button class="cu-btn  bg-bluee round lg shadow " bindtap="index">返 回 主 页</button></view>
-
+		<view class="index"><button class="cu-btn  bg-bluee round lg shadow " bindtap="index" wx:if="{{result>=80}}">返 回 主 页</button></view>
+		<view class="index"><button class="cu-btn  bg-bluee round lg shadow " bindtap="restart" wx:if="{{result<80}}">重 新 测 试</button></view>
 	</view>
 
 </view>

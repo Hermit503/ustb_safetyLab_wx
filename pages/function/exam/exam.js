@@ -6,7 +6,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-    
+    result:0
   },
 
   /**
@@ -17,7 +17,8 @@ Page({
       wx.getUserInfo({
         complete: (res) => {
           that.setData({
-            avatar:res.userInfo.avatarUrl
+            avatar:res.userInfo.avatarUrl,
+            result:wx.getStorageSync('UserData').exam_result
           });
           // console.log(res.userInfo.avatarUrl)
         },

@@ -12,7 +12,8 @@
 	<view class="img"> </view>
 </view>
 <view class="tips">
-	<text>您还没有进行实验室准入测试~快去考试吧~</text>
+	<text wx:if="{{result==0}}">您还没有进行实验室准入测试~快去考试吧~</text>
+	<text wx:else>您的最高成绩为：{{result}}分,继续努力～</text>
 </view>
 
 <view class="infomation">
@@ -44,5 +45,5 @@
 
 <view class="padding flex justify-around justify-between align-center btn">
 	<button class="cu-btn round lg bg-green shadow" bindtap="startExam">开 始 考 试</button>
-	<button class="cu-btn round lg bg-blue shadow" bindtap="gotoStudy">快 去 学 习</button>
+	<button class="cu-btn round lg bg-blue shadow" bindtap="gotoStudy">前 去 学 习</button>
 </view>
