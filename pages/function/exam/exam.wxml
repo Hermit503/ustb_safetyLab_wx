@@ -22,7 +22,7 @@
 	</view>
 	<view class="info">
 		<text class="left">考试科目</text>
-		<text class="right">通用常识+化工安全</text>
+		<text class="right">通用常识+专业习题</text>
 	</view>
 	<view class="info">
 		<text class="left">试题数量</text>

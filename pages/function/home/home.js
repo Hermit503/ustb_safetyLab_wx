@@ -343,7 +343,11 @@ Component({
           fail: function(res) {},
           complete: function(res) {},
         })
-      } else {
+      } else if(e.currentTarget.dataset.btn=='study'){
+        wx.navigateTo({
+          url: '../function/' + e.currentTarget.dataset.btn + "/" + e.currentTarget.dataset.btn+"?unit="+wx.getStorageSync('UserData').unit_id,
+        })
+      }else {
         wx.navigateTo({
           url: '../function/' + e.currentTarget.dataset.btn + "/" + e.currentTarget.dataset.btn,
         })

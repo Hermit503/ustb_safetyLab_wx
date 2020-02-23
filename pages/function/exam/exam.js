@@ -27,7 +27,7 @@ Page({
   gotoStudy(e){
     console.log(e)
     wx.redirectTo({
-      url: '../study/study',
+      url: '../study/study?unit='+wx.getStorageSync('UserData').unit_id,
       success(e){
         console.log("成功跳转到study")
       }

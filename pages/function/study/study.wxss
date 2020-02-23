@@ -1,1 +1,31 @@
 /* pages/function/study/study.wxss */
+Page{
+  background-color: var(--greyLight);
+  height: 100%;
+}
+.cards{
+  background-color: var(--white);
+  z-index: 1;
+  margin: 1em 1.5em 0 1.5em;
+  border-radius: 15rpx;
+  height: auto;
+}
+.title{
+  height: 85rpx;
+  margin-left: 1em;
+  font-size: 32rpx;
+  line-height:85rpx;
+}
+.img{
+  width: 100%;
+  max-height: 960rpx;
+  height: auto;
+  display:block;
+}
+.image{
+  width:100%;
+  min-height: 960rpx;
+}
+.btn{
+  margin: 1em 1.5em 1em 1.5em;
+}

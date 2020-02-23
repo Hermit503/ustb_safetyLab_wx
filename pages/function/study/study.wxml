@@ -2,3 +2,13 @@
 	<view slot="backText">返回</view>
 	<view slot="content">在线学习</view>
 </cu-custom>
+<view>
+	<view class="cards" wx:for="{{imageList}}" wx:key="{{index}}">
+		<view class="title"><text class='cuIcon-titles text-orange'></text>{{item.title}}</view>
+		<view class="img" wx:for="{{item.data}}" wx:key="{{index}}">
+			<image src="{{url}}{{item}}.png" class="image"></image>
+		</view>
+
+	</view>
+	<button class="cu-btn block bg-blue margin-tb-sm lg btn" bindtap="gotoExam">去考试</button>
+</view>

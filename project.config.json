@@ -136,6 +136,13 @@
 					"pathName": "pages/function/exam/examResult/examResult",
 					"query": "result=90",
 					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "学习",
+					"pathName": "pages/function/study/study",
+					"query": "unit=7",
+					"scene": null
 				}
 			]
 		}
