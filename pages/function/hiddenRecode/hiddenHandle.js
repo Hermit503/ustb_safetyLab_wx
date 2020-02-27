@@ -7,7 +7,8 @@ Page({
    */
   data: {
     imgList: [],
-    click: false
+    click: false,
+    role:null,
   },
   /**
  * 生命周期函数--监听页面加载
@@ -15,10 +16,15 @@ Page({
   onLoad: function (options) {
     console.log(options)
     let that = this;
+    that.setData({
+      role:wx.getStorageSync('Roles')[0],
+      hidden_id:options.id
+    });
     wx.request({
       url: app.globalData.Url + '/hiddens/' + options.id,
       data: {
-        user_id: options.id,
+        user_id:options.user_id,
+        id: options.id,
         title: options.title
       },
       header: {
@@ -66,8 +72,18 @@ Page({
       }
     });
   },
+  hiddenHandle(e) {
+    console.log(e.currentTarget.dataset)
+    wx.navigateTo({
+      url: './hiddenHandle?id=' + e.currentTarget.dataset.id + "&title=" + e.currentTarget.dataset.title + "&issolve=" + e.currentTarget.dataset.issolve,
+      success: function(res) {
+      },
+      fail: function(res) {},
+      complete: function(res) {},
+    })
+  },
   ViewImage(e) {
-    console.log(e)
+    // console.log(e)
     wx.previewImage({
       urls: [e.target.dataset.url],
       current: e.currentTarget.dataset.url
@@ -91,7 +107,7 @@ Page({
   },
 
   changeSwitch: function(e) {
-    console.log(e.detail.value)
+    // console.log(e.detail.value)
     let that = this
     if (e.detail.value) {
       that.setData({
@@ -116,11 +132,12 @@ Page({
           wx.request({
             url: app.globalData.Url + "/hiddensLog",
             data: {
+              hidden_id:that.data.hidden_id,
+              // asset_number:that.detail.
               reportPerson: that.data.user.user_id,
               title: e.detail.value.title,
               image: res.data,
               reason: e.detail.value.SolveReason,
-              user_id: wx.getStorageSync('UserData').user_id,
               solveStatus:that.data.addImage
             },
             header: {
@@ -151,8 +168,8 @@ Page({
           reportPerson: that.data.user.user_id,
           title: e.detail.value.title,
           reason: e.detail.value.noSolveReason,
-          user_id: wx.getStorageSync('UserData').user_id,
-          solveStatus: that.data.addImage
+          solveStatus: that.data.addImage,
+          hidden_id:that.data.hidden_id,
         },
         header: {
           'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8'
@@ -161,6 +178,7 @@ Page({
         dataType: 'json',
         responseType: 'text',
         success(res) {
+          console.log(e)
           if (res.statusCode == 201) {
             wx.navigateBack({
               delta: 1

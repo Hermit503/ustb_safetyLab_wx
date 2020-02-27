@@ -47,4 +47,10 @@ map,.mapBox{
   height: 300rpx;
 }
 
-
+.float-swiper{
+  height: 12em;
+  position: absolute;
+  width: 100%;
+  top: 1.1em;
+  text-align: center;
+}

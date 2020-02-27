@@ -274,7 +274,7 @@ Component({
   },
   methods: {
     into: function(e) {
-      if (e.currentTarget.dataset.btn == 'user' || e.currentTarget.dataset.btn == 'equipment' || e.currentTarget.dataset.btn == 'medcine') {
+      if (e.currentTarget.dataset.btn == 'user' || e.currentTarget.dataset.btn == 'equipment' || e.currentTarget.dataset.btn == 'chemical') {
         wx.request({
           url: app.globalData.Url + "/users/permissions/" + wx.getStorageSync('UserData').user_id,
           data: {

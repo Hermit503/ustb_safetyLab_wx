@@ -48,7 +48,7 @@
 
   <view class="cu-form-group align-start">
     <view class="title">{{detail.type=='issue'?'问题':'隐患'}}详情</view>
-    <textarea maxlength="-1" disabled="{{modalName!=null}}" bindinput="textareaAInput" value="{{detail.detail}}"></textarea>
+    <textarea maxlength="-1" disabled="{{modalName!=null}}" bindinput="textareaAInput" value="{{detail.detail}}" ></textarea>
   </view>
 
   <view class="cu-form-group action" bindtap="showMore">{{detail.type=='issue'?'问题':'隐患'}}处理记录
@@ -58,7 +58,7 @@
   </view>
   <view class="cu-item solid-top solid-bottom margin-left margin-right margin-top-xs" hidden="{{!click}}" wx:for="{{solveList}}" wx:key="{{index}}">
     <view class="flex align-center">
-      <view class="cu-tag bg-{{item.isSolve=='1'?'cyan':'red'}} light radius sm">{{item.isSolve=='1'?'处理成功':'处理失败'}}</view>
+      <view class="cu-tag bg-{{item.isSolve=='1'?'cyan':'red'}} light radius sm">{{item.isSolve=='1'?'处 理 成 功':'处 理 失 败'}}</view>
       <view style="margin-left:310rpx; color:#ccc;" class="margin-top-xs">
         <text>{{item.created_at}}</text>
       </view>
@@ -80,21 +80,21 @@
     <switch checked="{{isSolve}}" disabled="{{isSolve}}" bindchange="changeSwitch" class='blue sm'></switch>
   </view>
 
-  <view class="cu-form-group" hidden="{{addImage}}" wx:if="{{detail.isSolve==0}}">
+  <view class="cu-form-group" hidden="{{addImage}}" wx:if="{{detail.isSolve==0 && role!='院级管理员' && role!='校级管理员'}}">
     <view style='width:150rpx;'>
       <view class="title">原因</view>
     </view>
     <input name="noSolveReason" placeholder='请输入未解决的原因'></input>
   </view>
 
-  <view class="cu-form-group" hidden="{{!addImage}}">
+  <view class="cu-form-group" hidden="{{!addImage}}" wx:if="{{detail.isSolve==0 && role!='院级管理员' && role!='校级管理员'}}">
     <view style='width:150rpx;'>
       <view class="title">原因</view>
     </view>
     <input name="SolveReason" placeholder='请输入解决的原因'></input>
   </view>
 
-  <view class="cu-bar bg-white " style='border-top:1rpx solid #eee;' hidden="{{!addImage}}" wx:if="{{detail.isSolve==0}}">
+  <view class="cu-bar bg-white " style='border-top:1rpx solid #eee;' hidden="{{!addImage}}" wx:if="{{detail.isSolve==0 && role!='院级管理员' && role!='校级管理员'}}">
     <view class="action">
       照片上传
     </view>
@@ -104,7 +104,7 @@
   </view>
 
   <!-- 选择照片 -->
-  <view class="cu-form-group" hidden="{{!addImage}}" wx:if="{{detail.isSolve==0}}">
+  <view class="cu-form-group" hidden="{{!addImage}}" wx:if="{{detail.isSolve==0 && role!='院级管理员' && role!='校级管理员'}}">
     <view class="grid col-4 grid-square flex-sub">
       <view class="bg-img" wx:for="{{imgList}}" wx:key="{{index}}" bindtap="ViewImage" data-url="{{imgList[index]}}">
         <image src='{{imgList[index]}}' name="image" mode='aspectFill'></image>
@@ -118,5 +118,5 @@
     </view>
   </view>
 
-  <button class='cu-btn  margin-top  margin-left margin-right bg-gradual-blue  shadow lg block margin-bottom ' form-type="submit" wx:if="{{detail.isSolve==0}}">提交</button>
+  <button class='cu-btn  margin-top  margin-left margin-right bg-gradual-blue  shadow lg block margin-bottom ' form-type="submit" wx:if="{{detail.isSolve==0 && role!='院级管理员' && role!='校级管理员'}}">提交</button>
 </form>

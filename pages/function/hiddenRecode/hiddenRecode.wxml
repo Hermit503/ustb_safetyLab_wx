@@ -18,7 +18,7 @@
       <view class="cu-item shadow">
         <view class="title">
           <view class="text-cut">
-            <text class='cuIcon-titles text-orange'></text>{{item.title}}</view>
+            <text class='cuIcon-titles text-blue'></text>{{item.title}}</view>
         </view>
         <view class="content">
           <image src="{{item.image}}" mode="aspectFill"></image>
@@ -33,8 +33,8 @@
               <view class="padding cu-tag bg-blue light sm round margin-top-xxs" wx:if="{{item.type=='hidden'}}">隐患</view>
               <view class="padding cu-tag bg-green light sm round margin-top-xxs" wx:if="{{item.isSolve==0}}">未解决</view>
               <view class="padding cu-tag bg-green light sm round margin-top-xxs" wx:if="{{item.isSolve==1}}">已解决</view>
-              <button class='padding cu-btn bg-cyan light sm round fr' data-id='{{item.user_id}}' data-isSolve="{{item.isSolve}}" data-title="{{item.title}}" wx:if="{{role=='实验室管理员'&&item.isSolve==0}}" bindtap='hiddenHandle'>{{item.type=='issue'?'问题':'隐患'}}处理</button>
-              <button class='padding cu-btn bg-cyan light sm round fr' data-id='{{item.user_id}}' data-isSolve="{{item.isSolve}}" data-title="{{item.title}}" wx:elif="{{role!='实验室管理员'||item.isSolve==1}}" bindtap='hiddenHandle'>{{item.type=='issue'?'问题':'隐患'}}详情</button>
+              <button class='padding cu-btn bg-cyan light sm round fr' data-id='{{item.id}}' data-userid="{{item.user_id}}" data-isSolve="{{item.isSolve}}" data-title="{{item.title}}" wx:if="{{role=='实验室管理员'&&item.isSolve==0}}" bindtap='hiddenHandle'>{{item.type=='issue'?'问题':'隐患'}}处理</button>
+              <button class='padding cu-btn bg-cyan light sm round fr' data-id='{{item.id}}' data-userid="{{item.user_id}}" data-isSolve="{{item.isSolve}}" data-title="{{item.title}}" wx:elif="{{role!='实验室管理员'||item.isSolve==1}}" bindtap='hiddenHandle'>{{item.type=='issue'?'问题':'隐患'}}详情</button>
             </view>
           </view>
         </view>
@@ -63,8 +63,8 @@
               <view class="padding cu-tag bg-blue light sm round margin-top-xxs" wx:if="{{item.type=='hidden'}}">隐患</view>
               <view class="padding cu-tag bg-green light sm round margin-top-xxs" wx:if="{{item.isSolve==0}}">未解决</view>
               <view class="padding cu-tag bg-green light sm round margin-top-xxs" wx:if="{{item.isSolve==1}}">已解决</view>
-              <button class='padding cu-btn bg-cyan light sm round fr' data-id='{{item.user_id}}' data-isSolve="{{item.isSolve}}" data-title="{{item.title}}" wx:if="{{role=='实验室管理员'&&item.isSolve==0}}" bindtap='hiddenHandle'>{{item.type=='issue'?'问题':'隐患'}}处理</button>
-              <button class='padding cu-btn bg-cyan light sm round fr' data-id='{{item.user_id}}' data-isSolve="{{item.isSolve}}" data-title="{{item.title}}" wx:elif="{{role!='实验室管理员'||item.isSolve==1}}" bindtap='hiddenHandle'>{{item.type=='issue'?'问题':'隐患'}}详情</button>
+              <button class='padding cu-btn bg-cyan light sm round fr' data-id='{{item.id}}' data-userid="{{item.user_id}}" data-issolve="{{item.isSolve}}" data-title="{{item.title}}" wx:if="{{role=='实验室管理员'&&item.isSolve==0}}" bindtap='hiddenHandle'>{{item.type=='issue'?'问题':'隐患'}}处理</button>
+              <button class='padding cu-btn bg-cyan light sm round fr' data-id='{{item.id}}' data-userid="{{item.user_id}}" data-issolve="{{item.isSolve}}" data-title="{{item.title}}" wx:elif="{{role!='实验室管理员'||item.isSolve==1}}" bindtap='hiddenHandle'>{{item.type=='issue'?'问题':'隐患'}}详情</button>
             </view>
           </view>
         </view>

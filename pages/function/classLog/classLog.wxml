@@ -10,7 +10,7 @@
 	<view class="cu-item shadow" style="padding-bottom:10rpx;margin-top:5rpx;margin-bottom:15rpx;">
 		<view class="title">
 			<view class='action'>
-				<text class='cuIcon-titles text-orange '></text> 课程名称：{{item.experimentalName}}
+				<text class='cuIcon-titles text-orange '></text> <text class='cuIcon-titles text-orange'></text>课程名称：{{item.experimentalName}}
 			</view>
 		</view>
 		<view class="content">
@@ -29,7 +29,7 @@
 	</view>
 </view>
 
-<form bindsubmit="formSubmit" wx:if="{{role=='实验室管理员'}}">
+<form bindsubmit="formSubmit" wx:if="{{role=='实验室管理员'||role=='教师'}}">
 	<view class="cu-form-group">
 		<view style='width:150rpx;'>
 			<view class="title">实验名称</view>

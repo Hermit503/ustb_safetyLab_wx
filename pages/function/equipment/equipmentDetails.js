@@ -40,14 +40,23 @@ Page({
   },
 
   getAsset:function(){
-    wx.chooseImage({
-      count: 1, //默认9
-      sizeType: ['original', 'compressed'], //可以指定是原图还是压缩图，默认二者都有
-      sourceType: ['album'], //从相册选择
-      success: (res) => {
-        console.log('调用成功');
+    wx.scanCode({
+      complete: (res) => {
+        console.log("成功扫🐎");
+        console.log(res);
+        this.setData({
+          assetnumber:res.result
+        })
       }
-    });
+    })
+    // wx.chooseImage({
+    //   count: 1, //默认9
+    //   sizeType: ['original', 'compressed'], //可以指定是原图还是压缩图，默认二者都有
+    //   sourceType: ['album'], //从相册选择
+    //   success: (res) => {
+    //     console.log('调用成功');
+    //   }
+    // });
   },
 
   PickerChange(e) {

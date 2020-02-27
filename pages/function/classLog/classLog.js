@@ -188,7 +188,7 @@ Page({
     that.setData({
       role:wx.getStorageSync('Roles')[0]
     })
-    if (wx.getStorageSync('Roles') == "实验室管理员"){
+    if (wx.getStorageSync('Roles') == "实验室管理员"||wx.getStorageSync('Roles')=='教师'){
       wx.request({
         url: app.globalData.Url + "/getLaboratoryList",
         method: 'GET',

@@ -1,6 +1,6 @@
 <cu-custom bgColor="bg-gradual-blue" isBack="{{true}}">
-  <view slot="backText">返回</view>
-  <view slot="content">电子巡检</view>
+	<view slot="backText">返回</view>
+	<view slot="content">电子巡检</view>
 </cu-custom>
 
 <!-- <view>{{inspection.asset_number}}</view>
@@ -10,45 +10,66 @@
 
 
 <view class="cu-form-group">
-  <view class="title-xl">{{inspection.equipment_name?'设备ID':'药品ID'}}</view>
-  <input value="{{inspection.asset_number||inspection.chemical_id}}" disabled="true"></input>
+	<view class="title-xl">{{inspection.equipment_name?'设备ID':'药品ID'}}</view>
+	<input value="{{inspection.asset_number||inspection.chemical_id}}" disabled="true"></input>
 </view>
 <view class="cu-form-group" wx:if="{{inspection.CAS}}">
-  <view class="title-xxl">CAS</view>
-  <input value="{{inspection.CAS}}" disabled="true"></input>
+	<view class="title-xxl">CAS</view>
+	<input value="{{inspection.CAS}}" disabled="true"></input>
 </view>
 
 <view class="cu-form-group">
-  <view class="title-xl">{{inspection.equipment_name?'设备名':'药品名'}}</view>
-  <input value="{{inspection.equipment_name||inspection.name}}" disabled="true"></input>
+	<view class="title-xl">{{inspection.equipment_name?'设备名':'药品名'}}</view>
+	<input value="{{inspection.equipment_name||inspection.name}}" disabled="true"></input>
 </view>
 
 <view class="cu-form-group">
-  <view class="title">{{inspection.equipment_name?'设备位置':'药品位置'}}</view>
-  <input value="{{inspection.laboratories.building_name}}{{inspection.laboratories.classroom_num}}({{inspection.laboratories.laboratory_name}})" disabled="true"></input>
+	<view class="title">{{inspection.equipment_name?'设备位置':'药品位置'}}</view>
+	<input value="{{inspection.laboratories.building_name}}{{inspection.laboratories.classroom_num}}({{inspection.laboratories.laboratory_name}})" disabled="true"></input>
 </view>
 
 <view class="cu-form-group">
-  <view class="title">检修时间</view>
-  <input value="{{inspection.fix_time?inspection.fix_time:'未知'}}" disabled="true"></input>
+	<view class="title">检修时间</view>
+	<input value="{{inspection.fix_time?inspection.fix_time:'未知'}}" disabled="true"></input>
 </view>
 <view class="cu-form-group" wx:if="{{!inspection.CAS}}">
-  <view class="title">设备状态</view>
-  <input value="{{status}}" disabled="true"></input>
-  <switch bindchange="Change" checked="{{inspection.status=='正常'}}"></switch>
+	<view class="title">设备状态</view>
+	<input value="{{status}}" disabled="true"></input>
+	<switch bindchange="Change" checked="{{inspection.status=='正常'}}"></switch>
 </view>
 <view class="cu-form-group" wx:if="{{inspection.stock}}">
-  <view class="title">当前余量</view>
-  <input value="{{inspection.stock}}{{inspection.unit_type}}" disabled="true"></input>
+	<view class="title">当前余量</view>
+	<input value="{{inspection.stock}}{{inspection.unit_type}}" disabled="true"></input>
 </view>
 <view class="cu-form-group" wx:if="{{inspection.chemical_id}}">
-  <view class="title">药品状态</view>
-    <input value="{{status}}" disabled="true"></input>
-  <switch bindchange="Change" checked="{{inspection.status=='正常'}}"></switch>
+	<view class="title">药品状态</view>
+	<input value="{{status}}" disabled="true"></input>
+	<switch bindchange="Change" checked="{{inspection.status=='正常'}}"></switch>
 </view>
-  <view class="cu-form-group align-start" wx:if="{{status != inspection.status&&inspection.status}}">
-    <view class="title">问题描述</view>
-    <textarea maxlength="-1" disabled="{{modalName!=null}}" name="detail" bindinput="textareaAInput" placeholder="请输入详情描述"></textarea>
+<view class="cu-form-group align-start" wx:if="{{status != inspection.status&&inspection.status}}">
+	<view class="title">问题描述</view>
+	<textarea maxlength="-1" disabled="{{modalName!=null}}" name="detail" bindinput="textareaAInput" placeholder="请输入详情描述"></textarea>
+</view>
+  <view class="cu-bar bg-white " style='border-top:1rpx solid #eee;' wx:if="{{status != inspection.status&&inspection.status}}">
+    <view class="action">
+      照片上传
+    </view>
+    <view class="action">
+      {{imgList.length}}/1
+    </view>
   </view>
-  <button class='cu-btn  margin-top  margin-left margin-right bg-blue shadow lg block' form-type="submit" bindtap="Submit">提交</button>
+  <view class="cu-form-group solids-bottom" wx:if="{{status != inspection.status&&inspection.status}}"> 
+    <view class="grid col-4 grid-square flex-sub">
+      <view class="bg-img" wx:for="{{imgList}}" wx:key="{{index}}" bindtap="ViewImage" data-url="{{imgList[index]}}">
+        <image src='{{imgList[index]}}' name="image" mode='aspectFill'></image>
+        <view class="cu-tag bg-red" catchtap="DelImg" data-index="{{index}}">
+          <text class="cuIcon-close"></text>
+        </view>
+      </view>
+      <view class="solids" bindtap="ChooseImage" wx:if="{{imgList.length<1}}">
+        <text class="cuIcon-cameraadd"></text>
+      </view>
+    </view>
+  </view>
 
+<button class='cu-btn  margin-top  margin-left margin-right bg-blue shadow lg block' form-type="submit" bindtap="Submit">提交</button>

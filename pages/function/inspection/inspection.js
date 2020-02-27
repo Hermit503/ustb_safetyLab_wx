@@ -6,7 +6,9 @@ Page({
    * 页面的初始数据
    */
   data: {
-
+    imgList: [],
+    type: 'hidden',
+    up:0
   },
 
   /**
@@ -56,16 +58,19 @@ Page({
     var t = this.data.inspection.status;
     if (e.detail.value == true) {
       that.setData({
-        status: '正常'
+        status: '正常',
+        up:0
       })
     } else if (e.detail.value == false) {
       if (that.data.inspection.chemical_id) {
         that.setData({
-          status: '存在问题'
+          status: '存在问题',
+          up:1
         })
       } else {
         that.setData({
-          status: '维修'
+          status: '维修',
+          up:1
         })
       }
 
@@ -85,38 +90,91 @@ Page({
     } else {
       var type = "equipment";
     }
-    wx.request({
-      url: app.globalData.Url + '/inspections/' + that.data.inspection_id,
-      data: {
-        id: that.data.inspection_id,
-        type:type,
-        repair_user: wx.getStorageSync('UserData').user_id,
-        status: that.data.status,
-        detail:that.data.textareaAValue
-      },
-      header: {
-        'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8'
-      },
-      method: 'PUT',
-      dataType: 'json',
-      responseType: 'text',
-      success: function(res) {
-        console.log(res)
-        if(res.data=='检修完成'&&res.statusCode==200){
-          wx.showToast({
-            title: '检修完成',
-            duration: 2000,
-            success:function(res){
-              wx.redirectTo({
-                url: '../../index/index',
-              })
+    wx.uploadFile({
+      url: app.globalData.Url + "/hiddens/upload",
+      filePath: that.data.imgList[0],
+      name:'file',
+      success(res) {
+        wx.request({
+          url: app.globalData.Url + '/inspections/' + that.data.inspection_id,
+          data: {
+            id: that.data.inspection_id,
+            type:type,
+            repair_user: wx.getStorageSync('UserData').user_id,
+            status: that.data.status,
+            detail:that.data.textareaAValue,
+            image:res.data,
+            up:that.data.up,
+            position:that.data.inspection.laboratories.building_name+that.data.inspection.laboratories.classroom_num,
+            inspection_id:that.data.inspection_id
+          },
+          header: {
+            'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8'
+          },
+          method: 'PUT',
+          dataType: 'json',
+          responseType: 'text',
+          success: function(res) {
+            console.log(res)
+            if(res.data=='检修完成'&&res.statusCode==200){
+              wx.showToast({
+                title: '检修完成',
+                duration: 2000,
+                success:function(res){
+                  wx.redirectTo({
+                    url: '../../index/index',
+                  })
+                }
+              });
+              
             }
-          });
-          
+          },
+          fail: function(res) {},
+          complete: function(res) {},
+        })
+      }
+    })
+    
+  },
+  ChooseImage() {
+    wx.chooseImage({
+      count: 1, //默认9
+      sizeType: ['compressed'], //可以指定是原图还是压缩图，默认二者都有
+      sourceType: ['camera'], //从相机拍摄
+      success: (res) => {
+        if (this.data.imgList.length != 0) {
+          this.setData({
+            imgList: this.data.imgList.concat(res.tempFilePaths)
+          })
+        } else {
+          this.setData({
+            imgList: res.tempFilePaths
+          })
+          console.log(res.tempFilePaths)
         }
-      },
-      fail: function(res) {},
-      complete: function(res) {},
+      }
+    });
+  },
+  ViewImage(e) {
+    wx.previewImage({
+      urls: this.data.imgList,
+      current: e.currentTarget.dataset.url
+    });
+  },
+  DelImg(e) {
+    wx.showModal({
+      title: '照片删除',
+      content: '确定要删除吗？',
+      cancelText: '取消',
+      confirmText: '确定',
+      success: res => {
+        if (res.confirm) {
+          this.data.imgList.splice(e.currentTarget.dataset.index, 1);
+          this.setData({
+            imgList: this.data.imgList
+          })
+        }
+      }
     })
   },
   /**

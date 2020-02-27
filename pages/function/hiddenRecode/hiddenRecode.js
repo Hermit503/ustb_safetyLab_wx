@@ -25,7 +25,7 @@ Page({
       success: function (res) {
         console.log(res.windowHeight)
         that.setData({
-          height: res.windowHeight,
+          height: res.windowHeight
         })
       },
     })
@@ -55,7 +55,7 @@ Page({
   hiddenHandle(e) {
     console.log(e.currentTarget.dataset)
     wx.navigateTo({
-      url: './hiddenHandle?id=' + e.currentTarget.dataset.id + "&title=" + e.currentTarget.dataset.title + "&issolve=" + e.currentTarget.dataset.issolve,
+      url: './hiddenHandle?id=' + e.currentTarget.dataset.id +"&user_id="+e.currentTarget.dataset.userid+ "&title=" + e.currentTarget.dataset.title + "&issolve=" + e.currentTarget.dataset.issolve,
       success: function(res) {
       },
       fail: function(res) {},
