@@ -44,5 +44,7 @@ map,.mapBox{
   width: 750rpx;
   height: 300rpx;
 }
-
+.png{
+  border-radius: 50%;
+}
 

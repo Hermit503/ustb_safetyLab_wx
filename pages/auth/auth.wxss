@@ -9,7 +9,7 @@ Page{
   z-index: -1;
 }
 .logo{
-  margin-top: 180rpx;
+  margin-top: 21em;
  display:flex;                   
  justify-content: center;
 }

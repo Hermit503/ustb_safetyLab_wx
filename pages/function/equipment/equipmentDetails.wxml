@@ -47,7 +47,7 @@
   <!--入库时间-->
 	<view class="cu-form-group">
 		<view class="title">入库时间</view>
-		<picker mode="date" value="{{storagedate}}" start="2015-09-01" end="2020-09-01" bindchange="StorageDateChange" name="storage_time">
+		<picker mode="date" value="{{storagedate}}" start="2019-09-01" end="2022-09-01" bindchange="StorageDateChange" name="storage_time">
 			<view class="picker">
 				{{storagedate}}
 			</view>
@@ -56,7 +56,7 @@
   <!--预计报废时间-->
 	<view class="cu-form-group">
 		<view class="title">预计报废时间</view>
-		<picker mode="date" value="{{scrapdate}}" start="2015-09-01" end="2020-09-01" bindchange="ScrapDateChange" name="scrap_time">
+		<picker mode="date" value="{{scrapdate}}" start="2019-09-01" end="2022-09-01" bindchange="ScrapDateChange" name="scrap_time">
 			<view class="picker">
 				{{scrapdate}}
 			</view>

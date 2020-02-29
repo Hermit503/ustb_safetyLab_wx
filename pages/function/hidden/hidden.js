@@ -57,7 +57,7 @@ Page({
     //   success(res) {
         wx.uploadFile({
           url: app.globalData.Url + "/hiddens/upload",
-          filePath: this.data.imgList[0],
+          filePath: that.data.imgList[0],
           name: 'file',
           success(res) {
             console.log(res)
