@@ -143,11 +143,12 @@ Page({
       success(res){
         //TODO: 修改成绩加入缓存
         console.log(res);
-        if(res.data.result>=wx.getStorageSync('UserData').exam_result){
-          const stroage = wx.getStorageSync('UserData')
+        const stroage = wx.getStorageSync('UserData')
+        stroage.residue_degree = res.data.residue_degree
+        if(res.data.result>=stroage.exam_result){
           stroage.exam_result = res.data.result
-          wx.setStorageSync('UserData', stroage)
        }
+       wx.setStorageSync('UserData', stroage)
         
         if(res.statusCode===200){
           wx.redirectTo({

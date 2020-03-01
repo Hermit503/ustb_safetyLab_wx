@@ -18,7 +18,8 @@ Page({
         complete: (res) => {
           that.setData({
             avatar:res.userInfo.avatarUrl,
-            result:wx.getStorageSync('UserData').exam_result
+            result:wx.getStorageSync('UserData').exam_result,
+            residue_degree:wx.getStorageSync('UserData').residue_degree
           });
           // console.log(res.userInfo.avatarUrl)
         },
@@ -34,12 +35,19 @@ Page({
     })
   },
   startExam(){
-    wx.redirectTo({
-      url: './startExam/startExam',
-      success(e){
-        console.log("开始考试")
-      }
-    })
+    if(wx.getStorageSync('UserData').residue_degree<1){
+      wx.showToast({
+        title: '无考试资格',
+      })
+    }else{
+      wx.redirectTo({
+        url: './startExam/startExam',
+        success(e){
+          console.log("开始考试")
+        }
+      })
+    }
+    
   },
 
   /**

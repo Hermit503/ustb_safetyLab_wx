@@ -38,12 +38,16 @@
 	</view>
 	<view class="info">
 		<text class="left">出题规则</text>
-		<text class="right">根据在线考试板块中题目所选</text>
+		<text class="right">根据在线学习板块中题目所选</text>
+	</view>
+		<view class="info">
+		<text class="left">剩余次数</text>
+		<text class="right">{{residue_degree}}次</text>
 	</view>
 </view>
 
 
-<view class="padding flex justify-around justify-between align-center btn">
+<view class="padding-xl flex justify-around justify-between align-center btn">
 	<button class="cu-btn round lg bg-green shadow" bindtap="startExam">开 始 考 试</button>
 	<button class="cu-btn round lg bg-blue shadow" bindtap="gotoStudy">前 去 学 习</button>
 </view>
