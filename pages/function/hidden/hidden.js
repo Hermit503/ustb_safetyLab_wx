@@ -55,6 +55,9 @@ Page({
     //   src: this.data.imgList[0], // 图片路径
     //   quality: 80,
     //   success(res) {
+      wx.showLoading({
+        title: '正在上报',
+      })
         wx.uploadFile({
           url: app.globalData.Url + "/hiddens/upload",
           filePath: that.data.imgList[0],
@@ -83,6 +86,7 @@ Page({
                   wx.navigateBack({
                     delta: 1
                   });
+                  wx.hideLoading();
                   wx.showToast({
                     title: '提交成功',
                     duration: 1500

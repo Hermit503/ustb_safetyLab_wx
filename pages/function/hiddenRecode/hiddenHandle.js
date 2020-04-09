@@ -105,7 +105,11 @@ Page({
       }
     })
   },
-
+  ringUp(res){
+    wx.makePhoneCall({
+      phoneNumber: res.target.dataset.phone //仅为示例，并非真实的电话号码
+    })
+  },
   changeSwitch: function(e) {
     // console.log(e.detail.value)
     let that = this

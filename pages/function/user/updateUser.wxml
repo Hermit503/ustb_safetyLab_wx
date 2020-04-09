@@ -38,7 +38,7 @@
       </view>
     </picker>
   </view>
-  <!-- 权限 -->
+  <!-- 权限
   <view class="cu-form-group">
     <text class='text-red text-xxl'>*</text>
     <view class="title">权限</view>
@@ -50,7 +50,7 @@
         <checkbox value="{{item.name}}" checked="{{item.checked}}"/><text decode="{{true}}">&ensp;</text>{{item.value}}
       </view>
     </label>
-  </checkbox-group>
+  </checkbox-group> -->
 
 
   <button class='cu-btn  margin-top  margin-left margin-right bg-blue shadow lg block' form-type="submit">提交</button>

@@ -28,7 +28,7 @@
     <view style='width:150rpx;'>
       <view class="title">上报人</view>
     </view>
-    <input value='{{user.title}}  ({{user.phone_number}})' disabled='true'></input>
+    <input bindtap="ringUp" data-phone="{{user.phone_number}}" value='{{user.name}}  ({{user.phone_number}})' disabled='true'></input>
   </view>
 
   <view class="cu-form-group">
