@@ -1,16 +1,18 @@
 /* pages/auth/auth.wxss */
 
 Page{
-  margin-top: 13em;
-  height:100%;
+  /* margin-top:40%; */
+  height:750rpx;
   width: 100%;
+
   background-image:url('https://i.loli.net/2020/04/09/zwNX5EymkvoGnqx.png');
   background-repeat: no-repeat;
-  background-size: 100%;
+  /* 重要 */
+  background-size: 100% 100%;
   z-index: -1;
 }
 .logo{
-  margin-top: 21em;
+  margin-top: 20%;
  display:flex;                   
  justify-content: center;
 }
@@ -18,6 +20,7 @@ Page{
 width: 60%;
 }
 .login{
+  margin-top: 57%;
   width: 100%;
 }
 .cu-form-group{
