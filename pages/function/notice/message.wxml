@@ -85,14 +85,14 @@
             </view>
           </view>
 
-          <view class="name-list flex" wx:if="{{item.noticeType=='notice'}}" bindtap="getOneMessage" data-id="{{item.id}}" data-name="{{item.name}}" data-title="{{item.title}}" data-comment="{{item.comment}}" data-pictures="{{item.pictures}}" data-received="true">
+          <view class="name-list flex align-center" wx:if="{{item.noticeType=='notice'}}" bindtap="getOneMessage" data-id="{{item.id}}" data-name="{{item.name}}" data-title="{{item.title}}" data-comment="{{item.comment}}" data-pictures="{{item.pictures}}" data-received="true">
             <view class="equipment-width">
               <text>{{item.name}}</text>
             </view>
-            <view class="text-sm text-cut" style="width:470rpx; text-align:left;">
+            <view class="text-sm text-cut align-center" style="width:380rpx; text-align:left;">
               <text>{{item.msg}}</text>
             </view>
-            <view class="action">
+            <view class="action align-center" style="width:6em">
               <view class="text-grey text-xs">{{item.time}}</view>
             </view>
           </view>

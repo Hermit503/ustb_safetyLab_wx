@@ -1,11 +1,12 @@
 /* pages/auth/auth.wxss */
 
 Page{
-  height:auto;
+  margin-top: 13em;
+  height:100%;
   width: 100%;
-  background-image:url('https://cdn.nlark.com/yuque/0/2019/png/223589/1551628180485-assets/web-upload/1431efa1-478c-4ea6-bd13-ab08e581cb57.png');
+  background-image:url('https://i.loli.net/2020/04/09/zwNX5EymkvoGnqx.png');
   background-repeat: no-repeat;
-  background-size: 130%;
+  background-size: 100%;
   z-index: -1;
 }
 .logo{
@@ -17,7 +18,7 @@ Page{
 width: 60%;
 }
 .login{
-  margin-top: 30%;
+  width: 100%;
 }
 .cu-form-group{
   height: 100rpx;

@@ -31,6 +31,7 @@ page {
   --ghostWhite: #f1f1f1;
   --white: #fff;
   --purple-red: #a664db;
+  --gray-purple:#7b8df9;
   /* 浅色 */
   --redLight: #fadbd9;
   --orangeLight: #fde6d2;
@@ -2293,6 +2294,13 @@ button.icon.lg {
   min-height: 100rpx;
   justify-content: space-between;
 }
+.cu-form-group-zidingyi {
+  /* background-color: var(--white); */
+  display: flex;
+  align-items: center;
+  min-height: 40rpx;
+  justify-content: space-between;
+}
 
 .cu-form-group+.cu-form-group {
   border-top: 1rpx solid #eee;
@@ -3053,7 +3061,12 @@ scroll-view.cu-steps .cu-item {
 .margin-left-xs {
   margin-left: 10rpx;
 }
-
+.margin-left-xxl{
+  margin-left: 60rpx;
+}
+.margin-right-xxl{
+  margin-right: 60rpx;
+}
 .margin-left-sm {
   margin-left: 20rpx;
 }
@@ -3393,6 +3406,10 @@ scroll-view.cu-steps .cu-item {
 
 .bg-blue {
   background-color: var(--blue);
+  color: var(--white);
+}
+.bg-gray-purple{
+  background-color: var(--gray-purple);
   color: var(--white);
 }
 .bg-bluee{
@@ -3953,6 +3970,12 @@ checkbox .wx-checkbox-input.wx-checkbox-input-checked::before {
 }
 .basis-25 {
   flex-basis: 25%;
+}
+.basis-20 {
+  flex-basis: 20%;
+}
+.basis-30 {
+  flex-basis: 30%;
 }
 
 

@@ -20,18 +20,18 @@
     <text>{{msg}}</text>
   </view>
   <view class="flex flex-wrap text-center">
-    <view class="basis-25 bg-white padding-sm">
+    <view class="basis-30 bg-white padding-sm">
       <text class="cuIcon-title text-blue"></text > 姓名</view>
-  <view class="basis-25 bg-white padding-sm"><text></text >工号</view>
+  <view class="basis-20 bg-white padding-sm"><text></text >工号</view>
   <view class="basis-25 bg-white padding-sm"><text></text >单位</view>
   <view class="basis-25 bg-white padding-sm"><text></text >职位</view>
   </view>
   <view class="cu-list menu-avatar text-center">
     <view class="cu-item {{modalName=='move-box-'+ index?'move-cur':''}}" wx:for="{{userList}}" wx:key bindtouchstart="ListTouchStart" bindtouchmove="ListTouchMove" bindtouchend="ListTouchEnd" data-target="move-box-{{index}}" style="width=100%;">
-        <view class='basis-25 bg-white padding-sm'>
+        <view class='basis-30 bg-white padding-sm'>
           <text bindtap='showModal' data-id="{{index}}" data-target="showUser">{{item.name}}</text>
     </view>
-    <view class="basis-25 bg-white padding-sm">
+    <view class="basis-20 bg-white padding-sm">
       <text>{{item.user_id}}</text>
     </view>
     <view class="basis-25 bg-white padding-sm">
@@ -94,7 +94,7 @@
     </view>
     <view class="flex">
       <view class='flex-sub  padding-xs margin-xs s'>电话</view>
-      <view class='flex-twice  padding-top-xs margin-xs text-left'>{{userList[userSortId].phone_number}}</view>
+      <view class='flex-twice  padding-top-xs margin-xs text-left'>{{userList[userSortId].phone_number}} <view class="cu-tag bg-blue round" bindtap="ringUp" data-phone="{{userList[userSortId].phone_number}}">拨号</view></view>
     </view>
     <view class="padding-sm cu-bar bg-white justify-end">
       <view class="action">

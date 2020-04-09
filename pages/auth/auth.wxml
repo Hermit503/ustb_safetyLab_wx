@@ -1,9 +1,17 @@
-<view class="logo">
-  <!-- <image src="../../images/logo.png"></image> -->
-</view>
+
 <view class='login'>
-  <input class="cu-form-group margin-top radiuss margin-left margin-right" name="userId" type='text' placeholder="Job number" bindinput="userIdInput" />
-  <input class="cu-form-group  margin-top radiuss margin-left margin-right" name="userPwd" type='password' placeholder="PassWord" bindinput="userPwdInput" />
-  <button class='cu-btn  margin-top  margin-left margin-right bg-blue shadow lg block' open-type="getUserInfo" bindgetuserinfo="login" disabled="{{isClick}}" type='success'>
+
+<view class="flex  p-xs margin-bottom-sm margin-right-xl margin-left mb-sm ">
+      <view class="flex-sub padding-top-sm padding-bottom-sm padding-left-sm radius text-right text-xxl "><text class="cuIcon-friendfavor lg text-gray"></text></view>
+      <view class="flex-six  padding-sm margin-top-xs margin-bottom-xs radius solid-bottom"><input class="cu-form-group-zidingyi " name="userId" type='text' placeholder="请输入您的工号" bindinput="userIdInput"></input></view>
+    </view>
+    <view class="flex  p-xs margin-bottom-sm margin-right-xl margin-left mb-sm ">
+      <view class="flex-sub padding-top-sm padding-bottom-sm padding-left-sm radius text-right text-xxl "><text class="cuIcon-unlock lg text-gray"></text></view>
+      <view class="flex-six  padding-sm margin-top-xs margin-bottom-xs radius solid-bottom"><input class="cu-form-group-zidingyi" name="userPwd" type='password' placeholder="请输入您的密码" bindinput="userPwdInput" /></view>
+    </view>
+  <!-- 工号
+
+  密码<input class="cu-form-group-zidingyi margin-top solid-bottom margin-left-xxl margin-right-xxl" name="userPwd" type='password' placeholder="PassWord" bindinput="userPwdInput" /> -->
+  <button class='cu-btn  margin-top-xl  margin-left-xxl margin-right-xxl bg-blue shadow lg round block' open-type="getUserInfo" bindgetuserinfo="login" disabled="{{isClick}}" type='success'>
     <text wx:if="{{isClick}}" class='cuIcon-loading2 iconfont-spin'></text> 登录</button>
 </view>

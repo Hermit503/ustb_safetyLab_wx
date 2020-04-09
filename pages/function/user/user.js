@@ -230,7 +230,11 @@ Page({
       complete: function(res) {},
     })
   },
-
+  ringUp(res){
+    wx.makePhoneCall({
+      phoneNumber: res.target.dataset.phone //仅为示例，并非真实的电话号码
+    })
+  },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */

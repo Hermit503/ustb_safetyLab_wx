@@ -143,13 +143,14 @@ Component({
           btn: 'classLog'
         },
       ],
-      '实验室管理员': [{
-          title: '人员管理',
-          name: 'User',
-          color: 'cyan',
-          icon: 'friend',
-          btn: 'user'
-        },
+      '实验室管理员': [
+        // {
+        //   title: '人员管理',
+        //   name: 'User',
+        //   color: 'cyan',
+        //   icon: 'friend',
+        //   btn: 'user'
+        // },
         {
           title: '设备管理',
           name: 'Equipment',
@@ -199,12 +200,12 @@ Component({
           icon: 'form',
           btn: 'inspectionRecord'
         },
-        {
-          title: '实验室日志',
-          name: 'Laboratory logs',
-          color: 'brown',
-          icon: 'text'
-        },
+        // {
+        //   title: '实验室日志',
+        //   name: 'Laboratory logs',
+        //   color: 'brown',
+        //   icon: 'text'
+        // },
         {
           title: '学习',
           name: 'Study',

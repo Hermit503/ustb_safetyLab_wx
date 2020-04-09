@@ -10,7 +10,7 @@
 	<view class="cu-item shadow" style="padding-bottom:10rpx;margin-top:5rpx;margin-bottom:15rpx;">
 		<view class="title">
 			<view class='action'>
-				<text class='cuIcon-titles text-orange '></text> <text class='cuIcon-titles text-orange'></text>课程名称：{{item.experimentalName}}
+				<text class='cuIcon-titles text-orange '></text> 课程名称：{{item.experimentalName}}
 			</view>
 		</view>
 		<view class="content">

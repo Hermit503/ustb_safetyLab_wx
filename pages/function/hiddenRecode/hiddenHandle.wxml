@@ -77,7 +77,7 @@
 
   <view class="cu-form-group">
     <view class="title">解决状态</view>
-    <switch checked="{{isSolve}}" disabled="{{isSolve}}" bindchange="changeSwitch" class='blue sm'></switch>
+    <switch checked="{{isSolve}}" disabled="{{isSolve||role=='院级管理员'}}" bindchange="changeSwitch" class='blue sm'></switch>
   </view>
 
   <view class="cu-form-group" hidden="{{addImage}}" wx:if="{{detail.isSolve==0 && role!='院级管理员' && role!='校级管理员'}}">
