@@ -6,7 +6,7 @@
     <view class='margin-top-sm'>该项目是由信息工程学院学生开发的一款实验室信息化管理的小程序，这个项目不仅可以摆脱纸质化，还可以提高管理效率，将使用记录永久保存。</view>
     <view class='margin-top-sm'>我们根据不同职工的权限及功能进行精准划分，明确用户角色权限三者之间的关系。</view>
     <view class='margin-top-sm'>感谢ColorUI、Laravel作者提供精美UI及简洁快捷的框架(๑❛ᴗ❛๑)۶</view>
-    <view class='margin-top-sm'>更多内容详情见GitHub：https://github.com/Norsl-s/ustb_safetyLab</view>
+    <view class='margin-top-sm'>更多内容详情见GitHub：https://github.com/Hermit503/ustb_safetyLab</view>
     <view class='margin-top-sm'>更多功能敬请期待！</view>
   </view>
 </view>

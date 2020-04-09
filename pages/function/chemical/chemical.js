@@ -71,6 +71,7 @@ Page({
    * 模态框
    */
   showModal(e) {
+    console.log(e)
     this.setData({
       modalName: e.currentTarget.dataset.target,
       userSortId: e.currentTarget.dataset.id,
