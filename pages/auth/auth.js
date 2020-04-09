@@ -40,6 +40,9 @@ Page({
     that.setData({
       isClick: true
     })
+    wx.showLoading({
+      title: '正在登陆',
+    })
     wx.getUserInfo({
       lang: "zh_CN",
       success: response => {
@@ -63,6 +66,7 @@ Page({
               success: function (res) {
                 console.log(res)
                 if (res.statusCode == '401') {
+                  wx.hideLoading();
                   wx.showToast({
                     title: '工号或密码错误',
                     duration: 2000,
@@ -72,6 +76,7 @@ Page({
                   })
                   return false;
                 } else if (res.statusCode=="400"){
+                  wx.hideLoading();
                   wx.showToast({
                     title: '工号不存在！',
                     duration: 2000,
@@ -81,6 +86,7 @@ Page({
                   })
                   return false;
                 }else if (res.statusCode=="200"){
+                  wx.hideLoading();
                   wx.showToast({
                     title: '登陆成功！',
                     duration: 2000,
@@ -115,6 +121,15 @@ Page({
                       url: '/pages/index/index',
                     })
                   }
+                }else{
+                  wx.hideLoading();
+                  wx.showToast({
+                    title: '发送未知错误',
+                    duration: 2000,
+                  });
+                  that.setData({
+                    isClick: false
+                  })
                 }
               }
             });

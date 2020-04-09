@@ -73,13 +73,7 @@ Page({
       unit_id: e.detail.value
     })
   },
-  checkboxChange: function(e) {
-    let that = this
-    console.log(e.detail.value)
-    that.setData({
-      userPermission: e.detail.value
-    })
-  },
+ 
   formSubmit: function(e) {
     wx.request({
       url: app.globalData.Url + '/users/' + e.detail.value.userId,
@@ -90,7 +84,6 @@ Page({
         'phone': e.detail.value.userPhone,
         'unit_id': Number(e.detail.value.userUnit) + 1,
         'title': e.detail.value.userTitle,
-        'permission': e.detail.value.userPermission
       },
       header: {
         'content-type': 'application/x-www-form-urlencoded'
