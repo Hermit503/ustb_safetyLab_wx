@@ -10,13 +10,13 @@ Page({
     display: 'none',
     imgList: [],
     index: null,
-    items:[],
+    items: [],
     indexList: [],
     file: null,
     fileList: null,
     userList: new Array(), //需要上传的人员
     pictures: new Array(), //上传成功后的图片路径
-    finalPicture:null,
+    finalPicture: null,
     finalFile: '',        //上传成功的文件路径
     sucess: 0,
   },
@@ -65,39 +65,39 @@ Page({
     })
   },
 
-  uploadImage(){
+  uploadImage() {
     var that = this;
-    
+
   },
 
-  chooseFile(e){
+  chooseFile(e) {
     var that = this;
     wx.chooseMessageFile({
-      count:1,
+      count: 1,
       type: 'file',
-      success(res){
+      success(res) {
         console.log(res);
         that.setData({
           file: res.tempFiles[0].name,
-          fileList : res.tempFiles[0].path
+          fileList: res.tempFiles[0].path
         })
       }
     })
   },
 
-  showList(e){
-    if(this.data.display == 'none'){
+  showList(e) {
+    if (this.data.display == 'none') {
       this.setData({
         display: null
       });
-    }else{
+    } else {
       this.setData({
         display: 'none'
       });
     }
   },
 
-  checkboxChange(e){
+  checkboxChange(e) {
     console.log(e.detail.value);
     this.setData({
       userList: e.detail.value
@@ -115,7 +115,7 @@ Page({
     let that = this
     wx.request({
       url: app.globalData.Url + "/notice/",
-      data:{
+      data: {
         // roles: wx.getStorageSync('Roles'),
         roles: [wx.getStorageSync('UserData').title],
         user_id: wx.getStorageSync('UserData').user_id,
@@ -130,177 +130,186 @@ Page({
     })
   },
 
-  formSubmit: function(e){
-    var that = this;
-    //用户可能只上传照片，可能只上传文件，也可能都上传
-    //只上传照片
-    if (that.data.imgList.length != 0 && that.data.fileList == null){
-      var length = this.data.imgList.length;
-      var i = 0;
-      var count = 0;
-      for (i; i < length;i++) {
+  formSubmit: function (e) {
+       var that = this;
+    if (e.detail.value.title == '' ||that.data.userList.length==0||e.detail.value.comment=='') {
+      wx.showToast({
+        title: '请输入完整信息',
+        icon:'none'
+      })
+    } 
+    else {
+    
+      //用户可能只上传照片，可能只上传文件，也可能都上传
+      //只上传照片
+      if (that.data.imgList.length != 0 && that.data.fileList == null) {
+        var length = this.data.imgList.length;
+        var i = 0;
+        var count = 0;
+        for (i; i < length; i++) {
+          wx.uploadFile({
+            url: app.globalData.Url + "/notice/imgUpload",
+            filePath: this.data.imgList[i],
+            name: 'file',
+            success(res) {
+              count++;
+              that.data.pictures.push(res.data);
+              if (count == length) {
+                wx.request({
+                  url: app.globalData.Url + "/notice/saveData",
+                  method: 'POST',
+                  data: {
+                    title: e.detail.value.title,
+                    users: JSON.stringify(that.data.userList),
+                    comment: e.detail.value.comment,
+                    build_id: wx.getStorageSync('UserData').user_id,
+                    pictures: JSON.stringify(that.data.pictures),
+                    file: that.data.finalFile
+                  },
+                  success(res) {
+                    wx.showToast({
+                      // icon: ,
+                      title: res.data,
+                    })
+                    setTimeout(function () {
+                      wx.navigateBack({});
+                    }, 1500)
+                  }
+                })
+              }
+            }
+          })
+        }
+      } else if (that.data.fileList != null && that.data.imgList.length == 0) {
+        //只上传文件
         wx.uploadFile({
-          url: app.globalData.Url + "/notice/imgUpload",
-          filePath: this.data.imgList[i],
+          url: app.globalData.Url + "/notice/fileUpload",
+          filePath: this.data.fileList,
+          header: {
+            "chartset": "utf-8"
+          },
+          method: 'POST',
           name: 'file',
           success(res) {
-            count++;
-            that.data.pictures.push(res.data);
-            if(count == length){
-              wx.request({
-                url: app.globalData.Url + "/notice/saveData",
-                method: 'POST',
-                data: {
-                  title: e.detail.value.title,
-                  users: JSON.stringify(that.data.userList),
-                  comment: e.detail.value.comment,
-                  build_id: wx.getStorageSync('UserData').user_id,
-                  pictures: JSON.stringify(that.data.pictures),
-                  file: that.data.finalFile
-                },
-                success(res) {
-                  wx.showToast({
-                    // icon: ,
-                    title: res.data,
-                  })
-                  setTimeout(function () {
-                    wx.navigateBack({});
-                  }, 1500)
+            console.log("result");
+            console.log(res.data);
+            that.setData({
+              finalFile: res.data
+            })
+            wx.request({
+              url: app.globalData.Url + "/notice/saveData",
+              method: 'POST',
+              data: {
+                title: e.detail.value.title,
+                users: JSON.stringify(that.data.userList),
+                comment: e.detail.value.comment,
+                build_id: wx.getStorageSync('UserData').user_id,
+                pictures: JSON.stringify(that.data.pictures),
+                file: that.data.finalFile
+              },
+              success(res) {
+                wx.showToast({
+                  // icon: ,
+                  title: res.data,
+                })
+                setTimeout(function () {
+                  wx.navigateBack({});
+                }, 1500)
+              }
+            })
+          }
+        })
+
+      } else if (that.data.fileList == null && that.data.imgList.length == 0) {
+        //都不上传
+        wx.request({
+          url: app.globalData.Url + "/notice/saveData",
+          method: 'POST',
+          data: {
+            title: e.detail.value.title,
+            users: JSON.stringify(that.data.userList),
+            comment: e.detail.value.comment,
+            build_id: wx.getStorageSync('UserData').user_id,
+            pictures: JSON.stringify(that.data.pictures),
+            file: that.data.finalFile
+          },
+          success(res) {
+            console.log(res.data);
+            wx.showToast({
+              // icon: ,
+              title: res.data,
+            })
+            setTimeout(function () {
+              wx.navigateBack({});
+            }, 1500)
+            wx.request({
+              url: app.globalData.Url + "/email",
+              data: {
+                users: JSON.stringify(that.data.userList)
+              },
+              sucess(r) {
+                console.log("邮件发送成功");
+              }
+            })
+
+          }
+        })
+      } else if (that.data.fileList != null && that.data.imgList.length != 0) {
+        //都有
+        wx.uploadFile({
+          url: app.globalData.Url + "/notice/fileUpload",
+          filePath: this.data.fileList,
+          header: {
+            "chartset": "utf-8"
+          },
+          method: 'POST',
+          name: 'file',
+          success(res) {
+            console.log(res.data);
+            that.setData({
+              finalFile: res.data
+            })
+            //传图片
+            var length = that.data.imgList.length;
+            var i = 0;
+            var count = 0;
+            for (i; i < length; i++) {
+              wx.uploadFile({
+                url: app.globalData.Url + "/notice/imgUpload",
+                filePath: that.data.imgList[i],
+                name: 'file',
+                success(r) {
+                  count++;
+                  that.data.pictures.push(r.data);
+                  if (count == length) {
+                    wx.request({
+                      url: app.globalData.Url + "/notice/saveData",
+                      method: 'POST',
+                      data: {
+                        title: e.detail.value.title,
+                        users: JSON.stringify(that.data.userList),
+                        comment: e.detail.value.comment,
+                        build_id: wx.getStorageSync('UserData').user_id,
+                        pictures: JSON.stringify(that.data.pictures),
+                        file: that.data.finalFile
+                      },
+                      success(re) {
+                        wx.showToast({
+                          // icon: ,
+                          title: res.data,
+                        })
+                        setTimeout(function () {
+                          wx.navigateBack({});
+                        }, 1500)
+                      }
+                    })
+                  }
                 }
               })
             }
           }
         })
       }
-    } else if (that.data.fileList != null && that.data.imgList.length == 0){
-      //只上传文件
-      wx.uploadFile({
-        url: app.globalData.Url + "/notice/fileUpload",
-        filePath: this.data.fileList,
-        header: {
-          "chartset": "utf-8"
-        },
-        method: 'POST',
-        name: 'file',
-        success(res) {
-          console.log("result");
-          console.log(res.data);
-          that.setData({
-            finalFile: res.data
-          })
-          wx.request({
-            url: app.globalData.Url + "/notice/saveData",
-            method: 'POST',
-            data: {
-              title: e.detail.value.title,
-              users: JSON.stringify(that.data.userList),
-              comment: e.detail.value.comment,
-              build_id: wx.getStorageSync('UserData').user_id,
-              pictures: JSON.stringify(that.data.pictures),
-              file: that.data.finalFile
-            },
-            success(res) {
-              wx.showToast({
-                // icon: ,
-                title: res.data,
-              })
-              setTimeout(function () {
-                wx.navigateBack({});
-              }, 1500)
-            }
-          })
-        }
-      })
-      
-    } else if (that.data.fileList == null && that.data.imgList.length == 0){
-      //都不上传
-      wx.request({
-        url: app.globalData.Url + "/notice/saveData",
-        method: 'POST',
-        data: {
-          title: e.detail.value.title,
-          users: JSON.stringify(that.data.userList),
-          comment: e.detail.value.comment,
-          build_id: wx.getStorageSync('UserData').user_id,
-          pictures: JSON.stringify(that.data.pictures),
-          file: that.data.finalFile
-        },
-        success(res) {
-          console.log(res.data);
-          wx.showToast({
-            // icon: ,
-            title: res.data,
-          })
-          setTimeout(function () {
-            wx.navigateBack({});
-          }, 1500)
-          wx.request({
-            url: app.globalData.Url + "/email",
-            data:{
-              users: JSON.stringify(that.data.userList)
-            },
-            sucess(r){
-              console.log("邮件发送成功");
-            }
-          })
-          
-        }
-      })
-    } else if (that.data.fileList != null && that.data.imgList.length != 0){
-      //都有
-      wx.uploadFile({
-        url: app.globalData.Url + "/notice/fileUpload",
-        filePath: this.data.fileList,
-        header: {
-          "chartset": "utf-8"
-        },
-        method: 'POST',
-        name: 'file',
-        success(res) {
-          console.log(res.data);
-          that.setData({
-            finalFile: res.data
-          })
-          //传图片
-          var length = that.data.imgList.length;
-          var i = 0;
-          var count = 0;
-          for (i; i < length; i++) {
-            wx.uploadFile({
-              url: app.globalData.Url + "/notice/imgUpload",
-              filePath: that.data.imgList[i],
-              name: 'file',
-              success(r) {
-                count++;
-                that.data.pictures.push(r.data);
-                if (count == length) {
-                  wx.request({
-                    url: app.globalData.Url + "/notice/saveData",
-                    method: 'POST',
-                    data: {
-                      title: e.detail.value.title,
-                      users: JSON.stringify(that.data.userList),
-                      comment: e.detail.value.comment,
-                      build_id: wx.getStorageSync('UserData').user_id,
-                      pictures: JSON.stringify(that.data.pictures),
-                      file: that.data.finalFile
-                    },
-                    success(re) {
-                      wx.showToast({
-                        // icon: ,
-                        title: res.data,
-                      })
-                      setTimeout(function () {
-                        wx.navigateBack({});
-                      }, 1500)
-                    }
-                  })
-                }
-              }
-            })
-          }
-        }
-      })
     }
   },
 
@@ -308,7 +317,7 @@ Page({
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
-    
+
   },
 
   /**

@@ -49,58 +49,66 @@ Page({
       }
     })
   },
-  formSubmit: function(e) {
+  formSubmit: function (e) {
     let that = this
-    // wx.compressImage({
-    //   src: this.data.imgList[0], // 图片路径
-    //   quality: 80,
-    //   success(res) {
+    if (e.detail.value.position == '' || e.detail.value.title == '' || e.detail.value.detail == '') {
+      wx.showToast({
+        title: '请输入完整信息',
+        icon: "none"
+      })
+    } else {
+
+
+      // wx.compressImage({
+      //   src: this.data.imgList[0], // 图片路径
+      //   quality: 80,
+      //   success(res) {
       wx.showLoading({
         title: '正在上报',
       })
-        wx.uploadFile({
-          url: app.globalData.Url + "/hiddens/upload",
-          filePath: that.data.imgList[0],
-          name: 'file',
-          success(res) {
-            console.log(res)
-            wx.request({
-              url: app.globalData.Url + "/hiddens",
-              data: {
-                type: that.data.type,
-                position: e.detail.value.position,
-                title: e.detail.value.title,
-                detail: e.detail.value.detail,
-                image: res.data,
-                user_id: wx.getStorageSync('UserData').user_id
-              },
-              header: {
-                'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8'
-              },
-              method: 'POST',
-              dataType: 'json',
-              responseType: 'text',
-              success: function(res) {
-                console.log(res)
-                if (res.statusCode == 201) {
-                  wx.navigateBack({
-                    delta: 1
-                  });
-                  wx.hideLoading();
-                  wx.showToast({
-                    title: '提交成功',
-                    duration: 1500
-                  });
-                }
-              },
-              fail: function(res) {},
-              complete: function(res) {},
-            })
-          }
-        })
-    //   }
-    // })
-
+      wx.uploadFile({
+        url: app.globalData.Url + "/hiddens/upload",
+        filePath: that.data.imgList[0],
+        name: 'file',
+        success(res) {
+          console.log(res)
+          wx.request({
+            url: app.globalData.Url + "/hiddens",
+            data: {
+              type: that.data.type,
+              position: e.detail.value.position,
+              title: e.detail.value.title,
+              detail: e.detail.value.detail,
+              image: res.data,
+              user_id: wx.getStorageSync('UserData').user_id
+            },
+            header: {
+              'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8'
+            },
+            method: 'POST',
+            dataType: 'json',
+            responseType: 'text',
+            success: function (res) {
+              console.log(res)
+              if (res.statusCode == 201) {
+                wx.navigateBack({
+                  delta: 1
+                });
+                wx.hideLoading();
+                wx.showToast({
+                  title: '提交成功',
+                  duration: 1500
+                });
+              }
+            },
+            fail: function (res) { },
+            complete: function (res) { },
+          })
+        }
+      })
+      //   }
+      // })
+    }
   },
   textareaAInput(e) {
     this.setData({
@@ -115,56 +123,56 @@ Page({
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function(options) {
+  onLoad: function (options) {
 
   },
 
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
-  onReady: function() {
+  onReady: function () {
 
   },
 
   /**
    * 生命周期函数--监听页面显示
    */
-  onShow: function() {
+  onShow: function () {
 
   },
 
   /**
    * 生命周期函数--监听页面隐藏
    */
-  onHide: function() {
+  onHide: function () {
 
   },
 
   /**
    * 生命周期函数--监听页面卸载
    */
-  onUnload: function() {
+  onUnload: function () {
 
   },
 
   /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
-  onPullDownRefresh: function() {
+  onPullDownRefresh: function () {
 
   },
 
   /**
    * 页面上拉触底事件的处理函数
    */
-  onReachBottom: function() {
+  onReachBottom: function () {
 
   },
 
   /**
    * 用户点击右上角分享
    */
-  onShareAppMessage: function() {
+  onShareAppMessage: function () {
 
   }
 })
