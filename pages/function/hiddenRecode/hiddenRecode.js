@@ -31,7 +31,9 @@ Page({
     })
     wx.request({
       url: app.globalData.Url + '/hiddens',
-      data: {},
+      data: {
+        'unit_id': wx.getStorageSync('UserData').unit_id
+      },
       header: {
         'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8'
       },
