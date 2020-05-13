@@ -18,9 +18,13 @@
     <view class="action">
       <checkbox-group class="bg-white" bindchange="checkboxChange" name="userList">
         <label class="checkbox " wx:for="{{items}}" wx:key="{{index}}">
-          <view class="checkoutbox-form-group">
+          <view class="checkoutbox-form-group" wx:if="{{item.unit}}">
             <checkbox value="{{item.id}}" checked="{{item.checked}}" />
-            <text decode="{{true}}">&ensp;</text>{{item.name}}
+            <text decode="{{true}}">&ensp;</text>{{item.name}} ({{item.unit}}-{{item.role}})
+          </view>
+          <view class="checkoutbox-form-group" wx:if="{{!item.unit}}">
+            <checkbox value="{{item.id}}" checked="{{item.checked}}" />
+            <text decode="{{true}}">&ensp;</text>{{item.name}} ({{item.role}})
           </view>
         </label>
       </checkbox-group>

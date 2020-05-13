@@ -122,6 +122,7 @@ Page({
         unit_id: wx.getStorageSync('UserData').unit_id,
       },
       success: function (res) {
+        console.log(res)
         that.setData({
           items: res.data,
         })
