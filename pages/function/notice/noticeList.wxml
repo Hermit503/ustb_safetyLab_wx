@@ -3,6 +3,10 @@
     <view slot="backText">返回</view>
     <view slot="content">我的上传</view>
   </cu-custom>
+
+  <view wx:if="{{noticeList.length==0}}" class="nomore">
+<image src="../../../images/nomore.png" mode="widthFix"></image>
+</view>
   <!--通知没有图片的话，咋咋咋-->
   <view wx:for="{{noticeList}}" wx:key="{{index}}">
     <view class="cu-card case">

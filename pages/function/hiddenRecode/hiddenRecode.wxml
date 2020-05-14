@@ -12,7 +12,12 @@
     </view>
   </scroll-view>
 
-
+<view wx:if="{{TabCur==0 && tap0==0}}" class="nomore">
+<image src="../../../images/nomore.png" mode="widthFix"></image>
+</view>
+<view wx:if="{{TabCur==1 && tap1==0}}" class="nomore">
+<image src="../../../images/nomore.png" mode="widthFix"></image>
+</view>
   <view wx:for="{{hiddenList}}" wx:key="{{index}}" wx:if="{{TabCur==0&&item.type=='hidden'}}">
     <view class="cu-card article {{isCard?'':'no-card'}} margin-bottom-xs">
       <view class="cu-item shadow">

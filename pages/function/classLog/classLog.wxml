@@ -4,7 +4,9 @@
 </cu-custom>
 
 
-
+<view wx:if="{{classLog.length==0}}" class="nomore">
+<image src="../../../images/nomore.png" mode="widthFix"></image>
+</view>
 
 <view class="cu-card article {{isCard?'no-card':''}}" wx:if="{{role!='实验室管理员'}}" style="background-color:#F5F5F5;padding-bottom:0rpx;padding-top:2rpx;" wx:for="{{classLog}}" wx:key>
 	<view class="cu-item shadow" style="padding-bottom:10rpx;margin-top:5rpx;margin-bottom:15rpx;">

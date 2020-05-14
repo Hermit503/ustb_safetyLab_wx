@@ -35,8 +35,8 @@
 <view class="cu-form-group" wx:if="{{!inspection.CAS}}">
 	<view class="title">设备状态</view>
 	<input value="{{status}}" disabled="true"></input>
-	<switch bindchange="Change" checked="{{inspection.status=='正常'}}"></switch>
-</view>
+	<switch class="blue" bindchange="Change" checked="{{inspection.status=='正常'}}"></switch>
+</view> 
 <view class="cu-form-group" wx:if="{{inspection.stock}}">
 	<view class="title">当前余量</view>
 	<input value="{{inspection.stock}}{{inspection.unit_type}}" disabled="true"></input>
@@ -44,7 +44,7 @@
 <view class="cu-form-group" wx:if="{{inspection.chemical_id}}">
 	<view class="title">药品状态</view>
 	<input value="{{status}}" disabled="true"></input>
-	<switch bindchange="Change" checked="{{inspection.status=='正常'}}"></switch>
+	<switch class="blue" bindchange="Change" checked="{{inspection.status=='正常'}}"></switch>
 </view>
 <view class="cu-form-group align-start" wx:if="{{status != inspection.status&&inspection.status}}">
 	<view class="title">问题描述</view>
@@ -60,7 +60,7 @@
   </view>
   <view class="cu-form-group solids-bottom" wx:if="{{status != inspection.status&&inspection.status}}"> 
     <view class="grid col-4 grid-square flex-sub">
-      <view class="bg-img" wx:for="{{imgList}}" wx:key="{{index}}" bindtap="ViewImage" data-url="{{imgList[index]}}">
+      <view class="bg-img" wx:for="{{imgList}}" wx:key="index" bindtap="ViewImage" data-url="{{imgList[index]}}">
         <image src='{{imgList[index]}}' name="image" mode='aspectFill'></image>
         <view class="cu-tag bg-red" catchtap="DelImg" data-index="{{index}}">
           <text class="cuIcon-close"></text>

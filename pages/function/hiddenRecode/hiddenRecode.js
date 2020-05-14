@@ -39,9 +39,20 @@ Page({
       },
       method: 'GET',
       success: function(res) {
-        console.log(res.data.hidden.data)
+        let tap0 = 0;
+        let tap1 = 0;
+        // console.log(res.data.hidden.data)
+        for(let i =0;i<res.data.hidden.data.length;i++){
+          if(res.data.hidden.data[i].type=='issue'){
+            tap1++;
+          }else if(res.data.hidden.data[i].type=='hidden'){
+            tap0++;
+          }
+        }
         that.setData({
           hiddenList: res.data.hidden.data,
+          tap0:tap0,
+          tap1:tap1,
         })
       },
       fail: function(res) {},

@@ -4,7 +4,9 @@
 </cu-custom>
 
 
-
+<view wx:if="{{inspectionLogList.length==0}}" class="nomore">
+<image src="../../../images/nomore.png" mode="widthFix"></image>
+</view>
 <view class="cu-card article" style="" wx:for="{{inspectionLogList}}" wx:key>
   <view class="cu-item" style="padding-bottom:10rpx; margin:20rpx 20rpx 10rpx 20rpx;">
     <view class="title">

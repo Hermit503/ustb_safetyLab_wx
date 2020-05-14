@@ -316,16 +316,19 @@ Component({
             wx.request({
               url: app.globalData.Url + "/inspections",
               data: {
-                id: res.result
+                id: res.result,
+                unit_id:wx.getStorageSync('UserData').unit_id
               },
               header: {},
               method: 'GET',
               dataType: 'json',
               responseType: 'text',
               success: function(e) {
-                if (e.data == "该二维码不存在") {
+                console.log(e)
+                if (e.data.canInspection == "no") {
                   wx.showToast({
-                    title: e.data,
+                    title: e.data.msg,
+                    icon:"none",
                   })
                 } else {
                   wx.navigateTo({

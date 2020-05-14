@@ -26,7 +26,7 @@ Page({
       dataType: 'json',
       responseType: 'text',
       success: function(res) {
-        console.log(res.data)
+        // console.log(res.data)
         that.setData({
           inspectionLogList:res.data
         })

@@ -3,7 +3,9 @@
     <view slot="backText">返回</view>
     <view slot="content">我的消息</view>
   </cu-custom>
-
+  <view wx:if="{{messageList.length==0}}" class="nomore">
+<image src="../../../images/nomore.png" mode="widthFix"></image>
+</view>
   <scroll-view scroll-x class="bg-white nav">
     <view class="flex text-center">
       <view class="cu-item flex-sub {{index==currentTab?'text-blue cur':''}}" wx:for="{{tabList}}" wx:key data-current="{{index}}" bindtap="swichNav">
