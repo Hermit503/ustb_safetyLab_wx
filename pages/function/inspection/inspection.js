@@ -100,7 +100,7 @@ Page({
     } else {
       var type = "equipment";
     }
-    if(that.data.status=='正常'&&that.data.inspection.status=='正常'){
+    if((that.data.status=='正常'&&that.data.inspection.status=='正常')||(that.data.status=='存在问题'&&that.data.inspection.status=='存在问题')||(that.data.status=='维修'&&that.data.inspection.status=='维修')){
       let res={
         data:undefined
       };
