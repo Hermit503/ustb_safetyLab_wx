@@ -16,6 +16,9 @@ Page({
    */
   onLoad: function(options) {
     let that = this
+    wx.showLoading({
+      title: '正在加载',
+    })
     wx.request({
       url: app.globalData.Url + "/inspections",
       data: {
@@ -27,6 +30,9 @@ Page({
       dataType: 'json',
       responseType: 'text',
       success: function(res) {
+        wx.hideLoading({
+          complete: (res) => {},
+        })
         that.setData({
           inspection: res.data,
           inspection_id: options.id
@@ -86,6 +92,9 @@ Page({
 
   Submit(e) {
     let that = this;
+    wx.showLoading({
+      title: '正在提交',
+    })
     if (Object.keys(that.data.inspection)[9]=="CAS") {
       var type = "chemical";
     } else {
@@ -103,6 +112,7 @@ Page({
         name:'file',
         success(res) {
           that.updateInspection(res,type);
+          
           console.log(res)
         }
       });
@@ -110,7 +120,6 @@ Page({
   },
     updateInspection(res,type){
       let that = this;
-
       wx.request({
         url: app.globalData.Url + '/inspections/' + that.data.inspection_id,
         data: {
@@ -135,6 +144,9 @@ Page({
         success: function(res) {
           console.log(res)
           if(res.data=='检修完成'&&res.statusCode==200){
+            wx.hideLoading({
+              complete: (res) => {},
+            })
             wx.showToast({
               title: '检修完成',
               duration: 2000,

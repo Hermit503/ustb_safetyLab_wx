@@ -51,21 +51,19 @@ Page({
   },
   formSubmit: function (e) {
     let that = this
+    wx.showLoading({
+      title: '正在上报',
+    })
     if (e.detail.value.position == '' || e.detail.value.title == '' || e.detail.value.detail == '') {
+      wx.hideLoading({
+        complete: (res) => {},
+      })
       wx.showToast({
         title: '请输入完整信息',
         icon: "none"
       })
+      
     } else {
-
-
-      // wx.compressImage({
-      //   src: this.data.imgList[0], // 图片路径
-      //   quality: 80,
-      //   success(res) {
-      wx.showLoading({
-        title: '正在上报',
-      })
       wx.uploadFile({
         url: app.globalData.Url + "/hiddens/upload",
         filePath: that.data.imgList[0],
