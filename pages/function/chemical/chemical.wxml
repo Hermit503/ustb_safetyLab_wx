@@ -16,7 +16,9 @@
       <view wx:if="{{item=='allchemical'||item=='createchemical'}}" class='cu-btn bg-gradual-blue round shadow  flex-half' bindtap='addUser'>增加人员</view>
     </view> -->
   </view>
-
+  <view wx:if="{{chemicalList.length==0}}" class="nomore">
+<image src="../../../images/nomore.png" mode="widthFix"></image>
+</view>
   <view class="flex flex-wrap text-center">
     <view class="basis-25 bg-white padding-sm">
       <text class="cuIcon-title text-blue"></text > 化学品id</view>

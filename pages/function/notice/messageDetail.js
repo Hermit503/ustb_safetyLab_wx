@@ -69,6 +69,9 @@ Page({
       //收到消息
       receiveNotice: function(e) {
         var that = this;
+        wx.showLoading({
+          title: '正在提交',
+        })
         wx.request({
               url: app.globalData.Url + "/notice/receiveNotice",
               data: {
@@ -76,11 +79,13 @@ Page({
                 user: wx.getStorageSync('UserData').user_id,
               },
               success: function(res) {
-                wx.showToast({
-                  title: res.data,
+                wx.hideLoading({
+                  complete: (res) => {
+                    wx.showToast({
+                      title: res.data,
+                    })
+                  },
                 })
-                console.log(res.data);
-
                 setTimeout(function () {
                   let pages = getCurrentPages();  // 当前页的数据，可以输出来看看有什么东西
                   let prevPage = pages[pages.length - 2];  // 上一页的数据，也可以输出来看看有什么东西

@@ -55,7 +55,6 @@ Component({
           title: '隐患/问题记录',
           name: 'Issue Recode',
           color: 'olive',
-          icon: 'text',
           btn: 'hiddenRecode'
         },
         // {
