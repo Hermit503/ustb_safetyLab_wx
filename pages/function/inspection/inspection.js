@@ -35,7 +35,7 @@ Page({
         })
         that.setData({
           inspection: res.data,
-          inspection_id: options.id
+          inspection_id: options.id,
         })
         if (res.data.status) {
           that.setData({
@@ -46,6 +46,8 @@ Page({
             status: '正常'
           })
         }
+        
+        
       },
       fail: function(res) {},
       complete: function(res) {},
@@ -66,19 +68,34 @@ Page({
     if (e.detail.value == true) {
       that.setData({
         status: '正常',
-        up:0
+        up:1
       })
+      if(that.data.status=='正常'&&that.data.inspection.status=='正常'){
+        that.setData({
+          up:0
+        })
+      }
     } else if (e.detail.value == false) {
       if (that.data.inspection.chemical_id) {
         that.setData({
           status: '存在问题',
           up:1
         })
-      } else {
+        if(that.data.status=='存在问题'&&that.data.inspection.status=='存在问题'){
+          that.setData({
+            up:0
+          })
+        }
+      } else{
         that.setData({
           status: '维修',
           up:1
         })
+        if(that.data.status=='维修'&&that.data.inspection.status=='维修'){
+          that.setData({
+            up:0
+          })
+        }
       }
 
     }
@@ -112,7 +129,6 @@ Page({
         name:'file',
         success(res) {
           that.updateInspection(res,type);
-          
           console.log(res)
         }
       });
@@ -133,7 +149,6 @@ Page({
           up:that.data.up,
           position:that.data.inspection.laboratories.building_name+that.data.inspection.laboratories.classroom_num,
           inspection_id:that.data.inspection_id,
-          
         },
         header: {
           'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8'
